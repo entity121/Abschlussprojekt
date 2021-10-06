@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="PROJEKT.css">
+    <script language="javascript" type="text/javascript" src="PROJEKT.js">   </script>
+    <script language="javascript" type="text/javascript" src="Hauptseite.js">   </script>
+    <script language="javascript" type="text/javascript" src="Kalender.js">   </script>
+    <script language="javascript" type="text/javascript" src="Tagesstatistik.js">   </script>
+    <script language="javascript" type="text/javascript" src="AJAX.js">   </script>
+
+    <title>Abschlussprojekt</title>
+  </head>
+
+
+
+  <body onload="On_Load()">
+
+      <div class="seite" id="seite_1">
+        <div class="header">
+          <h1>Name des Projektes</h1>
+        </div>
+      <!--Links zwischen den verschiedenen Unterseiten-->
+        <div class="links">
+            <ul>
+              <li id="link_seite_12" onclick="Seiten_Wechseln(1,2)">Statistik</li>
+              <li id="link_seite_13" onclick="Seiten_Wechseln(1,3)">Stress</li>
+              <li id="link_seite_14" onclick="Seiten_Wechseln(1,4)">Kalender</li>
+              <li id="link_seite_15" onclick="Seiten_Wechseln(1,5)">Archiv</li>
+            </ul>
+        </div>
+
+      <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
+        <div class="main_object">
+
+          <div id="farbauswahl">
+            <div id="auswahl_anzeige" style="background-color: white;">
+              NEUTRAL
+            </div>
+              <div id="buttons">
+                <button id="FREUDE" onclick="Farbe_Auswählen(this)" style="background-color: yellow;"></button>
+                <button id="INTERESSE" onclick="Farbe_Auswählen(this)" style="background-color: orangered;"></button>
+                <button id="ÜBERRASCHUNG" onclick="Farbe_Auswählen(this)" style="background-color: greenyellow;"></button>
+                <button id="LIEBE" onclick="Farbe_Auswählen(this)" style="background-color: blueviolet;"></button>
+                <button id="HOFFNUNG" onclick="Farbe_Auswählen(this)" style="background-color: green;"></button>
+                <button id="ABNEIGUNG" onclick="Farbe_Auswählen(this)" style="background-color: cyan;"></button>
+                <button id="WUT" onclick="Farbe_Auswählen(this)" style="background-color: red;"></button>
+                <button id="TRAUER" onclick="Farbe_Auswählen(this)" style="background-color: royalblue;"></button>
+                <button id="VERLETZUNG" onclick="Farbe_Auswählen(this)" style="background-color: crimson;"></button>
+                <button id="ANGST" onclick="Farbe_Auswählen(this)" style="background-color: grey;"></button>
+              </div>
+          </div>
+          <div id="uhrzeit"></div>
+          <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
+          <div id="angaben">
+              <ul>
+                <li>Was ist los?</li>
+                <li><input type="text" id="was_ist_los"></li>
+              </ul>
+              <ul>
+                <li>Was ist die Ursache?</li>
+                <li><input type="text" id="was_ist_die_ursache"></li>
+              </ul>
+              <ul>
+                <button type="button" name="angabe_speichern" onclick="Speichern()">Speichern</button>
+              </ul>          
+          </div>
+        </div>
+
+        <!--Eine Legende, in der angezeigt wird, welche Farbe für welche Emotion steht-->
+        <div id="legende_box">
+          <div id="legende">
+            <h2>Die Farben</h2>
+            <ul>
+              <li><span style="background-color: yellow;"></span><p>Freude</p></li>
+              <li><span style="background-color: orangered;"></span><p>Interesse</p></li>
+              <li><span style="background-color: yellowgreen;"></span><p>Überraschung</p></li>
+              <li><span style="background-color: blueviolet;"></span><p>Liebe</p></li>
+              <li><span style="background-color: green;"></span><p>Hoffnung</p></li>
+              <li><span style="background-color: cyan;"></span><p>Abneigung</p></li>
+              <li><span style="background-color: red;"></span><p>Wut</p></li>
+              <li><span style="background-color: royalblue;"></span><p>Trauer</p></li>
+              <li><span style="background-color: crimson;"></span><p>Verletzung</p></li>
+              <li><span style="background-color: grey;"></span><p>Angst</p></li>
+            </ul>
+          </div>
+        </div>
+        <!--Footer, meistens genutzt für das Impressum-->
+        <div class="footer">
+        </div>
+      </div><!--###### Ende hauptseite ######-->
+
+
+
+
+
+
+
+
+
+
+    <div class="seite" id="seite_2" style="display: none;">
+      <div class="header">
+        <h1>Statistik</h1>
+      </div>
+      <!--Links zwischen den verschiedenen Unterseiten-->
+      <div class="links">
+          <ul>
+            <li id="link_seite_21" onclick="Seiten_Wechseln(2,1)">Hauptseite</li>
+            <li id="link_seite_22" onclick="Seiten_Wechseln(2,2)">Statistik</li>
+            <li id="link_seite_23" onclick="Seiten_Wechseln(2,3)">Stress</li>
+            <li id="link_seite_24" onclick="Seiten_Wechseln(2,4)">Kalender</li>
+            <li id="link_seite_25" onclick="Seiten_Wechseln(2,5)">Archiv</li>
+          </ul>
+      </div>
+      <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
+      <div class="main_object">
+        <h1>Anwendung</h1>
+      </div>
+      <!--Eine Legende, in der angezeigt wird, welche Farbe für welche Emotion steht-->
+      <div class="legende">
+          <h2>Legende</h2>
+          <p>Farbe</p>
+          <p>Farbe</p>
+          <p>Farbe</p>
+      </div>
+      <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
+      <div class="angaben">
+          <ul>
+            <li>Was ist los?</li>
+            <li><input type="text"></li>
+          </ul>
+          <ul>
+            <li>Was ist die Ursache?</li>
+            <li><input type="text"></li>
+          </ul>
+          <button type="button" name="button">Absenden</button>
+      </div>
+    </div><!--###### Ende Statistik ######-->
+
+
+
+
+
+
+
+
+    <div class="seite" id="seite_3" style="display: none;">
+      <div class="header">
+        <h1>Stress</h1>
+      </div>
+      <!--Links zwischen den verschiedenen Unterseiten-->
+      <div class="links">
+          <ul>
+            <li id="link_seite_31" onclick="Seiten_Wechseln(3,1)">Hauptseite</li>
+            <li id="link_seite_32" onclick="Seiten_Wechseln(3,2)">Statistik</li>
+            <li id="link_seite_33" onclick="Seiten_Wechseln(3,3)">Stress</li>
+            <li id="link_seite_34" onclick="Seiten_Wechseln(3,4)">Kalender</li>
+            <li id="link_seite_35" onclick="Seiten_Wechseln(3,5)">Archiv</li>
+          </ul>
+      </div>
+      <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
+      <div class="main_object">
+        <h1>Anwendung</h1>
+      </div>
+      <!--Eine Legende, in der angezeigt wird, welche Farbe für welche Emotion steht-->
+      <div class="legende">
+          <h2>Legende</h2>
+          <p>Farbe</p>
+          <p>Farbe</p>
+          <p>Farbe</p>
+      </div>
+      <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
+      <div class="angaben">
+          <ul>
+            <li>Was ist los?</li>
+            <li><input type="text"></li>
+          </ul>
+          <ul>
+            <li>Was ist die Ursache?</li>
+            <li><input type="text"></li>
+          </ul>
+          <button type="button" name="button">Absenden</button>
+      </div>
+    </div><!--###### Ende Stress ######-->
+
+
+
+
+
+
+
+
+    <div class="seite" id="seite_4" style="display: none;">
+      <div class="header">
+        <h1>Kalender</h1>
+      </div>
+      <!--Links zwischen den verschiedenen Unterseiten-->
+      <div class="links">
+          <ul>
+            <li id="link_seite_41" onclick="Seiten_Wechseln(4,1)">Hauptseite</li>
+            <li id="link_seite_42" onclick="Seiten_Wechseln(4,2)">Statistik</li>
+            <li id="link_seite_43" onclick="Seiten_Wechseln(4,3)">Stress</li>
+            <li id="link_seite_44" onclick="Seiten_Wechseln(4,4)">Kalender</li>
+            <li id="link_seite_45" onclick="Seiten_Wechseln(4,5)">Archiv</li>
+          </ul>
+      </div>
+      <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
+      <div class="main_object">
+        <button class="kalender_button" onclick="Monat_Wechseln(-1)">Vorheriger Monat</button>
+        <table id="kalender"></table>     
+        <button class="kalender_button" onclick="Monat_Wechseln(1)">Nächster Monat</button>
+      </div>
+
+      <div id="tagesstatistik">
+        <h1>Tagesstatistik</h1>
+        <h2 id="tagesstatistik_datum"></h2>
+        <canvas id="tagesstatistik_darstellung"></canvas>
+      </div>
+
+      <div class="footer">
+      </div>
+
+    </div><!--###### Ende Kalender ######-->
+
+
+
+
+
+
+
+    <div class="seite" id="seite_5" style="display: none;">
+      <div class="header">
+        <h1>Archiv</h1>
+      </div>
+      <!--Links zwischen den verschiedenen Unterseiten-->
+      <div class="links">
+          <ul>
+            <li id="link_seite_51" onclick="Seiten_Wechseln(5,1)">Hauptseite</li>
+            <li id="link_seite_52" onclick="Seiten_Wechseln(5,2)">Statistik</li>
+            <li id="link_seite_53" onclick="Seiten_Wechseln(5,3)">Stress</li>
+            <li id="link_seite_54" onclick="Seiten_Wechseln(5,4)">Kalender</li>
+            <li id="link_seite_55" onclick="Seiten_Wechseln(5,5)">Archiv</li>
+          </ul>
+      </div>
+      <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
+      <div class="main_object">
+        <h1>Anwendung</h1>
+      </div>
+      <!--Eine Legende, in der angezeigt wird, welche Farbe für welche Emotion steht-->
+      <div class="legende">
+          <h2>Legende</h2>
+          <p>Farbe</p>
+          <p>Farbe</p>
+          <p>Farbe</p>
+      </div>
+      <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
+      <div class="angaben">
+          <ul>
+            <li>Was ist los?</li>
+            <li><input type="text"></li>
+          </ul>
+          <ul>
+            <li>Was ist die Ursache?</li>
+            <li><input type="text"></li>
+          </ul>
+          <button type="button" name="button">Absenden</button>
+      </div>
+    </div><!--###### Ende Archiv ######-->
+
+
+
+
+  </body>
+</html>
