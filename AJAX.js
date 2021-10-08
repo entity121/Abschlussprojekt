@@ -12,7 +12,7 @@
             if(xml.readyState==4 && xml.status==200){
 
                 //Die Antwort wird an die entsprechende Funktion weiter geleitet
-                thefunction(this);
+                thefunction(xml.responseText);
             }
             else{
                 alert("Es konnte keine Verbindung zum Server hergestellt werden");

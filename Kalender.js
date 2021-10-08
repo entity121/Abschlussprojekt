@@ -42,6 +42,7 @@ row = kalender.insertRow(1);
 for(var i=0;i<7;i++){
     var cell = row.insertCell(i);
     cell.innerHTML = Woche[i];
+    cell.style.textAlign = "center";
     if(i==5 || i==6){
     cell.style.border = "2px solid red";
     }
@@ -101,7 +102,7 @@ for(var i=0;i<7;i++){
         //Das Kalender Kästchen bekommt ein onclick Event, welches ein Fenster öffnet in dem 
         //die Statistik des Tages (sofern vorhanden) dargestellt wird.
         cell.onclick = function(){
-            Tagesstatistik_Darstellen(this.innerHTML, monat, jahr);
+            Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
         }
 
         //Der aktuelle Tag soll im Kalender eine rote Zahl bekommen
@@ -143,7 +144,7 @@ do{
             cell.innerHTML = zähler;
 
             cell.onclick = function(){
-                Tagesstatistik_Darstellen(this.innerHTML, monat, jahr);
+                Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
             }
 
             //rot färben wenn heutiger Tag

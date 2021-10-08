@@ -1,9 +1,31 @@
-
 //Diese Funktion wird über einen Klick auf einen Kalendertag ausgeführt
-//Sie ruft die Daten des entsprechenden Tages aus der Datenbank ab und stellt diese dar
+//Sie ruft die Daten des entsprechenden Tages aus der Datenbank ab
 //###############################################
-function Tagesstatistik_Darstellen(tag,monat,jahr){
+function Tagesstatistik_Abrufen(tag,monat,jahr){
 
+//Die URL wird erzeugt und mit Variablen befüllt
+var url = "http://localhost/php/stimmungen/abfragen.php?req=tagesstatistik&tag="+tag+"&monat="+monat+"&jahr="+jahr;
+
+//Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
+//an den Server versendet zu werden
+Send_Request(url, Tagesstatistik_Darstellen);
+}
+//###############################################
+
+
+
+
+//###############################################
+function Tagesstatistik_Darstellen(json){
+
+  //Die Antwort, welche als JSON String zurück kam
+  //wird in ein JavaScript Objekt umgewandelt
+  var obj = JSON.parse(json);
+  
+  document.getElementById("tagesstatistik_darstellung").style.backgroundColor = obj.Farbe;
+
+
+/*
     //Arrays
     var Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
     
@@ -44,5 +66,6 @@ function Tagesstatistik_Darstellen(tag,monat,jahr){
     }
 
     datum.innerHTML = tag+" "+Monat_Name[monat]+" "+jahr;
+*/
 }
 //###############################################
