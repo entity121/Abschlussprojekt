@@ -5,753 +5,279 @@
   Dunkel: 4b1d2b
 */
 
+/*Dies wird auf alle Elemente angewendet.
+Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
+angegeben wird*/
+@media screen and (min-width: 0px){
+  * {
+    box-sizing: border-box;
+    float: left;
+  }
+  /*Für das html-Dokument*/
+  /*###############################################*/
+  html {
+    font-family: "Lucida Sans", sans-serif;
+    background-color: #268856;
+    width: 100%;
+    height: 100%;
+  }
+  body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  /*allgemein*/
+  /*###############################################*/
+  .seite{
+    width: 100%;
+    position: absolute;
+  }
+  .header{
+    background-color: #4b1d2b;
+    color: #dcd579;
+    width: 100%;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  .header h1{
+    margin-left: 25px;
+  }
+  .footer{
+    background-color: #4b1d2b;
+    color: #dcd579;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    height: 200px;
+  }
+  .links{
+    margin-top: 20px;
+  }
+  .links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .links li{
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color: #b03522;
+    color: #dcd579;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+    float: none;
+    font-size: 22px;
+  }
+  .links li:hover {
+    background-color: #0099cc;
+  }
+  .main_object {
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+    background-color: #dcd579;
+  }
+  
+  /*Für die Hauptseite*/
+  /*###############################################*/
+  #seite_1 .main_object{
+    margin-top: 10px;
+  }
+  #farbauswahl{
+    border: 1px solid black;
+    width: 100%;
+  }
+  #auswahl_anzeige{
+    width: 100%;
+    border: 3px solid black;
+    align-content: center;
+  }
+  #buttons{
+    width: 100%;
+  }
+  #buttons button{
+    width: 20%;
+  }
+  #buttons button:hover{
+    border: 3px solid white;
+  }
+  #uhrzeit{
+    text-align: center;
+    width: 100%;
+    text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #angaben{
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+    background-color: #b03522;
+    border: 4px solid black;
+    width: 100%;
+  }
+  #angaben ul{
+    list-style: none;
+    width: 90%;
+    padding-left: 10%;
+  }
+  #angaben li{
+    float: none;
+    width: 100%;
+    text-align: center;
+    color: #dcd579;
+    text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #angaben input{
+    width: 100%;
+    height: 100%;
+    border: 3px solid black;
+  }
+  #angaben button{
+    width: 20%;
+    margin-left: 40%;
+    background-color: #dcd579;
+    border: 2px solid black;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #angaben button:hover{
+    border: 3px solid white;
+  }
+  
+  #legende{
+    background-color: #b03522;
+    color: #dcd579;
+    text-align: center;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+    margin-top: 10px;
+    float: right;
+  }
+  #legende ul{
+    list-style: none;
+    width: 100%;
+    padding-left: 0px;
+  }
+  #legende li{
+    width: 100%;
+  }
+  #legende h2{
+    width: 100%;
+    text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #legende span{
+    height: 100%;
+    margin-left: 5%;
+    border: 2px solid black;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #legende p{
+    height: 100%;
+    margin-top: 0%;
+    text-align: left;
+    padding-left: 10px;
+    margin-top: 0%;
+    text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  
+  /*Für den Kalender*/
+  /*###############################################*/
+  #seite_4 .main_object{
+    margin-top: 15px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #kalender{
+    border: 3px solid black;
+    background-color: grey;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #kalender tr{
+    float: none;
+  }
+  #kaleder td{
+    border: 1px solid black;
+    background-color: white;
+  }
+  /*#kalender th{
+    border: 1px solid red;
+  }*/
+  .kalender_button{
+    margin-top: 200px;
+  }
+  #tagesstatistik{
+    margin-top: 15px;
+    background-color: #dcd579;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);   
+  }
+  #tagesstatistik h1{
+    margin-top: 0px;
+    width: 100%;
+    height: 80px;
+    background-color: #4b1d2b;
+    color: #dcd579;
+    padding-top: 20px;
+    text-align: center;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+  }
+  #tagesstatistik_datum{
+    width: 100%;
+    text-align: center;
+    color: #4b1d2b;
+  }
+  #tagesstatistik_darstellung{
+    width: 100%;
+    background-color: white;
+  }
+}
+
+
 
 /*Media Query, erfasst die Breite des Bildschirms und bestimmt anhand dessen das Layout der Seite.
   Es wird immer nur ein CSS-Block zur selben Zeit verfögbar sein, weshalb sich das HTML-Dokument
   nur genau dieses raus suchen kann.
 */
 
-
-
-/*sehr kleine Bildschirme*/
-@media screen and (max-width: 600px) {
-
-}
-
-
-
-
-
-/*Für Bildschirme >800px (hoch)*/
-@media screen and (min-width: 800px) and (min-height: 400px) {
-/*Dies wird auf alle Elemente angewendet.
-Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
-angegeben wird*/
-* {
-  box-sizing: border-box;
-  float: left;
-}
-/*Für das html-Dokument*/
-/*###############################################*/
-html {
-  font-family: "Lucida Sans", sans-serif;
-  background-color: #268856;
-  width: 100%;
-  height: 100%;
-}
-body{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/*allgemein*/
-/*###############################################*/
-.seite{
-  width: 100%;
-  position: absolute;
-}
-.header {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  width: 100%;
-  height: 60px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-.header h1{
-  margin-left: 25px;
-  font-size: 25px;
-}
-.footer {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  height: 200px;
-  margin-top: 12px;
-}
-.links {
-  width: 100%;
-  /*margin-top: 10px;*/
-}
-.links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-.links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: left;
-  width: 25%;
-  height: 30px;
-  font-size: 15px;
-  text-align: center;
-}
-.links li:hover {
-  background-color: #0099cc;
-}
-.main_object {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #dcd579;
-}
-  
-  
-  
-  
-  
-/*Für die Hauptseite*/
-/*###############################################*/
-#seite_1 .main_object {
-  margin-top: 1px;
-  width: 100%;
-  float: left;
-}
-#farbauswahl{
-  border: 1px solid black;
-  width: 100%;
-}
-#auswahl_anzeige{
-  width: 50%;
-  height: 80px;
-  border: 3px solid black;
-  align-content: center;
-  /*margin: 5px 0px 5px 0px;*/
-}
-#buttons{
-  width: 50%;
-}
-#buttons button{
-  width: 20%;
-  height: 40px;
-  border: 2px solid black;
-}
-#buttons button:hover{
-  border: 3px solid white;
-}
-#uhrzeit{
-  font-size: 35px;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #b03522;
-  border: 4px solid black;
-  width: 100%;
-  margin-top: 10px;
-}
-#angaben ul{
-  list-style: none;
-  width: 50%;
-  margin-top: 0px;
-  padding-left: 0%;
-}
-#angaben li{
-  float: none;
-  width: 100%;
-  height: 25px;
-  text-align: center;
-  font-size: 18px;
-  color: #dcd579;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben input{
-  width: 95%;
-  height: 100%;
-  border: 3px solid black;
-}
-#angaben button{
-  width: 20%;
-  margin-left: 90%;
-  height: 28px;
-  font-size: 15px;
-  background-color: #dcd579;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben button:hover{
-  border: 3px solid white;
-}
-
-
-#legende_box{
-  width: 100%;
-}
-#legende {
-  background-color: #b03522;
-  color: #dcd579;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  width: 100%;
-  margin-top: 15px;
-  float: right;
-}
-#legende ul{
-  list-style: none;
-  width: 100%;
-  padding-left: 0px;
-  margin-top: 0px;
-}
-#legende li{
-  width: 10%;
-  height: 25px;
-  margin-top: 0px;
-}
-#legende h2{
-  width: 100%;
-  font-size: 18px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  margin-top: 1px;
-  padding-top: 1px;
-}
-#legende span{
-  height: 100%;
-  width: 95%;
-  margin-left: 0px;
-  border: 1px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#legende p{
-  height: 100%;
-  margin-top: 0%;
-  text-align: center;
-  padding-left: 3px;
-  margin-top: 0%;
-  font-size: 11px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-
-
-
-
-
-/*Für den Kalender*/
-/*###############################################*/
-#seite_4 .links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: left;
-  width: 20%;
-  height: 30px;
-  font-size: 15px;
-  text-align: center;
-}
-#seite_4 .main_object{
-  margin-top: 5px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender{
-  border: 3px solid black;
-  background-color: grey;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender tr{
-  float: none;
-  font-size: 25px;
-}
-#kalender td{
-  border: 1px solid black;
-  height: 40px;
-  width: 50px;
-  background-color: white;
-  margin: 1px;
-}
-#kalender th{
-  border: 1px solid red;
-}
-.kalender_button{
-  width: 80px;
-  height: 50px;
-  margin-top: 200px;
-  font-size: 15px;
-}
-#tagesstatistik{
-  margin-top: 5px;
-  margin-left: 10px;
-  width: 260px;
-  /*height: 650px;*/
-  background-color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);                                                               
-}
-#tagesstatistik h1{
-  margin-top: 0px;
-  width: 100%;
-  height: 50px;
-  background-color: #4b1d2b;
-  color: #dcd579;
-  padding-top: 5px;
-  font-size: 25px;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#tagesstatistik_datum{
-  width: 100%;
-  text-align: center;
-  color: #4b1d2b;
-}
-#tagesstatistik_darstellung{
-  width: 100%;
-  background-color: white;
-}
-}
-/*Ende 800px (hoch)*/
-
-
-
-/*Für Bildschirme >800px (hoch)*/
-@media screen and (min-width: 800px) and (min-height: 400px) {
-/*Dies wird auf alle Elemente angewendet.
-Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
-angegeben wird*/
-* {
-  box-sizing: border-box;
-  float: left;
-}
-/*Für das html-Dokument*/
-/*###############################################*/
-html {
-  font-family: "Lucida Sans", sans-serif;
-  background-color: #268856;
-  width: 100%;
-  height: 100%;
-}
-body{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-/*allgemein*/
-/*###############################################*/
-.seite{
-  width: 100%;
-  position: absolute;
-}
-.header {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  width: 100%;
-  height: 60px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-.header h1{
-  margin-left: 25px;
-  font-size: 25px;
-}
-.footer {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  height: 200px;
-  margin-top: 12px;
-}
-.links {
-  width: 100%;
-  /*margin-top: 10px;*/
-}
-.links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-.links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: left;
-  width: 25%;
-  height: 30px;
-  font-size: 15px;
-  text-align: center;
-}
-.links li:hover {
-  background-color: #0099cc;
-}
-.main_object {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #dcd579;
-}
-
-
-
-
-
-/*Für die Hauptseite*/
-/*###############################################*/
-#seite_1 .main_object {
-  margin-top: 1px;
-  width: 100%;
-  float: left;
-}
-#farbauswahl{
-  border: 1px solid black;
-  width: 100%;
-}
-#auswahl_anzeige{
-  width: 50%;
-  height: 80px;
-  border: 3px solid black;
-  align-content: center;
-  /*margin: 5px 0px 5px 0px;*/
-}
-#buttons{
-  width: 50%;
-}
-#buttons button{
-  width: 20%;
-  height: 40px;
-  border: 2px solid black;
-}
-#buttons button:hover{
-  border: 3px solid white;
-}
-#uhrzeit{
-  font-size: 35px;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #b03522;
-  border: 4px solid black;
-  width: 100%;
-  margin-top: 10px;
-}
-#angaben ul{
-  list-style: none;
-  width: 50%;
-  margin-top: 0px;
-  padding-left: 0%;
-}
-#angaben li{
-  float: none;
-  width: 100%;
-  height: 25px;
-  text-align: center;
-  font-size: 18px;
-  color: #dcd579;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben input{
-  width: 95%;
-  height: 100%;
-  border: 3px solid black;
-}
-#angaben button{
-  width: 20%;
-  margin-left: 90%;
-  height: 28px;
-  font-size: 15px;
-  background-color: #dcd579;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben button:hover{
-  border: 3px solid white;
-}
-
-
-#legende_box{
-  width: 100%;
-}
-#legende {
-  background-color: #b03522;
-  color: #dcd579;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  width: 100%;
-  margin-top: 15px;
-  float: right;
-}
-#legende ul{
-  list-style: none;
-  width: 100%;
-  padding-left: 0px;
-  margin-top: 0px;
-}
-#legende li{
-  width: 10%;
-  height: 25px;
-  margin-top: 0px;
-}
-#legende h2{
-  width: 100%;
-  font-size: 18px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  margin-top: 1px;
-  padding-top: 1px;
-}
-#legende span{
-  height: 100%;
-  width: 95%;
-  margin-left: 0px;
-  border: 1px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#legende p{
-  height: 100%;
-  margin-top: 0%;
-  text-align: center;
-  padding-left: 3px;
-  margin-top: 0%;
-  font-size: 11px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-
-
-
-
-
-/*Für den Kalender*/
-/*###############################################*/
-#seite_4 .links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: left;
-  width: 20%;
-  height: 30px;
-  font-size: 15px;
-  text-align: center;
-}
-#seite_4 .main_object{
-  margin-top: 5px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender{
-  border: 3px solid black;
-  background-color: grey;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender tr{
-  float: none;
-  font-size: 25px;
-}
-#kalender td{
-  border: 1px solid black;
-  height: 40px;
-  width: 50px;
-  background-color: white;
-  margin: 1px;
-}
-#kalender th{
-  border: 1px solid red;
-}
-.kalender_button{
-  width: 80px;
-  height: 50px;
-  margin-top: 200px;
-  font-size: 15px;
-}
-#tagesstatistik{
-  margin-top: 5px;
-  margin-left: 10px;
-  width: 260px;
-  /*height: 650px;*/
-  background-color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);                                                               
-}
-#tagesstatistik h1{
-  margin-top: 0px;
-  width: 100%;
-  height: 50px;
-  background-color: #4b1d2b;
-  color: #dcd579;
-  padding-top: 5px;
-  font-size: 25px;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#tagesstatistik_datum{
-  width: 100%;
-  text-align: center;
-  color: #4b1d2b;
-}
-#tagesstatistik_darstellung{
-  width: 100%;
-  background-color: white;
-}
-}
-/*Ende 800px (hoch)*/
-
-
-
-
 /*Für Bildschirme*/
 @media screen and (min-width: 1000px) {
-/*Dies wird auf alle Elemente angewendet.
-Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
-angegeben wird*/
-* {
-  box-sizing: border-box;
-  float: left;
-}
-/*Für das html-Dokument*/
-/*###############################################*/
-html {
-  font-family: "Lucida Sans", sans-serif;
-  background-color: #268856;
-  width: 100%;
-  height: 100%;
-}
-body{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 /*allgemein*/
 /*###############################################*/
-.seite{
-  width: 100%;
-  position: absolute;
-}
 .header {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  width: 100%;
   height: 80px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-.header h1{
-  margin-left: 25px;
 }
 .footer {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  height: 200px;
   margin-top: 8px;
 }
 .links {
   width: 150px;
-  margin-top: 20px;
-}
-.links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 .links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: none;
   width: 90%;
   height: 45px;
-  font-size: 22px;
 }
-.links li:hover {
-  background-color: #0099cc;
-}
-.main_object {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #dcd579;
-}
-
-
-
-
 
 /*Für die Hauptseite*/
 /*###############################################*/
 #seite_1 .main_object {
-  margin-top: 10px;
   width: 600px;
 }
-#farbauswahl{
-  border: 1px solid black;
-  width: 100%;
-}
 #auswahl_anzeige{
-  width: 100%;
   height: 120px;
-  border: 3px solid black;
-  align-content: center;
   margin: 16px 0px 16px 0px;
 }
-#buttons{
-  width: 100%;
-}
 #buttons button{
-  width: 20%;
   height: 35px;
   border: 2px solid black;
 }
-#buttons button:hover{
-  border: 3px solid white;
-}
 #uhrzeit{
   font-size: 45px;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #angaben {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #b03522;
-  border: 4px solid black;
-  width: 100%;
   margin-top: 10px;
 }
 #angaben ul{
-  list-style: none;
-  width: 90%;
   margin-top: 0px;
-  padding-left: 10%;
 }
 #angaben li{
-  float: none;
-  width: 100%;
   height: 25px;
-  text-align: center;
   font-size: 20px;
-  color: #dcd579;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben input{
-  width: 100%;
-  height: 100%;
-  border: 3px solid black;
 }
 #angaben button{
-  width: 20%;
-  margin-left: 40%;
   height: 30px;
   font-size: 18px;
-  background-color: #dcd579;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben button:hover{
-  border: 3px solid white;
 }
 
 
@@ -759,269 +285,97 @@ body{
   width: 240px;
 }
 #legende {
-  background-color: #b03522;
-  color: #dcd579;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   width: 92%;
-  margin-top: 10px;
-  float: right;
-}
-#legende ul{
-  list-style: none;
-  width: 100%;
-  padding-left: 0px;
 }
 #legende li{
-  width: 100%;
   height: 34px;
   margin-bottom: 3px;
 }
 #legende h2{
-  width: 100%;
   font-size: 23px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende span{
-  height: 100%;
   width: 35px;
-  margin-left: 5%;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende p{
-  height: 100%;
-  margin-top: 0%;
-  text-align: left;
-  padding-left: 10px;
-  margin-top: 0%;
   font-size: 18px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-
-
 
 
 
 /*Für den Kalender*/
 /*###############################################*/
-#seite_4 .main_object{
-  margin-top: 15px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender{
-  border: 3px solid black;
-  background-color: grey;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
 #kalender tr{
-  float: none;
   font-size: 25px;
 }
 #kalender td{
-  border: 1px solid black;
   height: 55px;
   width: 55px;
-  background-color: white;
   margin: 1px;
-}
-#kalender th{
-  border: 1px solid red;
 }
 .kalender_button{
   width: 80px;
   height: 50px;
-  margin-top: 200px;
   font-size: 15px;
 }
 #tagesstatistik{
-  margin-top: 15px;
   margin-left: 10px;
-  width: 260px;
-  /*height: 650px;*/
-  background-color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);                                                               
+  width: 260px;                                                          
 }
 #tagesstatistik h1{
-  margin-top: 0px;
-  width: 100%;
-  height: 80px;
-  background-color: #4b1d2b;
-  color: #dcd579;
-  padding-top: 20px;
   font-size: 25px;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#tagesstatistik_datum{
-  width: 100%;
-  text-align: center;
-  color: #4b1d2b;
-}
-#tagesstatistik_darstellung{
-  width: 100%;
-  background-color: white;
 }
 }
 /*Ende 1000px*/
 
 
-
 /*Für Bildschirme >1200*/
 @media screen and (min-width: 1200px) {
-/*Dies wird auf alle Elemente angewendet.
-Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
-angegeben wird*/
-* {
-  box-sizing: border-box;
-  float: left;
-}
-/*Für das html-Dokument*/
-/*###############################################*/
-html {
-  font-family: "Lucida Sans", sans-serif;
-  background-color: #268856;
-  width: 100%;
-  height: 100%;
-}
-body{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 /*allgemein*/
 /*###############################################*/
-.seite{
-  width: 100%;
-  position: absolute;
-}
 .header {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  width: 100%;
   height: 100px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-.header h1{
-  margin-left: 25px;
 }
 .footer {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  height: 200px;
   margin-top: 12px;
 }
 .links {
   width: 200px;
-  margin-top: 20px;
-}
-.links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 .links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: none;
   width: 85%;
   height: 45px;
-  font-size: 22px;
 }
-.links li:hover {
-  background-color: #0099cc;
-}
-.main_object {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #dcd579;
-}
-
-
-
-
 
 /*Für die Hauptseite*/
 /*###############################################*/
 #seite_1 .main_object {
-  margin-top: 10px;
   width: 690px;
 }
-#farbauswahl{
-  border: 1px solid black;
-  width: 100%;
-}
 #auswahl_anzeige{
-  width: 100%;
   height: 140px;
-  border: 3px solid black;
-  align-content: center;
   margin: 16px 0px 16px 0px;
 }
-#buttons{
-  width: 100%;
-}
 #buttons button{
-  width: 20%;
   height: 40px;
   border: 2px solid black;
 }
-#buttons button:hover{
-  border: 3px solid white;
-}
 #uhrzeit{
   font-size: 55px;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #angaben {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #b03522;
-  border: 4px solid black;
-  width: 100%;
   margin-top: 10px;
 }
 #angaben ul{
-  list-style: none;
-  width: 90%;
   margin-top: 3px;
-  padding-left: 10%;
 }
 #angaben li{
-  float: none;
-  width: 100%;
   height: 30px;
-  text-align: center;
   font-size: 20px;
-  color: #dcd579;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben input{
-  width: 100%;
-  height: 100%;
-  border: 3px solid black;
 }
 #angaben button{
-  width: 20%;
-  margin-left: 40%;
   height: 35px;
   font-size: 20px;
-  background-color: #dcd579;
-  border: 3px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben button:hover{
-  border: 3px solid white;
 }
 
 
@@ -1029,917 +383,327 @@ body{
   width: 300px;
 }
 #legende {
-  background-color: #b03522;
-  color: #dcd579;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   width: 90%;
-  margin-top: 10px;
-  float: right;
-}
-#legende ul{
-  list-style: none;
-  width: 100%;
-  padding-left: 0px;
 }
 #legende li{
-  width: 100%;
   height: 40px;
   margin-bottom: 5px;
 }
 #legende h2{
-  width: 100%;
   font-size: 25px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende span{
-  height: 100%;
   width: 40px;
-  margin-left: 5%;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende p{
-  height: 100%;
-  margin-top: 0%;
-  text-align: left;
-  padding-left: 10px;
-  margin-top: 0%;
   font-size: 20px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-
-
 
 
 
 /*Für den Kalender*/
 /*###############################################*/
-#seite_4 .main_object{
-  margin-top: 15px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender{
-  border: 3px solid black;
-  background-color: grey;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
 #kalender tr{
-  float: none;
   font-size: 30px;
 }
 #kalender td{
-  border: 1px solid black;
   height: 68px;
   width: 65px;
-  background-color: white;
   margin: 1px;
-}
-#kalender th{
-  border: 1px solid red;
 }
 .kalender_button{
   width: 100px;
   height: 50px;
-  margin-top: 200px;
   font-size: 15px;
 }
 #tagesstatistik{
-  margin-top: 15px;
   margin-left: 15px;
-  width: 300px;
-  /*height: 650px;*/
-  background-color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);                                                               
-}
-#tagesstatistik h1{
-  margin-top: 0px;
-  width: 100%;
-  height: 80px;
-  background-color: #4b1d2b;
-  color: #dcd579;
-  padding-top: 20px;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#tagesstatistik_datum{
-  width: 100%;
-  text-align: center;
-  color: #4b1d2b;
-}
-#tagesstatistik_darstellung{
-  width: 100%;
-  background-color: white;
+  width: 300px;                                                            
 }
 }
 /*Ende 1200px*/
 
 
-
 /*Für Bildschirme >1400*/
 @media screen and (min-width: 1400px) {
-/*Dies wird auf alle Elemente angewendet.
-Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
-angegeben wird*/
-* {
-  box-sizing: border-box;
-  float: left;
-}
-/*Für das html-Dokument*/
-/*###############################################*/
-html {
-  font-family: "Lucida Sans", sans-serif;
-  background-color: #268856;
-  width: 100%;
-  height: 100%;
-}
-body{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 /*allgemein*/
 /*###############################################*/
-.seite{
-  width: 100%;
-  position: absolute;
-}
 .header {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  width: 100%;
   height: 110px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-.header h1{
-  margin-left: 25px;
 }
 .footer {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  height: 200px;
   margin-top: 15px;
 }
 .links {
   width: 250px;
-  margin-top: 20px;
-}
-.links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 .links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: none;
   width: 85%;
   height: 45px;
-  font-size: 22px;
 }
-.links li:hover {
-  background-color: #0099cc;
-}
-.main_object {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #dcd579;
-}
-
-
-
-
 
 /*Für die Hauptseite*/
 /*###############################################*/
 #seite_1 .main_object {
-  margin-top: 10px;
   width: 800px;
 }
-#farbauswahl{
-  border: 1px solid black;
-  width: 100%;
-}
 #auswahl_anzeige{
-  width: 100%;
   height: 180px;
-  border: 3px solid black;
-  align-content: center;
   margin: 20px 0px 20px 0px;
 }
-#buttons{
-  width: 100%;
-}
 #buttons button{
-  width: 20%;
   height: 40px;
   border: 3px solid black;
 }
-#buttons button:hover{
-  border: 3px solid white;
-}
 #uhrzeit{
   font-size: 65px;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #angaben {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #b03522;
-  border: 4px solid black;
-  width: 100%;
   margin-top: 15px;
 }
 #angaben ul{
-  list-style: none;
-  width: 90%;
   margin-top: 8px;
-  padding-left: 10%;
 }
 #angaben li{
-  float: none;
-  width: 100%;
   height: 35px;
-  text-align: center;
   font-size: 22px;
-  color: #dcd579;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben input{
-  width: 100%;
-  height: 100%;
-  border: 3px solid black;
 }
 #angaben button{
-  width: 20%;
-  margin-left: 40%;
   height: 35px;
   font-size: 22px;
-  background-color: #dcd579;
-  border: 3px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-#angaben button:hover{
-  border: 3px solid white;
-}
-
 
 
 #legende_box{
   width: 330px;
 }
 #legende {
-  background-color: #b03522;
-  color: #dcd579;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   width: 90%;
-  margin-top: 10px;
-  float: right;
-}
-#legende ul{
-  list-style: none;
-  width: 100%;
-  padding-left: 0px;
 }
 #legende li{
-  width: 100%;
   height: 45px;
   margin-bottom: 8px;
 }
 #legende h2{
-  width: 100%;
   font-size: 30px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende span{
-  height: 100%;
   width: 50px;
-  margin-left: 5%;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende p{
-  height: 100%;
-  margin-top: 0%;
-  text-align: left;
-  padding-left: 10px;
-  margin-top: 0%;
   font-size: 22px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-
-
 
 
 
 /*Für den Kalender*/
 /*###############################################*/
-#seite_4 .main_object{
-  margin-top: 15px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender{
-  border: 3px solid black;
-  background-color: grey;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
 #kalender tr{
-  float: none;
   font-size: 30px;
 }
 #kalender td{
-  border: 1px solid black;
   height: 75px;
   width: 72px;
-  background-color: white;
   margin: 1px;
-}
-#kalender th{
-  border: 1px solid red;
 }
 .kalender_button{
   width: 110px;
   height: 50px;
-  margin-top: 200px;
   font-size: 15px;
 }
 #tagesstatistik{
-  margin-top: 15px;
   margin-left: 25px;
-  width: 360px;
-  /*height: 650px;*/
-  background-color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);                                                               
-}
-#tagesstatistik h1{
-  margin-top: 0px;
-  width: 100%;
-  height: 80px;
-  background-color: #4b1d2b;
-  color: #dcd579;
-  padding-top: 20px;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#tagesstatistik_datum{
-  width: 100%;
-  text-align: center;
-  color: #4b1d2b;
-}
-#tagesstatistik_darstellung{
-  width: 100%;
-  background-color: white;
+  width: 360px;                                                             
 }
 }
 /*Ende 1400px*/
 
 
-
 /*Für Bildschirme >1600*/
 @media screen and (min-width: 1600px) {
-  /*Dies wird auf alle Elemente angewendet.
-  Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
-  angegeben wird*/
-* {
-  box-sizing: border-box;
-  float: left;
-}
-/*Für das html-Dokument*/
-/*###############################################*/
-html {
-  font-family: "Lucida Sans", sans-serif;
-  background-color: #268856;
-  width: 100%;
-  height: 100%;
-}
-body{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 /*allgemein*/
 /*###############################################*/
-.seite{
-  width: 100%;
-  position: absolute;
-}
 .header {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  width: 100%;
   height: 150px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-.header h1{
-  margin-left: 25px;
 }
 .footer {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  height: 200px;
   margin-top: 25px;
 }
 .links {
   width: 300px;
-  margin-top: 20px;
-}
-.links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 .links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: none;
   width: 85%;
   height: 50px;
-  font-size: 22px;
 }
-.links li:hover {
-  background-color: #0099cc;
-}
-.main_object {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #dcd579;
-}
-
-
-
-
 
 /*Für die Hauptseite*/
 /*###############################################*/
 #seite_1 .main_object {
-  margin-top: 10px;
   width: 1000px;
 }
-#farbauswahl{
-  border: 1px solid black;
-  width: 100%;
-}
 #auswahl_anzeige{
-  width: 100%;
   height: 200px;
-  border: 3px solid black;
-  align-content: center;
   margin: 20px 0px 20px 0px;
 }
-#buttons{
-  width: 100%;
-}
 #buttons button{
-  width: 20%;
   height: 50px;
   border: 3px solid black;
 }
-#buttons button:hover{
-  border: 3px solid white;
-}
 #uhrzeit{
   font-size: 80px;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #angaben {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #b03522;
-  border: 4px solid black;
-  width: 100%;
   margin-top: 25px;
 }
 #angaben ul{
-  list-style: none;
-  width: 90%;
   margin-top: 10px;
-  padding-left: 10%;
 }
 #angaben li{
-  float: none;
-  width: 100%;
   height: 30px;
-  text-align: center;
   font-size: 22px;
-  color: #dcd579;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben input{
-  width: 100%;
-  height: 100%;
-  border: 3px solid black;
 }
 #angaben button{
-  width: 20%;
-  margin-left: 40%;
   height: 35px;
   font-size: 22px;
-  background-color: #dcd579;
-  border: 3px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-#angaben button:hover{
-  border: 3px solid white;
-}
-
 
 
 #legende_box{
   width: 300px;
 }
 #legende {
-  background-color: #b03522;
-  color: #dcd579;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   width: 85%;
-  margin-top: 10px;
-  float: right;
-}
-#legende ul{
-  list-style: none;
-  width: 100%;
-  padding-left: 0px;
 }
 #legende li{
-  width: 100%;
   height: 50px;
   margin-bottom: 10px;
 }
 #legende h2{
-  width: 100%;
   font-size: 30px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende span{
-  height: 100%;
   width: 50px;
-  margin-left: 5%;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende p{
-  height: 100%;
-  margin-top: 0%;
-  text-align: left;
-  padding-left: 10px;
-  margin-top: 0%;
   font-size: 22px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-
-
 
 
 
 /*Für den Kalender*/
 /*###############################################*/
-#seite_4 .main_object{
-  margin-top: 15px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender{
-  border: 3px solid black;
-  background-color: grey;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
 #kalender tr{
-  float: none;
   font-size: 30px;
 }
 #kalender td{
-  border: 1px solid black;
   height: 75px;
   width: 75px;
-  background-color: white;
   margin: 2px;
-}
-#kalender th{
-  border: 1px solid red;
 }
 .kalender_button{
   width: 150px;
   height: 55px;
-  margin-top: 200px;
   font-size: 20px;
 }
 #tagesstatistik{
-  margin-top: 15px;
   margin-left: 25px;
-  width: 400px;
-  /*height: 650px;*/
-  background-color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);                                                               
-}
-#tagesstatistik h1{
-  margin-top: 0px;
-  width: 100%;
-  height: 80px;
-  background-color: #4b1d2b;
-  color: #dcd579;
-  padding-top: 20px;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#tagesstatistik_datum{
-  width: 100%;
-  text-align: center;
-  color: #4b1d2b;
-}
-#tagesstatistik_darstellung{
-  width: 100%;
-  background-color: white;
+  width: 400px;                                                             
 }
 }
 /*Ende 1600px*/
 
 
-
 /*Für Bildschirme >1800px*/
 @media screen and (min-width: 1800px) {
-  /*Dies wird auf alle Elemente angewendet.
-  Kann negiert werden, wenn ein Wert im späteren CSS-Code anders
-  angegeben wird*/
-* {
-  box-sizing: border-box;
-  float: left;
-}
-/*Für das html-Dokument*/
-/*###############################################*/
-html {
-  font-family: "Lucida Sans", sans-serif;
-  background-color: #268856;
-  width: 100%;
-  height: 100%;
-}
-body{
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 /*allgemein*/
 /*###############################################*/
-.seite{
-  width: 100%;
-  position: absolute;
-}
 .header {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  width: 100%;
   height: 150px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-.header h1{
-  margin-left: 25px;
 }
 .footer {
-  background-color: #4b1d2b;
-  color: #dcd579;
-  text-align: center;
-  font-size: 12px;
-  width: 100%;
-  height: 200px;
   margin-top: 35px;
 }
 .links {
   width: 360px;
-  margin-top: 20px;
-}
-.links ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
 }
 .links li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #b03522;
-  color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  float: none;
   width: 85%;
   height: 50px;
-  font-size: 22px;
 }
-.links li:hover {
-  background-color: #0099cc;
-}
-.main_object {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #dcd579;
-}
-
-
-
-
 
 /*Für die Hauptseite*/
 /*###############################################*/
 #seite_1 .main_object {
-  margin-top: 10px;
   width: 1100px;
 }
-#farbauswahl{
-  border: 1px solid black;
-  width: 100%;
-}
 #auswahl_anzeige{
-  width: 100%;
   height: 220px;
-  border: 3px solid black;
-  align-content: center;
   margin: 20px 0px 20px 0px;
 }
-#buttons{
-  width: 100%;
-}
 #buttons button{
-  width: 20%;
   height: 55px;
   border: 3px solid black;
 }
-#buttons button:hover{
-  border: 3px solid white;
-}
 #uhrzeit{
   font-size: 80px;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #angaben {
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  background-color: #b03522;
-  border: 4px solid black;
-  width: 100%;
   margin-top: 25px;
 }
 #angaben ul{
-  list-style: none;
-  width: 90%;
   margin-top: 10px;
-  padding-left: 10%;
 }
 #angaben li{
-  float: none;
-  width: 100%;
   height: 40px;
-  text-align: center;
   font-size: 22px;
-  color: #dcd579;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#angaben input{
-  width: 100%;
-  height: 100%;
-  border: 3px solid black;
 }
 #angaben button{
-  width: 20%;
-  margin-left: 40%;
   height: 40px;
   font-size: 25px;
-  background-color: #dcd579;
-  border: 3px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-#angaben button:hover{
-  border: 3px solid white;
-}
+
 
 #legende_box{
   width: 340px;
 }
 #legende {
-  background-color: #b03522;
-  color: #dcd579;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   width: 85%;
-  margin-top: 10px;
-  float: right;
-}
-#legende ul{
-  list-style: none;
-  width: 100%;
-  padding-left: 0px;
 }
 #legende li{
-  width: 100%;
   height: 55px;
   margin-bottom: 10px;
 }
 #legende h2{
-  width: 100%;
   font-size: 30px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende span{
-  height: 100%;
   width: 60px;
-  margin-left: 5%;
-  border: 2px solid black;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
 #legende p{
-  height: 100%;
-  margin-top: 0%;
-  text-align: left;
-  padding-left: 10px;
-  margin-top: 0%;
   font-size: 25px;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
 }
-
-
 
 
 
 /*Für den Kalender*/
 /*###############################################*/
-#seite_4 .main_object{
-  margin-top: 15px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#kalender{
-  border: 3px solid black;
-  background-color: grey;
-  margin-top: 22px;
-  margin-bottom: 22px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
 #kalender tr{
-  float: none;
   font-size: 40px;
 }
 #kalender td{
-  border: 1px solid black;
   height: 90px;
   width: 90px;
-  background-color: white;
   margin: 2px;
-}
-#kalender th{
-  border: 1px solid red;
 }
 .kalender_button{
   width: 150px;
   height: 80px;
-  margin-top: 200px;
   font-size: 20px;
 }
 #tagesstatistik{
-  margin-top: 15px;
   margin-left: 20px;
-  width: 430px;
-  /*height: 650px;*/
-  background-color: #dcd579;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);                                                               
-}
-#tagesstatistik h1{
-  margin-top: 0px;
-  width: 100%;
-  height: 80px;
-  background-color: #4b1d2b;
-  color: #dcd579;
-  padding-top: 20px;
-  text-align: center;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-}
-#tagesstatistik_datum{
-  width: 100%;
-  text-align: center;
-  color: #4b1d2b;
-}
-#tagesstatistik_darstellung{
-  width: 100%;
-  background-color: white;
+  width: 430px;                                                            
 }
 }
 /*Ende 1800px*/
