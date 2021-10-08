@@ -17,40 +17,42 @@
         die("Verbindung fehlgeschlagen");
     }
 
+    //Das erfragte Datum in Variablen
+    $tag = (int)$_GET['tag'];
+    $monat = (int)$_GET['monat'];
+    $jahr = (int)$_GET['jahr'];
+
+    //Es wird ein Array für alle Einträge, die der Anforderung entsprechen in ein Array gespeichert
+    //Dieses Array soll später zurück geschickt werden
+    $allRows = array();
+
+
+    //SQL Befehl alle Einträge finden
+    $sql = "SELECT * FROM angaben WHERE Tag=$tag AND Monat=$monat AND Jahr=$jahr";
+
+    //Alle Einträge als Array zurück bekommen
+    $erg = $connection->query($sql);
+
+
+    //Diese While-Schleife tut offenbar folgendes 
+    //Bei jedem neuen Durchlauf wird die chonologisch nächste 
+    //Row aus dem vollständigen Array(erg) rausgeholt und in ein anderes Array(row) gespeichert
+    //es wird immer nur eine einzelne Row gespeichert und beim nächsten durchlauf überschrieben
+    //wenn alle rows abgearbeitet wurden, dann beendet sich der loop, weil die Bedingung nicht mehr zutrifft
+    //die Bedingung interpretiere ich wie folgt: Wenn eine Row aus dem gesammten Array(erg) in das Array(row) gespeichert werden konnte
+    //Ist false wenn es keine chronologisch nächste Reihe im Array(erg gibt)
+    //Um das Überschreiben zu verhindern wird jede Row in ein dafür vorgesehenes Array gespeichert
+
+  /*  while($row = $erg->fetch_assoc()){
+        $allRows[] = $row;
+    }*/
+
     
+    $out = $erg->fetch_assoc();
+    echo json_encode($out);
 
-    //#####################################################
-    if($_GET['req']=="tagesstatistik"){
-
-        //Die einzelnen übergebenen Daten werden aus der URL in Varablen geschrieben
-        $tag = (int)$_GET['tag'];
-        $monat = (int)$_GET['monat'];
-        $jahr = (int)$_GET['jahr'];
-        $sekunde = (int)$_GET['sekunde'];
-        $minute = (int)$_GET['minute'];
-        $stunde = (int)$_GET['stunde'];
-        $farbe = $_GET['farbe'];
-        $emotion = $_GET['emotion'];
-        $was = $_GET['was'];
-        $warum = $_GET['warum'];
-
-        //Es wird ein SQL Befehl als String erzeugt
-        // !!! WICHTIG !!! Die Variablen, die Strings beinhalten mussen in einfache Anführungsstriche gesetzt werden -> '$str' 
-        $sql = "INSERT INTO angaben (Tag, Monat, Jahr, Stunde, Minute, Sekunde, Farbe, Emotion, Was, Warum) VALUES ($tag, $monat, $jahr, $stunde, $minute, $sekunde, '$farbe', '$emotion', '$was', '$warum')";
-
-        //Der SQL Befehl wird ausgeführt
-        $execute = $connection->query($sql);
-
-        //Wenn es beim Speichern der Daten ein Problem geben sollte, dann wird hier eine entsprechende Fehlermeldung zurück gegeben
-        //und das Skript beendet
-        if(mysqli_error($connection)){
-            die("Speichern fehlgeschlagen\n\n".mysqli_error($connection));
-        }
-
-        //Wenn alles ohne Probleme funktioniert hat, dann wird diese Meldung an den Client zurück geschickt
-        echo "Angaben wurden erfolgreich gespeichert";
-    }
-    //#####################################################
+    //$outp = $erg->fetch_all()
+    //echo json_encode($outp);
 
 
 ?>
