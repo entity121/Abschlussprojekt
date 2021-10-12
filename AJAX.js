@@ -7,17 +7,17 @@
 
         //das Ajax Objekt wird mit einem Event Listener versehen, welcher bei eingehendem response
         //überprüfen soll, ob die Verbindung ordnungsgemäß funktioniert hat und ob etwas zurück kam
-        xml.onreadystatechange = function() {
-
+        // Dieser Abfrage wird eine kurze Wartezeit gegeben, 
+        //um zu verhindern, das else vorzeitig ausgeführt wird
+        xml.onreadystatechange = setTimeout (function() {
             if(xml.readyState==4 && xml.status==200){
-
                 //Die Antwort wird an die entsprechende Funktion weiter geleitet
-                thefunction(xml.responseText);
+                thefunction(xml.responseText);            
             }
             else{
                 alert("Es konnte keine Verbindung zum Server hergestellt werden");
             }
-        };
+        },100);// Die Wartezeit
 
         //Das PHP Dokument wird angesprochen und die Anfrage versendet
         xml.open("GET",url,true);

@@ -1,3 +1,5 @@
+
+
 //Diese Funktion wird über einen Klick auf einen Kalendertag ausgeführt
 //Sie ruft die Daten des entsprechenden Tages aus der Datenbank ab
 //###############################################
@@ -15,57 +17,167 @@ Send_Request(url, Tagesstatistik_Darstellen);
 
 
 
+// Diese Funktion beschäftigt sich mit dem kompletten Vorgang der Interpretation der Serverantwort (JSON)
+//und der Anfertigung eines Kreisdiagrammes anhand der im JSOn-Objekt enthaltenen Farbwerte
 //###############################################
+//Standart Width und Height eines Canvas-Layer
+// Konstanter Wert muss außerhalb der Funktion gesichert werden
+const CANVAS_WIDTH = 300; 
+const CANVAS_HEIGHT = 150; 
+//######
 function Tagesstatistik_Darstellen(json){
+
+  //Arrays
+  var Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+  var farben = ['yellow','orangered','greenyellow','blueviolet','green','cyan','red','royalblue','crimson','grey']
+  // Ein Zähler für jede Farbe (Reihenfolge des Farbe Arrays)
+  var anteil_farben = [0,0,0,0,0,0,0,0,0,0]; 
+  // Ähnlich wie der Zähler, nur das hier der Prozentuale Anteil der Farbe vom Ganzen gespeichert wird
+  var proz_anteil_farben = new Array(10);
+
 
   //Die Antwort, welche als JSON String zurück kam
   //wird in ein JavaScript Objekt umgewandelt
-  var obj = JSON.parse(json);
-  
-  document.getElementById("tagesstatistik_darstellung").style.backgroundColor = obj.Farbe;
+  var json_response = JSON.parse(json);
 
 
-/*
-    //Arrays
-    var Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
-    
-    //Variable für das anzeigefenster
-    var feld = document.getElementById("tagesstatistik_darstellung");
-    var datum = document.getElementById("tagesstatistik_datum");
+  //Diese schöne Funktion durchläuft das gesamte JSON Objekt
+  //und durchsucht es nach bestimmten Werten, welche sie 
+  //in einem Array speichert
+  var farben_array = json_response.map(x=>x.Farbe);
 
-    var canvas = document.getElementById("tagesstatistik_darstellung");
-    if (canvas.getContext) {
-      var ctx = canvas.getContext('2d');
+ 
+  // Das Array, in dem nun alle Farben gefiltert gespeichert sind, wird nun durchlaufen 
+  // und es wird jedes Vorkommnis einer Farbe gezählt und in einem entsprechenden Array (anteil_farben) gespeichert
+  for(var i=0;i<farben_array.length;i++){ // Jeden Eintrag ...
+    for(var j=0;j<farben.length;j++){ // ... auf jede Farbe prüfen
 
-      //bereinigt das Mal Fenster
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-  
-      for (var i = 0; i < 4; i++) {
-        for (var j = 0; j < 3; j++) {
-          ctx.beginPath();
-          var x = 25 + j * 50; // x coordinate
-          var y = 25 + i * 50; // y coordinate
-          var radius = 20; // Arc radius
-          var startAngle = 0; // Starting point on circle
-          var endAngle = Math.PI + (Math.PI * j) / 2; // End point on circle
-          var anticlockwise = i % 2 == 0 ? false : true; // clockwise or anticlockwise
-  
-          ctx.strokeStyle = "red";
-          ctx.fillStyle = "green";
-          ctx.moveTo(x,y);
-          ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
-          ctx.lineTo(x,y);
-  
-          if (i > 1) {
-            ctx.fill();
-          } else {
-            ctx.stroke();
-          }
-        }
+      if(farben_array[i]==farben[j]){
+        anteil_farben[j]+=1;
+        break;
       }
+
+    }
+  } 
+
+
+  // Die Farben sollen anhand der Häufigkeit sortiert werden
+  // wichtig ist zu beachten, dass das Array, in dem die Namen der Farben stehen (farben)
+  // ebenfalls sortiert wird, um die Reihenfolge einzuhalten
+  for(var i=0;i<anteil_farben.length;i++){
+    for(var j=0;j<anteil_farben.length-1;j++){
+
+      if(anteil_farben[j]<anteil_farben[j+1]){
+        var tempA = anteil_farben[j]; //Sicherungsvariablen
+        var tempF = farben[j];
+
+        anteil_farben[j] = anteil_farben[j+1]; //1. Wechsel
+        farben[j] = farben[j+1];
+
+        anteil_farben[j+1] = tempA; //2. Wechsel 
+        farben[j+1] = tempF;
+      }
+
+    }
+  }
+
+
+  // Das Zielfenster, in welchem das Kreisdiagramm dargestellt werden soll
+  var canvas = document.getElementById("tagesstatistik_darstellung");
+  // Vor jeder neuen Darstellung wird die standart Width und Height wieder hergestellt
+  canvas.width = CANVAS_WIDTH; 
+  canvas.height = CANVAS_HEIGHT;
+
+
+  // Das Canvas-Layer muss Skaliert werden, um sich an die Größe des Parent Objektes anzupassen
+  // .clientWidth gibt die Width sammt padding eines Elementes zurück
+  var parent_width = document.getElementById("tagesstatistik").clientWidth; 
+  // Der Skale parameter soll dynamisch anhand der umliegenden DIV bestimmt werden.
+  var scale = parent_width / canvas.width; 
+  // Sowohl das Canvas Layer als auch die Zeichnung (etwas weiter unten) müssen skaliert werden um scharf dargestellt werden zu können
+  canvas.width *= scale;  
+  canvas.height *= scale;
+
+    
+       
+  // Im folgenden CodeAbschnitt beginnt nun die Zeichnung des Kreisdiagramms
+  if (canvas.getContext) {
+
+    // Malwerkzeug erzeugen
+    var ctx = canvas.getContext('2d'); 
+    // Die Fläche zum Malen bereinigen, damit es bei mehrmaligem Gebrauch nicht übermalt wird
+    ctx.clearRect(0,0,canvas.width,canvas.height); 
+
+    //Der Startpunkt das Kreises in RAD
+    //Ändert sich mit jedem Durchlauf
+    var startpunkt=0; 
+
+    // Eine for-Schleife, die für jede Farbe einmal durchläuft (10x)
+    for(var i=0;i<anteil_farben.length;i++){
+
+      //Der prozentuale Anteil einer Farbe am gesammten
+      var proz = (anteil_farben[i]/farben_array.length);
+      proz_anteil_farben[i]=proz*100;
+
+      // Die Variablen, die die Dimensionen des Kreises bestimmen
+      // wichtig ist, das auch hier skaliert werden muss um ein scharfes Bild zu erhalten
+      var x = 150 *scale; // x koordinate vom Mittelpunkt des Kreises
+      var y = 75 *scale; // y koordinate vom Mittelpunkt des Kreises
+      var radius = 70 *scale; // Der Radius vom Kreis bestimmt die Größe
+      var startAngle = startpunkt; // Der Punkt, an dem der Kreis beginnt (rechts (3 Uhr))
+      var endAngle = ((proz *2) *Math.PI) +startpunkt; // Der Winkel (2*PI ist der komplette Kreis)
+      var anticlockwise = false; // Links drehen oder rechts           
+      ctx.fillStyle = farben[i]; // Die Farbe zum Ausfüllen des Kreises auswählen
+      ctx.strokeStyle = "black"; // Umrandung
+
+      // Das Malwerkzeug "zur Hand nehmen"
+      ctx.beginPath(); 
+      // Der "Stift" wird am Mittelpunkt angesetzt
+      ctx.moveTo(x,y); 
+      // Anhand der oben definierten Parameter wird ein Winkel gezeichnet
+      ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise); 
+      // Vom Endpunkt des Kreises wird wieder eine Linie zum Mittelpunkt gezogen, um Lücken in der Darstellung zu schließen
+      ctx.lineTo(x,y); 
+
+      // Der Kreis, von dem nur die Umrandung existiert, wird ausgefüllt
+      ctx.fill(); 
+      // Umrandung
+      ctx.stroke();
+
+      // Der Endpunkt dieses Winkel ist gleich dem Startpunkt des nächsten Winkels
+      // damit es einen Lückenhaften Übergang zwischen den verschiedenfarbigen winkeln gibt
+      startpunkt = endAngle; 
+
     }
 
-    datum.innerHTML = tag+" "+Monat_Name[monat]+" "+jahr;
-*/
+  }
+
+  // Eine kleine Infobox soll eingeblendet werden und die prozentualen Anteile der Farben anzeigen
+
+  Details_Einblenden(proz_anteil_farben,farben);
+      
+}
+//###############################################
+
+
+
+
+// Unterhalb des Kreisdiagrammes befindet sich eine kleine Infobox,
+// in welcher die prozentualen Anteile der Farben aufgelistet werden
+//###############################################
+function Details_Einblenden(proz,farben){
+
+  var detail_box = document.getElementById("detail_box");           
+
+ // detail_box.style.display = "block"; // Box sichtbar machen !!!! TODO !!!! wieder verschwinden lassen
+
+  var string = "";
+  for(var i=0;i<proz.length;i++){
+    if(proz[i]>0){
+      string+=farben[i]+": "+proz[i].toFixed(2)+"%<br>";
+    }
+  }
+
+  detail_box.innerHTML = string;
 }
 //###############################################

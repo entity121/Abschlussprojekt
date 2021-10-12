@@ -93,8 +93,12 @@ for(var i=0;i<7;i++){
     //Feld einfügen
     cell=row.insertCell(i);
 
+
     //Für alle Wochentage, die in der ersten Monatswoche bereits vorkomen
     if(i>=monatserster){
+
+        cell.style.backgroundColor = "white";
+        cell.style.border = "1px solid black";
 
         //Der Monatstag wird in das Kalenderkästchen geschrieben
         cell.innerHTML = zähler;
@@ -102,6 +106,7 @@ for(var i=0;i<7;i++){
         //Das Kalender Kästchen bekommt ein onclick Event, welches ein Fenster öffnet in dem 
         //die Statistik des Tages (sofern vorhanden) dargestellt wird.
         cell.onclick = function(){
+            document.getElementById("tagesstatistik_datum").innerHTML = this.innerHTML+" "+Monat_Name[monat]+" "+jahr;
             Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
         }
 
@@ -140,10 +145,14 @@ do{
         //durchführen bis max. anz. tage pro monat
         if(zähler<=anzahl_tage){  
 
+            cell.style.backgroundColor = "white";
+            cell.style.border = "1px solid black";
+
             //datum in feld schreiben
             cell.innerHTML = zähler;
 
             cell.onclick = function(){
+                document.getElementById("tagesstatistik_datum").innerHTML = this.innerHTML+" "+Monat_Name[monat]+" "+jahr;
                 Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
             }
 
