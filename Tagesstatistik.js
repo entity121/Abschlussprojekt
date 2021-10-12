@@ -1,9 +1,19 @@
+//Globals
+const Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+var save_tag;// Datum Speichern
+var save_monat;
+var save_jahr;
 
 
 //Diese Funktion wird über einen Klick auf einen Kalendertag ausgeführt
 //Sie ruft die Daten des entsprechenden Tages aus der Datenbank ab
 //###############################################
 function Tagesstatistik_Abrufen(tag,monat,jahr){
+
+// Damit das angezeigte Datum für spätere Nutzung erhalten bleibt
+save_tag = tag;
+save_monat = monat;
+save_jahr = jahr;
 
 //Die URL wird erzeugt und mit Variablen befüllt
 var url = "http://localhost/php/stimmungen/abfragen.php?req=tagesstatistik&tag="+tag+"&monat="+monat+"&jahr="+jahr;
@@ -13,6 +23,7 @@ var url = "http://localhost/php/stimmungen/abfragen.php?req=tagesstatistik&tag="
 Send_Request(url, Tagesstatistik_Darstellen);
 }
 //###############################################
+
 
 
 
@@ -28,12 +39,16 @@ const CANVAS_HEIGHT = 150;
 function Tagesstatistik_Darstellen(json){
 
   //Arrays
-  var Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
-  var farben = ['yellow','orangered','greenyellow','blueviolet','green','cyan','red','royalblue','crimson','grey']
+  var farben = ['yellow','orangered','greenyellow','blueviolet','green','cyan','red','royalblue','crimson','grey'];
+  var emotionen = ['Freude','Interesse','Überraschung','Liebe','Hoffnung','Abneigung','Wut','Trauer','Verletzung','Angst'];
   // Ein Zähler für jede Farbe (Reihenfolge des Farbe Arrays)
   var anteil_farben = [0,0,0,0,0,0,0,0,0,0]; 
   // Ähnlich wie der Zähler, nur das hier der Prozentuale Anteil der Farbe vom Ganzen gespeichert wird
   var proz_anteil_farben = new Array(10);
+
+
+  //Das JSON Objekt wird bevor es verändert wird an ein anderes Skript verschickt
+  Einträge_Empfangen(json);
 
 
   //Die Antwort, welche als JSON String zurück kam
@@ -70,12 +85,15 @@ function Tagesstatistik_Darstellen(json){
       if(anteil_farben[j]<anteil_farben[j+1]){
         var tempA = anteil_farben[j]; //Sicherungsvariablen
         var tempF = farben[j];
+        var tempE = emotionen[j];
 
         anteil_farben[j] = anteil_farben[j+1]; //1. Wechsel
         farben[j] = farben[j+1];
+        emotionen[j] = emotionen[j+1];
 
         anteil_farben[j+1] = tempA; //2. Wechsel 
         farben[j+1] = tempF;
+        emotionen[j+1] = tempE;
       }
 
     }
@@ -153,11 +171,10 @@ function Tagesstatistik_Darstellen(json){
   }
 
   // Eine kleine Infobox soll eingeblendet werden und die prozentualen Anteile der Farben anzeigen
-
-  Details_Einblenden(proz_anteil_farben,farben);
-      
+  Details_Einblenden(proz_anteil_farben,emotionen);    
 }
 //###############################################
+
 
 
 
@@ -165,19 +182,28 @@ function Tagesstatistik_Darstellen(json){
 // Unterhalb des Kreisdiagrammes befindet sich eine kleine Infobox,
 // in welcher die prozentualen Anteile der Farben aufgelistet werden
 //###############################################
-function Details_Einblenden(proz,farben){
+function Details_Einblenden(proz,emotionen){
 
   var detail_box = document.getElementById("detail_box");           
-
- // detail_box.style.display = "block"; // Box sichtbar machen !!!! TODO !!!! wieder verschwinden lassen
 
   var string = "";
   for(var i=0;i<proz.length;i++){
     if(proz[i]>0){
-      string+=farben[i]+": "+proz[i].toFixed(2)+"%<br>";
+      string+=emotionen[i]+": "+proz[i].toFixed(2)+"%<br>";
     }
   }
 
+  document.getElementById("einträge_anschauen").style.display = "block";
   detail_box.innerHTML = string;
 }
 //###############################################
+
+
+
+
+
+
+
+
+
+

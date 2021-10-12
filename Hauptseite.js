@@ -78,6 +78,6 @@ function Speichern(){
 //#####
 //Wenn das Speichern erfolgreich war oder es einen Fehler gab, dann wird dies dem Nutzer als Meldung am Bildschirm mittgeteilt 
 function Speichern_Erfolgreich(x){
-  alert(x.responseText);
+  alert(x);
 }
 //#########################################################
