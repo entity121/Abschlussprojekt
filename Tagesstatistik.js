@@ -3,6 +3,7 @@ const Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","Augu
 var save_tag;// Datum Speichern
 var save_monat;
 var save_jahr;
+var daten;
 
 
 //Diese Funktion wird über einen Klick auf einen Kalendertag ausgeführt
@@ -48,7 +49,7 @@ function Tagesstatistik_Darstellen(json){
 
 
   //Das JSON Objekt wird bevor es verändert wird an ein anderes Skript verschickt
-  Einträge_Empfangen(json);
+  daten = json;
 
 
   //Die Antwort, welche als JSON String zurück kam
@@ -117,7 +118,7 @@ function Tagesstatistik_Darstellen(json){
   canvas.height *= scale;
 
     
-       
+  
   // Im folgenden CodeAbschnitt beginnt nun die Zeichnung des Kreisdiagramms
   if (canvas.getContext) {
 
@@ -170,31 +171,19 @@ function Tagesstatistik_Darstellen(json){
 
   }
 
-  // Eine kleine Infobox soll eingeblendet werden und die prozentualen Anteile der Farben anzeigen
-  Details_Einblenden(proz_anteil_farben,emotionen);    
-}
-//###############################################
-
-
-
-
-
-// Unterhalb des Kreisdiagrammes befindet sich eine kleine Infobox,
-// in welcher die prozentualen Anteile der Farben aufgelistet werden
-//###############################################
-function Details_Einblenden(proz,emotionen){
-
+  // Unterhalb des Kreisdiagrammes befindet sich eine kleine Infobox,
+  // in welcher die prozentualen Anteile der Farben aufgelistet werden
   var detail_box = document.getElementById("detail_box");           
 
-  var string = "";
-  for(var i=0;i<proz.length;i++){
-    if(proz[i]>0){
-      string+=emotionen[i]+": "+proz[i].toFixed(2)+"%<br>";
+  var info_string = "";
+  for(var i=0;i<proz_anteil_farben.length;i++){
+    if(proz_anteil_farben[i]>0){
+      info_string+=emotionen[i]+": "+proz_anteil_farben[i].toFixed(2)+"%<br>";
     }
   }
 
   document.getElementById("einträge_anschauen").style.display = "block";
-  detail_box.innerHTML = string;
+  detail_box.innerHTML = info_string; 
 }
 //###############################################
 
@@ -202,6 +191,16 @@ function Details_Einblenden(proz,emotionen){
 
 
 
+// Ein externes Fenster zur Anzeige der Einträge des gewählten Tages
+//###############################################
+function Einträge_Anschauen(){
+  // Das Json Objekt, welches in der obigen Variable "daten" gespeichert wurde
+  // kann einfach als "name" übergeben werden.
+  // In der Ziel HTML kann es dann ganz normal verwendet werden
+  var win = window.open("Statistik.html",daten,"height=600,width=500,left="+(200+window.screenX));
+  win.focus();
+}
+//###############################################
 
 
 
