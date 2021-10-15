@@ -197,7 +197,11 @@ function Einträge_Anschauen(){
   // Das Json Objekt, welches in der obigen Variable "daten" gespeichert wurde
   // kann einfach als "name" übergeben werden.
   // In der Ziel HTML kann es dann ganz normal verwendet werden
-  var win = window.open("Statistik.html",daten,"height=600,width=500,left="+(200+window.screenX));
+  var win = window.open("Einträge.html",daten,"menubar=no,toolbar=no,titlebar=no,status=no,resizeable=no,location=no,"
+                        +"height="+(window.innerHeight *0.8)+","
+                        +"width="+(window.innerWidth *0.3)+","
+                        +"left="+(window.screenX+(window.innerWidth *0.4))+","
+                        +"top="+(window.screenY+(window.innerHeight *0.15)));
   win.focus();
 }
 //###############################################

@@ -1,0 +1,63 @@
+/*Farben:
+  Grün: 268856
+  Hell: dcd579
+  Braun: b03522
+  Dunkel: 4b1d2b
+*/
+
+@media screen and (min-width: 0px){
+    body{
+        background-color: #268856;
+    }
+    
+    #inhalt{
+        background-color: #dcd579;
+    }
+    
+    h1{
+        background-color: #4b1d2b;
+        color: #dcd579;
+        text-align: center;
+        height: 60px;
+        padding-top: 30px;
+    }
+    
+    h2{
+        margin-top: 1px;
+        text-align: center;
+        background-color: yellow;
+        height: 50px;
+        padding-top: 10px;
+    }
+    
+    p{
+        margin-top: 1px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (min-width: 1000px){
+
+}
+
+
+@media screen and (min-width: 1200px){
+
+}
+
+
+@media screen and (min-width: 1400px){
+
+}
+
+
+@media screen and (min-width: 1600px){
+
+}
+
+
+@media screen and (min-width: 1800px){
+
+}
