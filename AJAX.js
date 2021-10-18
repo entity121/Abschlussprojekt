@@ -15,7 +15,7 @@
                 thefunction(xml.responseText);            
             }
             else{
-                alert("Es konnte keine Verbindung zum Server hergestellt werden");
+                alert("Es konnte keine Verbindung zum Server hergestellt werden\nState="+xml.readyState+" - Status="+xml.status);
             }
         },100);// Die Wartezeit
 

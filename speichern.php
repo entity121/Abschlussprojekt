@@ -2,11 +2,14 @@
     //diese Zeile erlaubt die Kommunikation zwischen verschiedenen Domänen dh. Browser und Privater Server
     header("Access-Control-Allow-Origin: *");
 
-    //Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
-    $server = "localhost";
+    // Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
+    // In der Servervariablen muss was anderes stehen, je nachdem welchen PC ich nutze
+    //$server = "localhost"; // Privatrechner
+    $server = "127.0.0.1:3305"; // Arbeitsrechner
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";
+
 
     //Verbindungsaufbau
     $connection = new mysqli($server, $name, $passwort, $datenbank);
@@ -14,7 +17,7 @@
     //Wenn es bei der Verbindung ein Problem gab, soll das Skript beendet und ein 
     //Fehler zurück gegeben werden
     if($connection->connect_error){
-        die("Verbindung fehlgeschlagen");
+        die("Verbindung fehlgeschlagen\n".$connection->connect_error);
     }
 
     
@@ -53,6 +56,4 @@
         echo "Angaben wurden erfolgreich gespeichert";
     }
     //#####################################################
-
-
 ?>

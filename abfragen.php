@@ -3,7 +3,8 @@
     header("Access-Control-Allow-Origin: *");
 
     //Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
-    $server = "localhost";
+    //$server = "localhost"; // Privatrechner
+    $server = "127.0.0.1:3305"; // Arbeitsrechner
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";
@@ -33,7 +34,6 @@
     //Alle Einträge als Array zurück bekommen
     $erg = $connection->query($sql);
 
-
     //Diese While-Schleife tut offenbar folgendes 
     //Bei jedem neuen Durchlauf wird die chonologisch nächste 
     //Row aus dem vollständigen Array(erg) rausgeholt und in ein anderes Array(row) gespeichert
@@ -43,16 +43,13 @@
     //Ist false wenn es keine chronologisch nächste Reihe im Array(erg gibt)
     //Um das Überschreiben zu verhindern wird jede Row in ein dafür vorgesehenes Array gespeichert
 
-  /*  while($row = $erg->fetch_assoc()){
+    while($row = $erg->fetch_assoc()){
         $allRows[] = $row;
-    }*/
-
+    }
     
-    $out = $erg->fetch_assoc();
-    echo json_encode($out);
+    //$out = $erg->fetch_assoc();
+    //echo json_encode($out);
 
-    //$outp = $erg->fetch_all()
-    //echo json_encode($outp);
-
-
+    //$out = $erg->fetch_all()
+    echo json_encode($allRows);
 ?>

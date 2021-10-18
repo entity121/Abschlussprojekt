@@ -1,7 +1,7 @@
 //Globals
 const Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
 var save_tag;// Datum Speichern
-var save_monat;
+var save_monat;// NACHTRAG: Voraussichtlich überflüssig, da das Datum im JSON-Objekt gespeichert ist 
 var save_jahr;
 var daten;
 
@@ -40,10 +40,10 @@ const CANVAS_HEIGHT = 150;
 function Tagesstatistik_Darstellen(json){
 
   //Arrays
-  var farben = ['yellow','orangered','greenyellow','blueviolet','green','cyan','red','royalblue','crimson','grey'];
-  var emotionen = ['Freude','Interesse','Überraschung','Liebe','Hoffnung','Abneigung','Wut','Trauer','Verletzung','Angst'];
+  var farben = ['white','yellow','orangered','greenyellow','blueviolet','green','cyan','red','royalblue','crimson','grey'];
+  var emotionen = ['Neutral','Freude','Interesse','Überraschung','Liebe','Hoffnung','Abneigung','Wut','Trauer','Verletzung','Angst'];
   // Ein Zähler für jede Farbe (Reihenfolge des Farbe Arrays)
-  var anteil_farben = [0,0,0,0,0,0,0,0,0,0]; 
+  var anteil_farben = [0,0,0,0,0,0,0,0,0,0,0]; 
   // Ähnlich wie der Zähler, nur das hier der Prozentuale Anteil der Farbe vom Ganzen gespeichert wird
   var proz_anteil_farben = new Array(10);
 
@@ -176,12 +176,23 @@ function Tagesstatistik_Darstellen(json){
   var detail_box = document.getElementById("detail_box");           
 
   var info_string = "";
+  // Für jeden Eintrag im Array für die prozentualen Anteile
   for(var i=0;i<proz_anteil_farben.length;i++){
+    // Wenn ein Eintrag vorhanden ist (!=0)
     if(proz_anteil_farben[i]>0){
-      info_string+=emotionen[i]+": "+proz_anteil_farben[i].toFixed(2)+"%<br>";
+
+      // Um einen gleichmäßigen Abstand zu gewährleisten, wird die Länge der Prozentzahl abgefragt
+      // ist die Zahl >10% wird ein Unterstrich weniger in die Füll-Variable getan
+      var füll;
+      if(proz_anteil_farben[i]>=10){füll="___";}
+      else{füll="____";};
+
+      // Der String wird per Loop immer weiter vergrößert
+      info_string+="<p>"+proz_anteil_farben[i].toFixed(2)+"%:"+füll+""+emotionen[i]+"</p>";
     }
   }
 
+  // Die Ziel-DIV einblenden und den fertigen String hinein setzen
   document.getElementById("einträge_anschauen").style.display = "block";
   detail_box.innerHTML = info_string; 
 }
