@@ -6,6 +6,11 @@ var save_jahr;
 var daten;
 
 
+function Datum_Überliefern_Tagesstatistik(x,y){
+save_monat = x; save_jahr = y;
+}
+
+
 //Diese Funktion wird über einen Klick auf einen Kalendertag ausgeführt
 //Sie ruft die Daten des entsprechenden Tages aus der Datenbank ab
 //###############################################
@@ -15,6 +20,8 @@ function Tagesstatistik_Abrufen(tag,monat,jahr){
 save_tag = tag;
 save_monat = monat;
 save_jahr = jahr;
+
+document.getElementById("tagesstatistik_datum").innerHTML = tag+" "+Monat_Name[monat]+" "+jahr;
 
 //Die URL wird erzeugt und mit Variablen befüllt
 var url = "http://localhost/Abschlussprojekt/abfragen.php?req=tagesstatistik&tag="+tag+"&monat="+monat+"&jahr="+jahr;
@@ -26,6 +33,7 @@ Send_Request(url, Statistik_Darstellen);
 //######
 
 function Monatsstatistik_Abrufen(){
+  document.getElementById("tagesstatistik_datum").innerHTML = Monat_Name[save_monat]+" "+save_jahr;
   var url = "http://localhost/Abschlussprojekt/abfragen.php?req=monatsstatistik&monat="+save_monat+"&jahr="+save_jahr;
   Send_Request(url, Statistik_Darstellen);
 }

@@ -1,3 +1,4 @@
+
 //Diese Funktion tut nichts weiter, als die Kalender Funktion aufzurufen,
 //und das aktuelle Datum als Parameter zu übergeben
 //###############################################
@@ -5,8 +6,6 @@ function Kalender_Ausführen(){
     var date = new Date();
     Kalender(date.getMonth(),date.getFullYear());
 }//##############################################
-
-
 
 
 
@@ -27,6 +26,29 @@ var jahr_aktuell = date.getFullYear();
 //Variablen, für den Monat, der im Kalender dargestellt werden soll. Dieser Monat muss nicht aktuell sein um dargestellt zu werden
 var monat = x;
 var jahr = y;
+Datum_Überliefern_Tagesstatistik(monat,jahr);
+
+
+// Es werden die Einträge des Monats gesucht, um später eine Markierung im Kalender zu hinterlassen
+//+++++++++++++++++
+var xml = new XMLHttpRequest();
+var E = "";
+var url = "http://localhost/Abschlussprojekt/abfragen.php?req=monatsstatistik&monat="+monat+"&jahr="+jahr;
+
+xml.open("GET",url,false);
+xml.onreadystatechange = function(){
+    if(xml.readyState==4 && xml.status==200){
+        E = xml.responseText;
+        E = JSON.parse(E);
+        E = E.map(x=>x);
+    }
+    else{
+        alert("Es konnte keine Verbindung zum Server hergestellt werden\nState="+xml.readyState+" - Status="+xml.status);
+    }
+}
+xml.send();
+//+++++++++++++++++
+
 
 //Ein Kalender wird in Form einer Tabelle erzeugt (die div wird geleert bim Aufruf der Funktion)
 var kalender = document.getElementById("kalender");
@@ -101,12 +123,26 @@ for(var i=0;i<7;i++){
         cell.style.border = "1px solid black";
 
         //Der Monatstag wird in das Kalenderkästchen geschrieben
-        cell.innerHTML = zähler;
+        cell.innerHTML = zähler 
+
+        // Es wird überprüft, ob für diesen Tag ein Eintrag vorhanden ist, 
+        // indem jeder Eintrag des Monats sein 'Tag' Attribut mit dem innerHTML vergleicht
+        // Wenn dies der Fall ist, wird ein kleiner Brief als Hintergrund in das Feld gemalt
+        if(E!=""){
+            for(var j=0;j<E.length;j++){
+                if(E[j].Tag == zähler){
+                    cell.style.backgroundImage = "url('Assets/Brief2.PNG')";
+                    cell.style.backgroundSize = "100% 100%";
+                    cell.style.backgroundRepeat = "no-repeat";
+                    break;
+                }
+            }
+        }
+
 
         //Das Kalender Kästchen bekommt ein onclick Event, welches ein Fenster öffnet in dem 
         //die Statistik des Tages (sofern vorhanden) dargestellt wird.
         cell.onclick = function(){
-            document.getElementById("tagesstatistik_datum").innerHTML = this.innerHTML+" "+Monat_Name[monat]+" "+jahr;
             Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
         }
 
@@ -151,8 +187,22 @@ do{
             //datum in feld schreiben
             cell.innerHTML = zähler;
 
+            
+            // Es wird überprüft, ob für diesen Tag ein Eintrag vorhanden ist, 
+            // indem jeder Eintrag des Monats sein 'Tag' Attribut mit dem innerHTML vergleicht
+            // Wenn dies der Fall ist, wird ein kleiner Brief als Hintergrund in das Feld gemalt
+            if(E!=""){
+                for(var j=0;j<E.length;j++){
+                    if(E[j].Tag == zähler){
+                        cell.style.backgroundImage = "url('Assets/Brief2.PNG')";
+                        cell.style.backgroundSize = "100% 100%";
+                        cell.style.backgroundRepeat = "no-repeat";
+                        break;
+                    }
+                }
+            }
+
             cell.onclick = function(){
-                document.getElementById("tagesstatistik_datum").innerHTML = this.innerHTML+" "+Monat_Name[monat]+" "+jahr;
                 Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
             }
 

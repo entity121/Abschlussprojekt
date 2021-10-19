@@ -1,6 +1,5 @@
 const Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
 
-
 //###############################################
 function Seite_Füllen(json){
 
@@ -35,7 +34,11 @@ function Seite_Füllen(json){
     if(E[i].Sekunde<10){f3="0";}
 
     // Der Output String wird zusammen gebaut
-    output += "<div class='eintrag'><h2 style='background-color: "+E[i].Farbe+"'>"+f1+E[i].Stunde+":"+f2+E[i].Minute+":"+f3+E[i].Sekunde+" Uhr - "+E[i].Emotion+"</h2>";
+    output += "<div class='eintrag' id='"+E[i].ID+"' onclick='Eintrag_Löschen(this.id)'><h2 style='background-color: "+E[i].Farbe+"'>"
+          +f1+E[i].Stunde+":"
+          +f2+E[i].Minute+":"
+          +f3+E[i].Sekunde+" Uhr - "
+          +E[i].Emotion+"</h2>";
     output += "<p>"+E[i].Was+"</p><br><p>"+E[i].Warum+"</p><br></div>";
   }
 
@@ -44,3 +47,10 @@ function Seite_Füllen(json){
 
 }
 //###############################################
+
+
+
+
+function Eintrag_Löschen(id){
+  alert(id);
+}
