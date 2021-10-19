@@ -12,29 +12,32 @@ function Seite_Füllen(json){
   // Jeder Eintrag aus dem JSON Objekt wird einzeln in ein Array geschrieben
   var E = json_response.map(x=>x); // E = Alle Einträge
 
+  // Der erste Tag im Monat mit vorhandenem Eintrg wird als int gespeichert und hochgezählt
+  // ( -1 , um den nachfolgenden Loop ein wenig zu verallgemeinern)
+  var datum = (E[0].Tag -1);
   // Der Output String wird erzeugt
-  var output = "<h1>Alle Einträge: <br>"+E[0].Tag+" "+Monat_Name[E[0].Monat]+" "+E[0].Jahr+"</h1>";
-
-
-  //document.getElementById("inhalt").innerHTML = ;
-
+  var output = "";
 
   // Loop für jeden Eintrag
   for(var i=0;i<E.length;i++){
 
-  // Für den Fall, dass die Uhrzeiten einstellig sind, wird eine Null hinzugefügt
-  var f1=""; var f2=""; var f3="";
-  if(E[i].Stunde<10){f1="0";}
-  if(E[i].Minute<10){f2="0";}
-  if(E[i].Sekunde<10){f3="0";}
+    // Sollte ein neuer Tag beginnen, wird dies hier anhand der datum Variable und dem Tag aus dem Objekt festgestellt
+    // Es wird für den neuen Tag eine Überschrift erstellt und die datum Variable erhält den Wert des aktuellen Tages
+    if(E[i].Tag>datum){
+      output += "<h1>Alle Einträge: <br>"+E[i].Tag+" "+Monat_Name[E[i].Monat]+" "+E[i].Jahr+"</h1>";
+      datum = E[i].Tag;
+    }
 
-  // Der Output String wird zusammen gebaut
-  output += "<div class='eintrag'><h2 style='background-color: "+E[i].Farbe+"'>"+f1+E[i].Stunde+":"+f2+E[i].Minute+":"+f3+E[i].Sekunde+" Uhr - "+E[i].Emotion+"</h2>";
-  output += "<p>"+E[i].Was+"</p><br><p>"+E[i].Warum+"</p><br></div>";
+    // Für den Fall, dass die Uhrzeiten einstellig sind, wird eine Null hinzugefügt
+    var f1=""; var f2=""; var f3="";
+    if(E[i].Stunde<10){f1="0";}
+    if(E[i].Minute<10){f2="0";}
+    if(E[i].Sekunde<10){f3="0";}
+
+    // Der Output String wird zusammen gebaut
+    output += "<div class='eintrag'><h2 style='background-color: "+E[i].Farbe+"'>"+f1+E[i].Stunde+":"+f2+E[i].Minute+":"+f3+E[i].Sekunde+" Uhr - "+E[i].Emotion+"</h2>";
+    output += "<p>"+E[i].Was+"</p><br><p>"+E[i].Warum+"</p><br></div>";
   }
-
-  // Überschrift
-  output += output;
 
   // Output String in das Feld schreiben und das Feld sichtbar machen
   document.getElementById("inhalt").innerHTML = output;

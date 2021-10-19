@@ -17,11 +17,17 @@ save_monat = monat;
 save_jahr = jahr;
 
 //Die URL wird erzeugt und mit Variablen befüllt
-var url = "http://localhost/php/stimmungen/abfragen.php?req=tagesstatistik&tag="+tag+"&monat="+monat+"&jahr="+jahr;
+var url = "http://localhost/Abschlussprojekt/abfragen.php?req=tagesstatistik&tag="+tag+"&monat="+monat+"&jahr="+jahr;
 
 //Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
 //an den Server versendet zu werden
-Send_Request(url, Tagesstatistik_Darstellen);
+Send_Request(url, Statistik_Darstellen);
+}
+//######
+
+function Monatsstatistik_Abrufen(){
+  var url = "http://localhost/Abschlussprojekt/abfragen.php?req=monatsstatistik&monat="+save_monat+"&jahr="+save_jahr;
+  Send_Request(url, Statistik_Darstellen);
 }
 //###############################################
 
@@ -37,7 +43,7 @@ Send_Request(url, Tagesstatistik_Darstellen);
 const CANVAS_WIDTH = 300; 
 const CANVAS_HEIGHT = 150; 
 //######
-function Tagesstatistik_Darstellen(json){
+function Statistik_Darstellen(json){
 
   //Arrays
   var farben = ['white','yellow','orangered','greenyellow','blueviolet','green','cyan','red','royalblue','crimson','grey'];
@@ -45,17 +51,15 @@ function Tagesstatistik_Darstellen(json){
   // Ein Zähler für jede Farbe (Reihenfolge des Farbe Arrays)
   var anteil_farben = [0,0,0,0,0,0,0,0,0,0,0]; 
   // Ähnlich wie der Zähler, nur das hier der Prozentuale Anteil der Farbe vom Ganzen gespeichert wird
-  var proz_anteil_farben = new Array(10);
-
+  var proz_anteil_farben = new Array(10); 
 
   //Das JSON Objekt wird bevor es verändert wird an ein anderes Skript verschickt
-  daten = json;
-
+  daten = json;       
 
   //Die Antwort, welche als JSON String zurück kam
   //wird in ein JavaScript Objekt umgewandelt
   var json_response = JSON.parse(json);
-
+     
 
   //Diese schöne Funktion durchläuft das gesamte JSON Objekt
   //und durchsucht es nach bestimmten Werten, welche sie 
@@ -74,8 +78,7 @@ function Tagesstatistik_Darstellen(json){
       }
 
     }
-  } 
-
+  }    
 
   // Die Farben sollen anhand der Häufigkeit sortiert werden
   // wichtig ist zu beachten, dass das Array, in dem die Namen der Farben stehen (farben)
@@ -98,8 +101,7 @@ function Tagesstatistik_Darstellen(json){
       }
 
     }
-  }
-
+  }    
 
   // Das Zielfenster, in welchem das Kreisdiagramm dargestellt werden soll
   var canvas = document.getElementById("tagesstatistik_darstellung");
@@ -117,7 +119,6 @@ function Tagesstatistik_Darstellen(json){
   canvas.width *= scale;  
   canvas.height *= scale;
 
-    
   
   // Im folgenden CodeAbschnitt beginnt nun die Zeichnung des Kreisdiagramms
   if (canvas.getContext) {
@@ -170,7 +171,7 @@ function Tagesstatistik_Darstellen(json){
     }
 
   }
-
+     
   // Unterhalb des Kreisdiagrammes befindet sich eine kleine Infobox,
   // in welcher die prozentualen Anteile der Farben aufgelistet werden
   var detail_box = document.getElementById("detail_box");           
@@ -191,9 +192,10 @@ function Tagesstatistik_Darstellen(json){
       info_string+="<p>"+proz_anteil_farben[i].toFixed(2)+"%:"+füll+""+emotionen[i]+"</p>";
     }
   }
-
+      
   // Die Ziel-DIV einblenden und den fertigen String hinein setzen
   document.getElementById("einträge_anschauen").style.display = "block";
+  document.getElementById("monatsstatistik_anschauen").style.display = "block";
   detail_box.innerHTML = info_string; 
 }
 //###############################################

@@ -69,7 +69,7 @@ function Speichern(){
   var warum = document.getElementById("was_ist_die_ursache").value;
 
   //Die URL wird erzeugt und mit Variablen befüllt
-  var url = "http://localhost/php/stimmungen/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde+"&farbe="+farbe+"&emotion="+emotion+"&was="+was+"&warum="+warum;
+  var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde+"&farbe="+farbe+"&emotion="+emotion+"&was="+was+"&warum="+warum;
 
   //Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
   //an den Server versendet zu werden

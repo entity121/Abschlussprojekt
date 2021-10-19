@@ -19,7 +19,7 @@
     }
 
     //Das erfragte Datum in Variablen
-    $tag = (int)$_GET['tag'];
+    if($_GET['req']=="tagesstatistik"){$tag = (int)$_GET['tag'];}
     $monat = (int)$_GET['monat'];
     $jahr = (int)$_GET['jahr'];
 
@@ -29,7 +29,8 @@
 
 
     //SQL Befehl alle Einträge finden
-    $sql = "SELECT * FROM angaben WHERE Tag=$tag AND Monat=$monat AND Jahr=$jahr";
+    if($_GET['req']=="tagesstatistik"){$sql = "SELECT * FROM angaben WHERE Tag=$tag AND Monat=$monat AND Jahr=$jahr";} // Tag
+    if($_GET['req']=="monatsstatistik"){$sql = "SELECT * FROM angaben WHERE Monat=$monat AND Jahr=$jahr";} // Monat
 
     //Alle Einträge als Array zurück bekommen
     $erg = $connection->query($sql);

@@ -11,8 +11,8 @@
         //um zu verhindern, das else vorzeitig ausgeführt wird
         xml.onreadystatechange = setTimeout (function() {
             if(xml.readyState==4 && xml.status==200){
-                //Die Antwort wird an die entsprechende Funktion weiter geleitet
-                thefunction(xml.responseText);            
+                //Die Antwort wird an die entsprechende Funktion weiter geleitet       
+                thefunction(xml.responseText);    
             }
             else{
                 alert("Es konnte keine Verbindung zum Server hergestellt werden\nState="+xml.readyState+" - Status="+xml.status);
