@@ -20,14 +20,20 @@ function Seiten_Wechseln(x,y){
   //die aktuelle Seite ausblenden
   document.getElementById("seite_"+x).style.display="none";
 
-  //den Kalender generieren, falls die Kalender Seite gewählt wurde
-  if(y==4){
-    Kalender_Ausführen();
-  }
-
   //die gewählte Seite darstellen und den Link ergrauen lassen
   document.getElementById("seite_"+y).style.display="block";
   document.getElementById("link_seite_"+y+""+y).style.backgroundColor="grey";
+
+  //den Kalender generieren, falls die Kalender Seite gewählt wurde
+  if(y==4){
+    Kalender_Ausführen();
+    //und die Statistik des aktuellen Tages anzeigen
+    var date = new Date();
+    Tagesstatistik_Abrufen(date.getDate(),date.getMonth(),date.getFullYear());
+  }
+
+
+
 }//############################################## 
 
 

@@ -51,6 +51,36 @@ function Seite_Füllen(json){
 
 
 
+
+
+// Dies ist eine kleine eigenständige AJAX-Funktion zum löschen von Einträgen aus der Datenbank
+// Hier läuft alles so ab, wie in dem AJAX Script, mit dem Unterschied, 
+// dass die Antwort nicht mehr weiter gesendet wird 
+//###############################################
 function Eintrag_Löschen(id){
-  alert(id);
+  
+  var xml = new XMLHttpRequest();
+  var url = "http://localhost/Abschlussprojekt/löschen.php?req=löschen&id="+id;
+  var antwort;
+  
+  xml.open("GET",url,false);
+  xml.onreadystatechange = function(){
+    if(xml.readyState==4 && xml.status==200){
+      antwort = xml.responseText;
+    }
+    else{
+      alert("Löschen fehlgeschlagen\nReadyState: "+xml.readyState+"\nStatus: "+xml.status);
+    }
+  };
+  xml.send();
+
+
+  if(antwort=="1"){
+    alert("Löschen erfolgreich");
+    window.close();
+  }
+  else{
+    alert("Löschen fehlgeschlagen\nFehlercode: ")+antwort;
+  }
 }
+//###############################################

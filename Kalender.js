@@ -26,7 +26,7 @@ var jahr_aktuell = date.getFullYear();
 //Variablen, für den Monat, der im Kalender dargestellt werden soll. Dieser Monat muss nicht aktuell sein um dargestellt zu werden
 var monat = x;
 var jahr = y;
-Datum_Überliefern_Tagesstatistik(monat,jahr);
+Datum_Überliefern_Tagesstatistik(tag_aktuell,monat,jahr);
 
 
 // Es werden die Einträge des Monats gesucht, um später eine Markierung im Kalender zu hinterlassen

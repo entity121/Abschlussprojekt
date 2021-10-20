@@ -3,11 +3,14 @@ const Monat_Name = ["Januar","Februar","März","April","Mai","Juni","Juli","Augu
 var save_tag;// Datum Speichern
 var save_monat;// NACHTRAG: Voraussichtlich überflüssig, da das Datum im JSON-Objekt gespeichert ist 
 var save_jahr;
+// Damit nach einem Reload durch Löschen oder Ändern von Einträgen das selbe Diagramm erzeugt werden kann
+// Wird dann an späterer Stelle geprüft, um zu entscheiden, ob Tagesstatistik_ oder Monatsstatistik_Abrufen() ausgeführt werden soll
+var tagesstatistik = true; 
 var daten;
 
 
-function Datum_Überliefern_Tagesstatistik(x,y){
-save_monat = x; save_jahr = y;
+function Datum_Überliefern_Tagesstatistik(x,y,z){
+save_tag = x; save_monat = y; save_jahr = z;
 }
 
 
@@ -15,6 +18,9 @@ save_monat = x; save_jahr = y;
 //Sie ruft die Daten des entsprechenden Tages aus der Datenbank ab
 //###############################################
 function Tagesstatistik_Abrufen(tag,monat,jahr){
+
+// True für Tagesstatistik
+tagesstatistik = true;
 
 // Damit das angezeigte Datum für spätere Nutzung erhalten bleibt
 save_tag = tag;
@@ -33,6 +39,8 @@ Send_Request(url, Statistik_Darstellen);
 //######
 
 function Monatsstatistik_Abrufen(){
+  // False für Monatsstatistik
+  tagesstatistik = false;
   document.getElementById("tagesstatistik_datum").innerHTML = Monat_Name[save_monat]+" "+save_jahr;
   var url = "http://localhost/Abschlussprojekt/abfragen.php?req=monatsstatistik&monat="+save_monat+"&jahr="+save_jahr;
   Send_Request(url, Statistik_Darstellen);
@@ -219,11 +227,28 @@ function Einträge_Anschauen(){
   // kann einfach als "name" übergeben werden.
   // In der Ziel HTML kann es dann ganz normal verwendet werden
   var win = window.open("Einträge.html",daten,"menubar=no,toolbar=no,titlebar=no,status=no,resizeable=no,location=no,"
-                        +"height="+(window.innerHeight *0.8)+","
-                        +"width="+(window.innerWidth *0.3)+","
-                        +"left="+(window.screenX+(window.innerWidth *0.4))+","
-                        +"top="+(window.screenY+(window.innerHeight *0.15)));
-  win.focus();
++"height="+(window.innerHeight *0.8)+","
++"width="+(window.innerWidth *0.3)+","
++"left="+(window.screenX+(window.innerWidth *0.4))+","
++"top="+(window.screenY+(window.innerHeight *0.15)));
+  
+
+var timer = setInterval(function() {   
+  if(win.closed) {  
+  clearInterval(timer);  
+  
+  if(tagesstatistik == true){
+    Kalender(save_monat,save_jahr);
+    Tagesstatistik_Abrufen(save_tag,save_monat,save_jahr);
+  }
+  else{
+    Kalender(save_monat,save_jahr);
+    Monatsstatistik_Abrufen(save_monat,save_jahr);
+  }
+  
+}  
+}, 200);                     
+
 }
 //###############################################
 
