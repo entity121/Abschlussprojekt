@@ -22,14 +22,17 @@
           <h1>Name des Projektes</h1>
         </div>
       <!--Links zwischen den verschiedenen Unterseiten-->
+
         <div class="links">
-            <ul>
-              <li id="link_seite_12" onclick="Seiten_Wechseln(1,2)">Statistik</li>
-              <li id="link_seite_13" onclick="Seiten_Wechseln(1,3)">Stress</li>
-              <li id="link_seite_14" onclick="Seiten_Wechseln(1,4)">Kalender</li>
-              <li id="link_seite_15" onclick="Seiten_Wechseln(1,5)">Archiv</li>
-            </ul>
+          <ul>
+            <li id="link_seite_12" onclick="Seiten_Wechseln(1,2)">Statistik</li>
+            <li id="link_seite_13" onclick="Seiten_Wechseln(1,3)">Stress</li>
+            <li id="link_seite_14" onclick="Seiten_Wechseln(1,4)">Kalender</li>
+            <li id="link_seite_15" onclick="Seiten_Wechseln(1,5)">Archiv</li>
+          </ul>
         </div>
+
+
 
       <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
         <div class="main_object">
@@ -195,7 +198,8 @@
         <h1>Kalender</h1>
       </div>
       <!--Links zwischen den verschiedenen Unterseiten-->
-      <div class="links">
+
+        <div class="links">
           <ul>
             <li id="link_seite_41" onclick="Seiten_Wechseln(4,1)">Hauptseite</li>
             <li id="link_seite_42" onclick="Seiten_Wechseln(4,2)">Statistik</li>
@@ -203,7 +207,9 @@
             <li id="link_seite_44" onclick="Seiten_Wechseln(4,4)">Kalender</li>
             <li id="link_seite_45" onclick="Seiten_Wechseln(4,5)">Archiv</li>
           </ul>
-      </div>
+        </div>
+
+
       <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
       <div class="main_object">
         <button class="kalender_button" onclick="Monat_Wechseln(-1)">Vorheriger Monat</button>
@@ -219,7 +225,7 @@
         <h1>Tagesstatistik</h1>
         <h2 id="tagesstatistik_datum"></h2>
         <canvas id="tagesstatistik_darstellung"></canvas>
-        <button id="einträge_anschauen" onclick="Einträge_Anschauen()" style="display: none;">Alle Einträge anschauen</button>
+        <button id="einträge_anschauen" onclick="Einträge_Anschauen()">Alle Einträge anschauen</button>
         <button id="monatsstatistik_anschauen" onclick="Monatsstatistik_Abrufen()">Monatsstatistik anschauen</button>
         <div id="detail_box">Bitte wählen Sie ein Datum aus dem Kalender</div>
       </div>

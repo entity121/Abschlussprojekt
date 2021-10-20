@@ -66,7 +66,7 @@ for(var i=0;i<7;i++){
     cell.innerHTML = Woche[i];
     cell.style.textAlign = "center";
     if(i==5 || i==6){
-    cell.style.border = "2px solid red";
+    //cell.style.border = "2px solid red";
     }
 }
 //bis zu diesem Punkt ist es bei jedem Monat gleich
@@ -146,6 +146,14 @@ for(var i=0;i<7;i++){
             Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
         }
 
+        cell.onmouseover = function(){
+            this.style.border = "3px solid #b03522";
+        }
+
+        cell.onmouseout = function(){
+            this.style.border = "1px solid black";
+        }
+
         //Der aktuelle Tag soll im Kalender eine rote Zahl bekommen
         if(zähler==tag_aktuell && monat==monat_aktuell && jahr==jahr_aktuell){
             cell.style.color="red";
@@ -153,7 +161,8 @@ for(var i=0;i<7;i++){
 
         //Samstage und Sonntage bekommen eine rote Umrandung
         if(i==5 || i==6){
-            cell.style.border = "2px solid red";
+            cell.style.backgroundColor = "cadetblue";
+            //cell.style.border = "2px solid red";
         }
 
         zähler+=1;
@@ -206,6 +215,14 @@ do{
                 Tagesstatistik_Abrufen(this.innerHTML, monat, jahr);
             }
 
+            cell.onmouseover = function(){
+                this.style.border = "3px solid #b03522";
+            }
+    
+            cell.onmouseout = function(){
+                this.style.border = "1px solid black";
+            }
+
             //rot färben wenn heutiger Tag
             if(zähler==tag_aktuell && monat==monat_aktuell && jahr==jahr_aktuell){
             cell.style.color="red";
@@ -213,7 +230,8 @@ do{
 
             //rot umranden, wenn Wochenende
             if(i==5 || i==6){
-            cell.style.border = "2px solid red";
+                cell.style.backgroundColor = "cadetblue";
+                //cell.style.border = "2px solid red";
             }
 
             zähler+=1;

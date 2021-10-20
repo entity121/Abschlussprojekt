@@ -59,28 +59,32 @@ function Seite_Füllen(json){
 //###############################################
 function Eintrag_Löschen(id){
   
-  var xml = new XMLHttpRequest();
-  var url = "http://localhost/Abschlussprojekt/löschen.php?req=löschen&id="+id;
-  var antwort;
+  // Vor dem Löschen soll der Nutzer gefragt werden, ob er sicher ist diesen Eintrag zu löschen
+  if (confirm("Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?")) {
+    var xml = new XMLHttpRequest();
+    var url = "http://localhost/Abschlussprojekt/löschen.php?req=löschen&id="+id;
+    var antwort;
+    
+    xml.open("GET",url,false);
+    xml.onreadystatechange = function(){
+      if(xml.readyState==4 && xml.status==200){
+        antwort = xml.responseText;
+      }
+      else{
+        alert("Löschen fehlgeschlagen\nReadyState: "+xml.readyState+"\nStatus: "+xml.status);
+      }
+    };
+    xml.send();
   
-  xml.open("GET",url,false);
-  xml.onreadystatechange = function(){
-    if(xml.readyState==4 && xml.status==200){
-      antwort = xml.responseText;
+  
+    if(antwort=="1"){
+      alert("Löschen erfolgreich");
+      window.close();
     }
     else{
-      alert("Löschen fehlgeschlagen\nReadyState: "+xml.readyState+"\nStatus: "+xml.status);
+      alert("Löschen fehlgeschlagen\nFehlercode: ")+antwort;
     }
-  };
-  xml.send();
-
-
-  if(antwort=="1"){
-    alert("Löschen erfolgreich");
-    window.close();
   }
-  else{
-    alert("Löschen fehlgeschlagen\nFehlercode: ")+antwort;
-  }
+
 }
 //###############################################

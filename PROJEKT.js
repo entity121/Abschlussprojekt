@@ -22,7 +22,18 @@ function Seiten_Wechseln(x,y){
 
   //die gewählte Seite darstellen und den Link ergrauen lassen
   document.getElementById("seite_"+y).style.display="block";
-  document.getElementById("link_seite_"+y+""+y).style.backgroundColor="grey";
+  if(y!=1){
+    document.getElementById("link_seite_"+y+""+y).style.backgroundColor="grey";
+  }
+
+  if(y==1){
+    var box = document.getElementById("auswahl_anzeige");
+    box.style.backgroundColor = "white";
+    box.innerHTML = "NEUTRAL";
+
+    document.getElementById("was_ist_die_ursache").value = "";
+    document.getElementById("was_ist_los").value = "";
+  };
 
   //den Kalender generieren, falls die Kalender Seite gewählt wurde
   if(y==4){
@@ -30,7 +41,7 @@ function Seiten_Wechseln(x,y){
     //und die Statistik des aktuellen Tages anzeigen
     var date = new Date();
     Tagesstatistik_Abrufen(date.getDate(),date.getMonth(),date.getFullYear());
-  }
+  };
 
 
 

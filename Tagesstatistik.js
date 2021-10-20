@@ -9,6 +9,7 @@ var tagesstatistik = true;
 var daten;
 
 
+// Von der Funktion, die den Kalender erstellt, wird das aktuelle Datum hierher gespeichert
 function Datum_Überliefern_Tagesstatistik(x,y,z){
 save_tag = x; save_monat = y; save_jahr = z;
 }
@@ -232,20 +233,20 @@ function Einträge_Anschauen(){
 +"left="+(window.screenX+(window.innerWidth *0.4))+","
 +"top="+(window.screenY+(window.innerHeight *0.15)));
   
-
+// Ein Intervall prüft alle 200ms ob die Seite geschlossen wurde
+// Wenn Ja wird das Tages oder Monatsdiagramm (boolen) neu erstellt un ebenfalls der Kalender
 var timer = setInterval(function() {   
   if(win.closed) {  
   clearInterval(timer);  
   
   if(tagesstatistik == true){
-    Kalender(save_monat,save_jahr);
     Tagesstatistik_Abrufen(save_tag,save_monat,save_jahr);
+    Kalender(save_monat,save_jahr);
   }
   else{
-    Kalender(save_monat,save_jahr);
     Monatsstatistik_Abrufen(save_monat,save_jahr);
-  }
-  
+    Kalender(save_monat,save_jahr);
+  } 
 }  
 }, 200);                     
 

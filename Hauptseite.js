@@ -79,5 +79,11 @@ function Speichern(){
 //Wenn das Speichern erfolgreich war oder es einen Fehler gab, dann wird dies dem Nutzer als Meldung am Bildschirm mittgeteilt 
 function Speichern_Erfolgreich(x){
   alert(x);
+  // Die Seite nach dem Speichern wieder auf default setzen
+  var box = document.getElementById("auswahl_anzeige");
+  box.style.backgroundColor = "white";
+  box.innerHTML = "NEUTRAL";
+  document.getElementById("was_ist_die_ursache").value = "";
+  document.getElementById("was_ist_los").value = "";
 }
 //#########################################################
