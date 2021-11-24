@@ -278,6 +278,24 @@ angegeben wird*/
     font-size: 16px;
   }
 
+  /*Für den Kalender*/
+  /*###############################################*/
+  #puzzle_spielfeld{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px; 
+  }
+
+  .kachel{
+    height: 99px;
+    width: 99px;
+    float: left;
+    text-align: center;
+    font-size: 60px;
+    padding-top: 0px;
+  }
+
+
 }
 
 
