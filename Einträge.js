@@ -56,7 +56,7 @@ function Seite_Füllen(json){
 // Dies ist eine kleine eigenständige AJAX-Funktion zum löschen von Einträgen aus der Datenbank
 // Hier läuft alles so ab, wie in dem AJAX Script, mit dem Unterschied, 
 // dass die Antwort nicht mehr weiter gesendet wird 
-//###############################################
+// ###############################################
 function Eintrag_Löschen(id){
   
   // Vor dem Löschen soll der Nutzer gefragt werden, ob er sicher ist diesen Eintrag zu löschen

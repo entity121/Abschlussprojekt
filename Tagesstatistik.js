@@ -39,6 +39,7 @@ Send_Request(url, Statistik_Darstellen);
 }
 //######
 
+
 function Monatsstatistik_Abrufen(){
   // False für Monatsstatistik
   tagesstatistik = false;

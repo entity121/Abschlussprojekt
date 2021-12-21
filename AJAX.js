@@ -5,6 +5,9 @@
         //ein neues Ajax Objekt
         var xml = new XMLHttpRequest();
 
+        //Das PHP Dokument wird angesprochen und die Anfrage versendet
+        xml.open("GET",url,false);
+
         //das Ajax Objekt wird mit einem Event Listener versehen, welcher bei eingehendem response
         //überprüfen soll, ob die Verbindung ordnungsgemäß funktioniert hat und ob etwas zurück kam
         // Dieser Abfrage wird eine kurze Wartezeit gegeben, 
@@ -19,7 +22,29 @@
             }
         },100);// Die Wartezeit
 
-        //Das PHP Dokument wird angesprochen und die Anfrage versendet
-        xml.open("GET",url,true);
+
         xml.send();
     };
+
+
+    // Eine Überladung der Ajax Funktion, bei der die Antwort an die anfragende Funktion returned wird
+    function Send_Request(url){
+
+        var xml = new XMLHttpRequest();
+
+        xml.open("GET",url,false);
+
+        xml.onreadystatechange = setTimeout (function() {
+            if(xml.readyState==4 && xml.status==200){
+            }
+            else{
+                alert("Es konnte keine Verbindung zum Server hergestellt werden\nState="+xml.readyState+" - Status="+xml.status);
+            }
+ 
+        },100);
+
+        xml.send();
+
+        // Die Antwort wird zurück geschickt
+        return xml.responseText;
+    }
