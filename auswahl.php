@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+//header("Content-type:text/html; charset=utf-8");
 
     //Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
     //$server = "localhost"; // Privatrechner
@@ -10,6 +11,7 @@ header("Access-Control-Allow-Origin: *");
 
     //Verbindungsaufbau
     $connection = new mysqli($server, $name, $passwort, $datenbank);
+    $connection->set_charset("utf8mb4");
 
     //Wenn es bei der Verbindung ein Problem gab, soll das Skript beendet und ein 
     //Fehler zurück gegeben werden
@@ -23,11 +25,13 @@ header("Access-Control-Allow-Origin: *");
 
 
     //SQL Befehl alle Einträge finden
-    if($_GET['req']=="erstellen"){$sql = "SELECT * FROM auswahl WHERE Frage='Essen'";} 
-
+    //if($_GET['req']=="erstellen"){$sql = "SELECT * FROM emotionen";} 
+    $sql="SELECT * FROM essen_auswahl";
 
     //Alle Einträge als Array zurück bekommen
     $erg = $connection->query($sql);
+
+
 
     //Diese While-Schleife tut offenbar folgendes 
     //Bei jedem neuen Durchlauf wird die chonologisch nächste 
@@ -40,12 +44,14 @@ header("Access-Control-Allow-Origin: *");
 
     while($row = $erg->fetch_assoc()){
         $allRows[] = $row;
+        //echo json_encode($row);
     }
     
     //$out = $erg->fetch_assoc();
     //echo json_encode($out);
 
     //$out = $erg->fetch_all()
-    //echo json_encode($allRows);
-echo "X";
+    //echo json_encode($out);
+    echo json_encode($allRows);
+    
 ?>
