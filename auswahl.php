@@ -1,9 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-//header("Content-type:text/html; charset=utf-8");
 
-    //Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
-    //$server = "localhost"; // Privatrechner
+    //$server = "localhost";    // Privatrechner
     $server = "127.0.0.1:3305"; // Arbeitsrechner
     $name = "root";
     $passwort = "";
@@ -13,45 +11,33 @@ header("Access-Control-Allow-Origin: *");
     $connection = new mysqli($server, $name, $passwort, $datenbank);
     $connection->set_charset("utf8mb4");
 
-    //Wenn es bei der Verbindung ein Problem gab, soll das Skript beendet und ein 
-    //Fehler zurück gegeben werden
     if($connection->connect_error){
         die("Verbindung fehlgeschlagen");
     }
 
-    //Es wird ein Array für alle Einträge, die der Anforderung entsprechen in ein Array gespeichert
-    //Dieses Array soll später zurück geschickt werden
-    $allRows = array();
 
+    if($_GET['req']=="erstellen"){
 
-    //SQL Befehl alle Einträge finden
-    //if($_GET['req']=="erstellen"){$sql = "SELECT * FROM emotionen";} 
-    $sql="SELECT * FROM essen_auswahl";
+        $fragennamen=[
+            0=>"essen_auswahl",
+            1=>"event_auswahl",
+            // Gedanken
+            // Was tun?
+        ];
 
-    //Alle Einträge als Array zurück bekommen
-    $erg = $connection->query($sql);
+        $allRows = array();
+        
+        for($i=0;$i<2;$i++){
 
+            $sql = "SELECT * FROM $fragennamen[$i]";
+            $erg = $connection->query($sql);
+            while($row = $erg->fetch_assoc()){
+                $allRows[] = $row;
+            }
 
+        }
 
-    //Diese While-Schleife tut offenbar folgendes 
-    //Bei jedem neuen Durchlauf wird die chonologisch nächste 
-    //Row aus dem vollständigen Array(erg) rausgeholt und in ein anderes Array(row) gespeichert
-    //es wird immer nur eine einzelne Row gespeichert und beim nächsten durchlauf überschrieben
-    //wenn alle rows abgearbeitet wurden, dann beendet sich der loop, weil die Bedingung nicht mehr zutrifft
-    //die Bedingung interpretiere ich wie folgt: Wenn eine Row aus dem gesammten Array(erg) in das Array(row) gespeichert werden konnte
-    //Ist false wenn es keine chronologisch nächste Reihe im Array(erg gibt)
-    //Um das Überschreiben zu verhindern wird jede Row in ein dafür vorgesehenes Array gespeichert
-
-    while($row = $erg->fetch_assoc()){
-        $allRows[] = $row;
-        //echo json_encode($row);
-    }
-    
-    //$out = $erg->fetch_assoc();
-    //echo json_encode($out);
-
-    //$out = $erg->fetch_all()
-    //echo json_encode($out);
-    echo json_encode($allRows);
+        echo json_encode($allRows);
+    } 
     
 ?>

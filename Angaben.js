@@ -1,23 +1,49 @@
 function Fragebogen_Erstellen(){
-    
-    var x = Send_Request("http://localhost/Abschlussprojekt/auswahl.php?req=erstellen");
 
-    x = JSON.parse(x);
+    alert(0);
 
-    x = x.map(y=>y.Essen);
+    // Der Standartmäßige Anfang des html Forms
+    // in einem String, der später weiter verlängert wird
+    var html_string = "<form action=''>";
 
-    var s = "<p>Wiederkehrende Gedanken</p><select name='wiederkehrende_gedanken' id='wiederkehrende_gedanken'>";
+    alert(1);
 
-    for(var i=0;i<x.length;i++){
-        var id = "opt"+i;
-        s+="<option value='"+id+"'>"+x[i]+"</option>";
+    var auswahlmöglichkeiten = Send_Request("http://localhost/Abschlussprojekt/auswahl.php?req=erstellen");
+    auswahlmöglichkeiten = JSON.parse(auswahlmöglichkeiten);
+
+    alert(2);
+
+    var essen = x.map(y=>y.Essen);
+    var event = x.map(y=>y.Events);
+
+    alert(3);
+
+    html_string += "<p>Wiederkehrende Gedanken</p><select name='wiederkehrende_gedanken_select' id='wiederkehrende_gedanken_select'>";
+    for(var i=0;i<essen.length;i++){
+        var id = "essen_auswahl_"+i;
+        html_string+="<option value='"+id+"'>"+essen[i]+"</option>";
     }
+    html_string+="</select><br>";
 
-    s+="</select>";
+    alert(4);
 
-    alert(s);
+    html_string += "<p>Events</p><select name='events_select' id='events_select'>";
+    for(var i=0;i<event.length;i++){
+        var id = "event_auswahl_"+i;
+        html_string+="<option value='"+id+"'>"+event[i]+"</option>";
+    }
+    html_string+="</select><br>";
 
-    document.getElementById("body").innerHTML = s;
+    alert(5);
 
-    //document.getElementById("body").innerHTML = x[2];
+    html_string+="</form>";
+
+    alert(6);
+
+    alert(html_string);
+
+    alert(7);
+
+    document.getElementById("body").innerHTML = html_string;
+
 }
