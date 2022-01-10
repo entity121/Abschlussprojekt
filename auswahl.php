@@ -21,13 +21,15 @@ header("Access-Control-Allow-Origin: *");
         $fragennamen=[
             0=>"essen_auswahl",
             1=>"event_auswahl",
-            // Gedanken
-            // Was tun?
+            2=>"wiederkehrende_gedanken",
+            3=>"wetter_auswahl",
+            4=>"lösungen_auswahl",
+            //...........
         ];
 
         $allRows = array();
         
-        for($i=0;$i<2;$i++){
+        for($i=0;$i<5;$i++){
 
             $sql = "SELECT * FROM $fragennamen[$i]";
             $erg = $connection->query($sql);
