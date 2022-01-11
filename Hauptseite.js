@@ -48,6 +48,8 @@ function Farbe_Zurücksetzen(){
 
 
 
+
+
 // Diese Funktion wird ausgeführt, sobald der Nutzer den Absenden button gedrückt hat
 // Dem Anwendungsfenster werden die entsprechenden Angaben, welche versendet werden sollen, entnommen un in Variablen gespeichert
 // Außerdem wird das aktuelle Datum und die Uhrzeit generiert und ebenfalls in Variablen gespeichert
@@ -56,7 +58,7 @@ function Farbe_Zurücksetzen(){
 //###############################################
 function Speichern(){
 
-  if(confirm("Möchten Sie ihren Eintrag speichern?")){
+  if(confirm("Möchten Sie ihren Eintrag ohne Angaben speichern?")){
     // Die Werte für Uhrzeit und Datum werden nicht übergeben sonder hier abgefragt
     var date = new Date();
 
@@ -69,29 +71,16 @@ function Speichern(){
 
     // Dem Anzeige Fenster der Anwendung wird die Farbe sowie die Emotion entnommen 
     var farbe = document.getElementById("auswahl_anzeige").style.backgroundColor;
-    var emotion = document.getElementById("auswahl_anzeige_text").innerHTML;
 
-    // Den Textfelder werden die Angaben zur aktuellen Stimmung entnommen
-    var was = document.getElementById("was_ist_los").value;
-    var warum = document.getElementById("was_ist_die_ursache").value;
 
     // Die URL wird erzeugt und mit Variablen befüllt
-    var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde+"&farbe="+farbe+"&emotion="+emotion+"&was="+was+"&warum="+warum;
+    var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern_light&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde+"&farbe="+farbe;
 
     // Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
     // an den Server versendet zu werden
-    Send_Request(url, Speichern_Erfolgreich);
+    var res = Send_Request(url);
+    alert(res);
   }
+  
 }
 //#####
-// Wenn das Speichern erfolgreich war oder es einen Fehler gab, dann wird dies dem Nutzer als Meldung am Bildschirm mittgeteilt 
-function Speichern_Erfolgreich(x){
-  alert(x);
-  // Die Seite nach dem Speichern wieder auf default setzen
-  var box = document.getElementById("auswahl_anzeige");
-  box.style.backgroundColor = "white";
-  box.innerHTML = "NEUTRAL";
-  document.getElementById("was_ist_die_ursache").value = "";
-  document.getElementById("was_ist_los").value = "";
-}
-//#########################################################

@@ -21,7 +21,7 @@ header("Access-Control-Allow-Origin: *");
         $fragennamen=[
             0=>"essen_auswahl",
             1=>"event_auswahl",
-            2=>"wiederkehrende_gedanken",
+            2=>"gedanken_auswahl",
             3=>"wetter_auswahl",
             4=>"lösungen_auswahl",
             //...........

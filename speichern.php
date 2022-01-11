@@ -10,7 +10,6 @@
     $passwort = "";
     $datenbank = "stimmungen";
 
-
     //Verbindungsaufbau
     $connection = new mysqli($server, $name, $passwort, $datenbank);
 
@@ -19,6 +18,8 @@
     if($connection->connect_error){
         die("Verbindung fehlgeschlagen\n".$connection->connect_error);
     }
+
+
 
     
     //Dies ist die Speicherfunktion auf dem Server
@@ -35,9 +36,38 @@
         $minute = (int)$_GET['minute'];
         $stunde = (int)$_GET['stunde'];
         $farbe = $_GET['farbe'];
-        $emotion = $_GET['emotion'];
-        $was = $_GET['was'];
-        $warum = $_GET['warum'];
+        $gedanken = $_GET['gedanken'];
+        $situation = $_GET['situation'];
+        $produk = $_GET['produk'];
+        $handeln = $_GET['handeln'];
+        $bewertung = $_GET['bewertung'];
+        $essen = $_GET['essen'];
+        $verträglichkeit = $_GET['verträglichkeit'];
+        $schlaf = $_GET['schlaf'];
+        $müde = $_GET['müde'];
+        $wetter = $_GET['wetter'];
+        $warm = $_GET['warm'];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+        $ = $_GET[''];
+
+
+           /*&gedanken="+gedanken+"&situation"+situation+"&produk"+produk+"&handeln"+handeln+"&bewertung"+bewertung+"&essen"+essen+"&verträglichkeit"+verträglichkeit;
+            url += "&schlaf"+schlaf+"&müde"+müde+"&wetter"+wetter+"&warm"+warm+"&event"+event+"&kontrolle"+kontrolle+"&ort"+ort+"&kontakt"+kontakt+"&verhältnis"+verhältnis;
+            url += "&lösung"+lösung+"&notiz"+notiz;*/
+
+
+
+
+
+
 
         //Es wird ein SQL Befehl als String erzeugt
         // !!! WICHTIG !!! Die Variablen, die Strings beinhalten mussen in einfache Anführungsstriche gesetzt werden -> '$str' 
