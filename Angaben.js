@@ -15,6 +15,7 @@ function Fragebogen_Erstellen(x){
     var gedanken=[];
     var wetter=[];
     var lösung=[];
+    var ort=[];
 
     // Das komplette Antwort-Array wird zerteilt und die Ergebnisse auf
     // spezifische kleine Arrays verteilt
@@ -35,6 +36,9 @@ function Fragebogen_Erstellen(x){
         else if(auswahlmöglichkeiten[i].Lösung){
             lösung.push(auswahlmöglichkeiten[i].Lösung);
         }
+        else if(auswahlmöglichkeiten[i].Ort){
+            ort.push(auswahlmöglichkeiten[i].Ort);
+        }
 
     }
     //##################
@@ -54,11 +58,12 @@ function Fragebogen_Erstellen(x){
     
     // Wiederkehrende Gedanken
     html_string += "<h2>Wiederkehrende Gedanken</h2><select name='gedanken_select' id='gedanken_select'>";
+    html_string += "<option selected value=''></option>";
     for(var i=0;i<gedanken.length;i++){
         var id = gedanken[i];
         html_string+="<option value='"+id+"'>"+gedanken[i]+"</option>";
     }
-    html_string+="</select><br><br>";
+    html_string+="</select>  <button type='button' name='gedanken_hinzufügen' onclick='Auswahl_Hinzufügen()'>Speichern</button>  <br><br>";
     //#######################
 
 
@@ -99,6 +104,7 @@ function Fragebogen_Erstellen(x){
 
     // Essen
     html_string += "<h2>Essen</h2><select name='essen_select' id='essen_select'>";
+    html_string += "<option selected value=''></option>";
     for(var i=0;i<essen.length;i++){
         var id = essen[i];
         html_string+="<option value='"+id+"'>"+essen[i]+"</option>";
@@ -118,6 +124,7 @@ function Fragebogen_Erstellen(x){
 
     // Schlaf in Stunden
     html_string += "<h2>Schlaf in Stunden</h2><select name='schlaf_in_stunden' id='schlaf_in_stunden'>";
+    html_string += "<option selected value=''></option>";
     for(var i=0;i<24;i++){
         var id = i;
         html_string+="<option value='"+id+"'>"+i+"</option>";
@@ -128,14 +135,16 @@ function Fragebogen_Erstellen(x){
 
     // Müde/Wach
     html_string += "<h2>Müde / Wach</h2>"
-    +"<input type='radio' id='müde_wach_müde' name='müde_wach' value='müde'>" + "<label for='müde_wach_ja'>Müde</label><br>"
-    +"<input type='radio' id='müde_wach_wach' name='müde_wach' value='wach'>" + "<label for='müde_wach_nein'>Wach</label><br>";
+    for(var i=-3;i<4;i++){
+        html_string += "<label for='müde/wach_"+i+"'> "+i+" </label>"+"<input type='radio' id='müde/wach_"+i+"' name='müde/wach' value='"+i+"'>";
+    }
     html_string+="</select><br><br>";
     //#######################
 
 
     // Wetter
     html_string += "<h2>Wetter</h2><select name='wetter_select' id='wetter_select'>";
+    html_string += "<option selected value=''></option>";
     for(var i=0;i<wetter.length;i++){
         var id = wetter[i];
         html_string+="<option value='"+id+"'>"+wetter[i]+"</option>";
@@ -146,14 +155,16 @@ function Fragebogen_Erstellen(x){
 
     // Warm/Kalt
     html_string += "<h2>Warm / Kalt</h2>"
-    +"<input type='radio' id='warm_kalt_warm' name='warm_kalt' value='warm'>" + "<label for='warm_kalt_warm'>Warm</label><br>"
-    +"<input type='radio' id='warm_kalt_kalt' name='warm_kalt' value='kalt'>" + "<label for='warm_kalt_kalt'>Kalt</label><br>";
+    for(var i=-3;i<4;i++){
+        html_string += "<label for='warm/kalt_"+i+"'> "+i+" </label>"+"<input type='radio' id='warm/kalt_"+i+"' name='warm/kalt' value='"+i+"'>";
+    }
     html_string+="</select><br><br>";
     //#######################
 
 
     // Event
     html_string += "<h2>Events</h2><select name='events_select' id='events_select'>";
+    html_string += "<option selected value=''></option>";
     for(var i=0;i<event.length;i++){
         var id = event[i];
         html_string+="<option value='"+id+"'>"+event[i]+"</option>";
@@ -172,12 +183,13 @@ function Fragebogen_Erstellen(x){
 
 
     // Aufenthalt
-    html_string += "<h2>Wo bin ich</h2>"
-    + "<label for='aufenthalt_schule'> Schule </label>"+"<input type='radio' id='aufenthalt_schule' name='aufenthalt' value='schule'>"
-    + "<label for='aufenthalt_arbeit'> Arbeit </label>"+"<input type='radio' id='aufenthalt_arbeit' name='aufenthalt' value='arbeit'>"
-    + "<label for='aufenthalt_zuhause'> Zuhause </label>"+"<input type='radio' id='aufenthalt_zuhause' name='aufenthalt' value='zuhause'>"
-    //html_string += "<label for='aufenthalt_schule'> Schule </label>"+"<input type='radio' id='aufenthalt_schule' name='aufenthalt' value='schule'>";
-    +"<br><br>";
+    html_string += "<h2>Wo bin ich</h2><select name='aufenthalt' id='aufenthalt'>";
+    html_string += "<option selected value=''></option>";
+    for(var i=0;i<ort.length;i++){
+        var id = ort[i];
+        html_string+="<option value='"+id+"'>"+ort[i]+"</option>";
+    }
+    html_string+="</select><br><br>";
     //#######################
 
 
@@ -200,6 +212,7 @@ function Fragebogen_Erstellen(x){
 
     // Lösungsansätze
     html_string += "<h2>Lösungsansätze</h2><select name='lösung_select' id='lösung_select'>";
+    html_string += "<option selected value=''></option>";
     for(var i=0;i<lösung.length;i++){
         var id = lösung[i];
         html_string+="<option value='"+id+"'>"+lösung[i]+"</option>";
@@ -237,7 +250,7 @@ function Angaben_Speichern(){
         // Die einzelnen Fragen werden ausgewertet und die Ergebnisse in Variablen gespeichert
         // 'Input' angaben BENÖTIGEN eine Auswahl, deshalb die if-Abfrage . 'Select' und 'Textarea' dürfen leer sein
         var gedanken = document.querySelector("select[name='gedanken_select']").value;
-        if(document.querySelector("input[name='bekannte_situation']:checked")){var situation = document.querySelector("input[name='bekannte_situation']:checked").value;}
+        if(document.querySelector("input[name='bekannte_situation']:checked")){var situation = document.querySelector("input[name='bekannte_situation']:checked").value;}else{var situation = ""};
         if(document.querySelector("input[name='behinderung_produktivität']:checked")){var produk = document.querySelector("input[name='behinderung_produktivität']:checked").value;}   
 
         if(document.querySelector("input[name='handeln_beeinflusst']:checked")){var handeln = document.querySelector("input[name='handeln_beeinflusst']:checked").value;}
@@ -246,15 +259,15 @@ function Angaben_Speichern(){
 
         if(document.querySelector("input[name='verträglichkeit_essen']:checked")){var verträglichkeit = document.querySelector("input[name='verträglichkeit_essen']:checked").value;}
         var schlaf = document.querySelector("select[name='schlaf_in_stunden']").value;
-        if(document.querySelector("input[name='müde_wach']:checked")){var müde = document.querySelector("input[name='müde_wach']:checked").value;}
+        if(document.querySelector("input[name='müde/wach']:checked")){var müde = document.querySelector("input[name='müde/wach']:checked").value;}
 
         var wetter = document.querySelector("select[name='wetter_select']").value;
-        if(document.querySelector("input[name='warm_kalt']:checked")){var warm = document.querySelector("input[name='warm_kalt']:checked").value;}
+        if(document.querySelector("input[name='warm/kalt']:checked")){var warm = document.querySelector("input[name='warm/kalt']:checked").value;}
         var event = document.querySelector("select[name='events_select']").value;
 
         if(document.querySelector("input[name='kontrolle_handeln']:checked")){var kontrolle = document.querySelector("input[name='kontrolle_handeln']:checked").value;}
-        if(document.querySelector("input[name='aufenthalt']:checked")){var ort = document.querySelector("input[name='aufenthalt']:checked").value;}
-        if(document.querySelector("input[name='kontakt_menschen']:checked")){var kontakt = document.querySelector("input[name='kontakt_menschen']:checked").value;}
+        var ort = document.querySelector("select[name='aufenthalt']").value;
+        if(document.querySelector("input[name='kontakt_menschen']:checked")){var kontakt = document.querySelector("input[name='kontakt_menschen']:checked").value;}else{var kontakt = ""};
 
         if(document.querySelector("input[name='verhältnis_person']:checked")){var verhältnis = document.querySelector("input[name='verhältnis_person']:checked").value;}
         var lösung = document.querySelector("select[name='lösung_select']").value;
@@ -275,9 +288,9 @@ function Angaben_Speichern(){
     
         // Die URL wird erzeugt und mit Variablen befüllt
         var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde;
-            url += "&farbe="+color+"&gedanken="+gedanken+"&situation"+situation+"&produk"+produk+"&handeln"+handeln+"&bewertung"+bewertung+"&essen"+essen+"&verträglichkeit"+verträglichkeit;
-            url += "&schlaf"+schlaf+"&müde"+müde+"&wetter"+wetter+"&warm"+warm+"&event"+event+"&kontrolle"+kontrolle+"&ort"+ort+"&kontakt"+kontakt+"&verhältnis"+verhältnis;
-            url += "&lösung"+lösung+"&notiz"+notiz;
+            url += "&farbe="+color+"&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln+"&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit;
+            url += "&schlaf="+schlaf+"&müde="+müde+"&wetter="+wetter+"&warm="+warm+"&event="+event+"&kontrolle="+kontrolle+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
+            url += "&lösung="+lösung+"&notiz="+notiz;
     
         // Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
         // an den Server versendet zu werden

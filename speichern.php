@@ -12,6 +12,8 @@
 
     //Verbindungsaufbau
     $connection = new mysqli($server, $name, $passwort, $datenbank);
+    // UTF-8
+    $connection->set_charset("utf8mb4");
 
     //Wenn es bei der Verbindung ein Problem gab, soll das Skript beendet und ein 
     //Fehler zurück gegeben werden
@@ -28,7 +30,7 @@
     //#####################################################
     if($_GET['req']=="speichern"){
 
-        //Die einzelnen übergebenen Daten werden aus der URL in Varablen geschrieben
+        // Die einzelnen übergebenen Daten werden aus der URL in Varablen geschrieben
         $tag = (int)$_GET['tag'];
         $monat = (int)$_GET['monat'];
         $jahr = (int)$_GET['jahr'];
@@ -38,52 +40,62 @@
         $farbe = $_GET['farbe'];
         $gedanken = $_GET['gedanken'];
         $situation = $_GET['situation'];
-        $produk = $_GET['produk'];
-        $handeln = $_GET['handeln'];
-        $bewertung = $_GET['bewertung'];
+        $produk = (int)$_GET['produk'];
+        $handeln = (int)$_GET['handeln'];
+        $bewertung = (int)$_GET['bewertung'];
         $essen = $_GET['essen'];
-        $verträglichkeit = $_GET['verträglichkeit'];
-        $schlaf = $_GET['schlaf'];
-        $müde = $_GET['müde'];
+        $verträglichkeit = (int)$_GET['verträglichkeit'];
+        $schlaf = (int)$_GET['schlaf'];
+        $müde = (int)$_GET['müde'];
         $wetter = $_GET['wetter'];
-        $warm = $_GET['warm'];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-        $ = $_GET[''];
-
-
-           /*&gedanken="+gedanken+"&situation"+situation+"&produk"+produk+"&handeln"+handeln+"&bewertung"+bewertung+"&essen"+essen+"&verträglichkeit"+verträglichkeit;
-            url += "&schlaf"+schlaf+"&müde"+müde+"&wetter"+wetter+"&warm"+warm+"&event"+event+"&kontrolle"+kontrolle+"&ort"+ort+"&kontakt"+kontakt+"&verhältnis"+verhältnis;
-            url += "&lösung"+lösung+"&notiz"+notiz;*/
-
-
-
-
+        $warm = (int)$_GET['warm'];
+        $event = $_GET['event'];   
+        $kontrolle = (int)$_GET['kontrolle'];
+        $ort = $_GET['ort'];
+        $kontakt = $_GET['kontakt'];
+        $verhältnis = (int)$_GET['verhältnis'];
+        $lösung = $_GET['lösung'];
+        $notiz = $_GET['notiz'];
+        //$ = $_GET[''];
 
 
 
         //Es wird ein SQL Befehl als String erzeugt
         // !!! WICHTIG !!! Die Variablen, die Strings beinhalten mussen in einfache Anführungsstriche gesetzt werden -> '$str' 
-        $sql = "INSERT INTO angaben (Tag, Monat, Jahr, Stunde, Minute, Sekunde, Farbe, Emotion, Was, Warum) VALUES ($tag, $monat, $jahr, $stunde, $minute, $sekunde, '$farbe', '$emotion', '$was', '$warum')";
+        $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe, Gedanken, Situation, Produktivität, Handeln, Bewertung, Essen, Verträglichkeit, ";
+        $sql .= "Schlaf, Müde, Wetter, Warm, Event, Kontrolle, Ort, Kontakt, Verhältnis, Lösung, Notiz)"; 
+        $sql .= "VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe', '$gedanken', '$situation', $produk, $handeln, $bewertung, '$essen', $verträglichkeit, $schlaf, ";
+        $sql .= "$müde, '$wetter', $warm, '$event', $kontrolle, '$ort', '$kontakt', $verhältnis, '$lösung', '$notiz')";
 
-        //Der SQL Befehl wird ausgeführt
-        $execute = $connection->query($sql);
+    }
+    //#############
+    else if($_GET['req']=="speichern_light"){
 
-        //Wenn es beim Speichern der Daten ein Problem geben sollte, dann wird hier eine entsprechende Fehlermeldung zurück gegeben
-        //und das Skript beendet
-        if(mysqli_error($connection)){
-            die("Speichern fehlgeschlagen\n\n".mysqli_error($connection));
-        }
+        $tag = (int)$_GET['tag'];
+        $monat = (int)$_GET['monat'];
+        $jahr = (int)$_GET['jahr'];
+        $sekunde = (int)$_GET['sekunde'];
+        $minute = (int)$_GET['minute'];
+        $stunde = (int)$_GET['stunde'];
+        $farbe = $_GET['farbe'];
 
-        //Wenn alles ohne Probleme funktioniert hat, dann wird diese Meldung an den Client zurück geschickt
-        echo "Angaben wurden erfolgreich gespeichert";
+        $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe) VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe')";
     }
     //#####################################################
+
+
+
+    
+    //Der SQL Befehl wird ausgeführt
+    $execute = $connection->query($sql);
+
+    //Wenn es beim Speichern der Daten ein Problem geben sollte, dann wird hier eine entsprechende Fehlermeldung zurück gegeben
+    //und das Skript beendet
+    if(mysqli_error($connection)){
+        die("Speichern fehlgeschlagen\n\n".mysqli_error($connection));
+    }
+
+    //Wenn alles ohne Probleme funktioniert hat, dann wird diese Meldung an den Client zurück geschickt
+    echo "Angaben wurden erfolgreich gespeichert";
+
 ?>
