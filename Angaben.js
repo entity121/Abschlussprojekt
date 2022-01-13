@@ -24,7 +24,7 @@ function Fragebogen_Erstellen(x){
         if(auswahlmöglichkeiten[i].Essen){// WENN es zu 'auswahlmöglichkeiten[i]' ein Element 'Essen' gibt
             essen.push(auswahlmöglichkeiten[i].Essen);// DANN Wert des Elementes in entsprechendes Array speichern
         }
-        else if(auswahlmöglichkeiten[i].Events){
+        else if(auswahlmöglichkeiten[i].Event){
             event.push(auswahlmöglichkeiten[i].Events);
         }
         else if(auswahlmöglichkeiten[i].Gedanken){
@@ -61,9 +61,9 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<gedanken.length;i++){
         var id = gedanken[i];
-        html_string+="<option value='"+id+"'>"+gedanken[i]+"</option>";
+        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
     }
-    html_string+="</select>  <button type='button' name='gedanken_hinzufügen' onclick='Auswahl_Hinzufügen()'>Speichern</button>  <br><br>";
+    html_string+="</select>  <button type='button' name='gedanken_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button>  <br><br>";
     //#######################
 
 
@@ -107,9 +107,9 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<essen.length;i++){
         var id = essen[i];
-        html_string+="<option value='"+id+"'>"+essen[i]+"</option>";
+        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
     }
-    html_string+="</select><br><br>";
+    html_string+="</select> <button type='button' name='essen_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
     //#######################
 
 
@@ -147,9 +147,9 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<wetter.length;i++){
         var id = wetter[i];
-        html_string+="<option value='"+id+"'>"+wetter[i]+"</option>";
+        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
     }
-    html_string+="</select><br><br>";
+    html_string+="</select> <button type='button' name='wetter_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
     //#######################
 
 
@@ -163,13 +163,13 @@ function Fragebogen_Erstellen(x){
 
 
     // Event
-    html_string += "<h2>Events</h2><select name='events_select' id='events_select'>";
+    html_string += "<h2>Events</h2><select name='event_select' id='event_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<event.length;i++){
         var id = event[i];
-        html_string+="<option value='"+id+"'>"+event[i]+"</option>";
+        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
     }
-    html_string+="</select><br><br>";
+    html_string+="</select> <button type='button' name='event_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
     //#######################
 
 
@@ -183,13 +183,13 @@ function Fragebogen_Erstellen(x){
 
 
     // Aufenthalt
-    html_string += "<h2>Wo bin ich</h2><select name='aufenthalt' id='aufenthalt'>";
+    html_string += "<h2>Wo bin ich</h2><select name='ort_select' id='ort_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<ort.length;i++){
         var id = ort[i];
-        html_string+="<option value='"+id+"'>"+ort[i]+"</option>";
+        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
     }
-    html_string+="</select><br><br>";
+    html_string+="</select> <button type='button' name='ort_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
     //#######################
 
 
@@ -215,9 +215,9 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<lösung.length;i++){
         var id = lösung[i];
-        html_string+="<option value='"+id+"'>"+lösung[i]+"</option>";
+        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
     }
-    html_string+="</select><br><br>";
+    html_string+="</select> <button type='button' name='lösung_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
     //#######################
 
 
@@ -263,10 +263,10 @@ function Angaben_Speichern(){
 
         var wetter = document.querySelector("select[name='wetter_select']").value;
         if(document.querySelector("input[name='warm/kalt']:checked")){var warm = document.querySelector("input[name='warm/kalt']:checked").value;}
-        var event = document.querySelector("select[name='events_select']").value;
+        var event = document.querySelector("select[name='event_select']").value;
 
         if(document.querySelector("input[name='kontrolle_handeln']:checked")){var kontrolle = document.querySelector("input[name='kontrolle_handeln']:checked").value;}
-        var ort = document.querySelector("select[name='aufenthalt']").value;
+        var ort = document.querySelector("select[name='ort_select']").value;
         if(document.querySelector("input[name='kontakt_menschen']:checked")){var kontakt = document.querySelector("input[name='kontakt_menschen']:checked").value;}else{var kontakt = ""};
 
         if(document.querySelector("input[name='verhältnis_person']:checked")){var verhältnis = document.querySelector("input[name='verhältnis_person']:checked").value;}
@@ -298,4 +298,51 @@ function Angaben_Speichern(){
         alert(res);
     }
 
-}//#########################################################
+}//########################################################
+
+
+
+
+
+
+//#########################################################
+function Auswahl_Hinzufügen(frage){
+
+    switch (frage){
+
+        case "gedanken_hinzufügen":{var tabelle = "gedanken_auswahl"; var spalte = "Gedanken"; var select_id = "gedanken_select";};break;
+        case "essen_hinzufügen":{var tabelle = "essen_auswahl"; var spalte = "Essen"; var select_id = "essen_select";};break;
+        case "wetter_hinzufügen":{var tabelle = "wetter_auswahl"; var spalte = "Wetter"; var select_id = "wetter_select";};break;
+        case "event_hinzufügen":{var tabelle = "event_auswahl"; var spalte = "Event"; var select_id = "event_select";};break;
+        case "ort_hinzufügen":{var tabelle = "ort_auswahl"; var spalte = "Ort"; var select_id = "ort_select";};break;
+        case "lösung_hinzufügen":{var tabelle = "lösungen_auswahl"; var spalte = "Lösung"; var select_id = "lösung_select";};break;
+
+    }
+
+
+    var eingabe = prompt("Auswahlmöglichkeit hinzufügen");
+
+    if(eingabe != ""){
+        var url = "http://localhost/Abschlussprojekt/speichern.php?req=hinzufügen&tabelle="+tabelle+"&spalte="+spalte+"&eingabe="+eingabe;
+
+        var res = Send_Request(url);
+        alert(res);
+    
+        // Die select Auswahl um den neuen Eintrag erweitern, ohne die Seite neu zu laden oder bereits getätigte eingaben zu verlieren
+        if(res == "Antwortmöglichkeit hinzugefügt"){
+            var select = document.getElementById(select_id);
+            var opt = document.createElement('option'); 
+        
+            opt.value = eingabe;
+            opt.innerHTML = eingabe.substring(0,30);
+            opt.title = eingabe;
+        
+            select.appendChild(opt);
+        }
+    }
+    else{
+        alert("Bitte keine leeren Eingaben machen");
+    }
+
+}
+//#########################################################

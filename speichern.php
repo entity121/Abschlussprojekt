@@ -81,7 +81,16 @@
 
         $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe) VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe')";
     }
-    //#####################################################
+    //############
+    else if($_GET['req']=="hinzufügen"){
+
+        $tabelle = $_GET['tabelle'];
+        $spalte = $_GET['spalte'];
+        $eingabe = $_GET['eingabe'];
+
+        $sql = "INSERT INTO ".$tabelle." (".$spalte.") VALUES ('".$eingabe."')";
+
+    }
 
 
 
@@ -96,6 +105,12 @@
     }
 
     //Wenn alles ohne Probleme funktioniert hat, dann wird diese Meldung an den Client zurück geschickt
-    echo "Angaben wurden erfolgreich gespeichert";
+    if($_GET['req']=="hinzufügen"){
+        echo "Antwortmöglichkeit hinzugefügt";
+    }
+    else{
+        echo "Angaben wurden erfolgreich gespeichert";
+    }
+    
 
 ?>

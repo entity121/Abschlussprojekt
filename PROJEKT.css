@@ -52,9 +52,10 @@ angegeben wird*/
   .erläuterung{
     width: 100%;
   }
+  .linker_rand{
+    width: 400px;
+  }
   .links{
-  
-
   margin-top: 20px;
   }
   .links ul {
@@ -167,8 +168,8 @@ angegeben wird*/
     color: #dcd579;
     text-align: center;
     box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-    margin-top: 10px;
-    float: right;
+    margin-top: 15px;
+    /*float: right;*/
   }
   #legende ul{
     list-style: none;
@@ -278,7 +279,7 @@ angegeben wird*/
     font-size: 16px;
   }
 
-  /*Für den Kalender*/
+  /*Für das Puzzle*/
   /*###############################################*/
   #puzzle_spielfeld{
     border: 1px solid black;
@@ -739,17 +740,17 @@ angegeben wird*/
 
 
 #legende_box{
-  width: 340px;
+  width: 100%;
 }
 #legende {
-  width: 85%;
+  width: 90%;
 }
 #legende li{
-  height: 55px;
-  margin-bottom: 10px;
+  height: 30px;
+  margin-bottom: 8px;
 }
 #legende h2{
-  font-size: 30px;
+  font-size: 28px;
 }
 #legende span{
   width: 60px;
