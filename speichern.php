@@ -112,5 +112,4 @@
         echo "Angaben wurden erfolgreich gespeichert";
     }
     
-
 ?>

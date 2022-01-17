@@ -163,7 +163,7 @@ function Einfärben(){
                 document.getElementById(index).style.backgroundColor = "#dcd579";
             }
             else if(k_array[i][j] == sortiert[index]){
-                document.getElementById(index).style.backgroundColor = "#b03522";
+                document.getElementById(index).style.backgroundColor = "#268856";
             }
             else{
                 document.getElementById(index).style.backgroundColor = "#dcd579";

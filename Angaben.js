@@ -1,5 +1,173 @@
-var color;
 
+//#########################################################
+function Angaben_Speichern(){
+
+    if(confirm("Möchten Sie ihren Eintrag speichern?")) {
+        
+
+        // Die einzelnen Fragen werden ausgewertet und die Ergebnisse in Variablen gespeichert
+        // 'Input' angaben BENÖTIGEN eine Auswahl, deshalb die if-Abfrage . 'Select' und 'Textarea' dürfen leer sein
+        var gedanken = document.querySelector("select[name='gedanken_select']").value;
+        if(document.querySelector("input[name='bekannte_situation']:checked")){var situation = document.querySelector("input[name='bekannte_situation']:checked").value;}else{var situation = ""};
+        if(document.querySelector("input[name='behinderung_produktivität']:checked")){var produk = document.querySelector("input[name='behinderung_produktivität']:checked").value;}   
+
+        if(document.querySelector("input[name='handeln_beeinflusst']:checked")){var handeln = document.querySelector("input[name='handeln_beeinflusst']:checked").value;}
+        if(document.querySelector("input[name='bewertung_gefühl']:checked")){var bewertung = document.querySelector("input[name='bewertung_gefühl']:checked").value;}
+        var essen = document.querySelector("select[name='essen_select']").value;
+
+        if(document.querySelector("input[name='verträglichkeit_essen']:checked")){var verträglichkeit = document.querySelector("input[name='verträglichkeit_essen']:checked").value;}
+        var schlaf = document.querySelector("select[name='schlaf_in_stunden']").value;
+        if(document.querySelector("input[name='müde/wach']:checked")){var müde = document.querySelector("input[name='müde/wach']:checked").value;}
+
+        var wetter = document.querySelector("select[name='wetter_select']").value;
+        if(document.querySelector("input[name='warm/kalt']:checked")){var warm = document.querySelector("input[name='warm/kalt']:checked").value;}
+        var event = document.querySelector("select[name='event_select']").value;
+
+        if(document.querySelector("input[name='kontrolle_handeln']:checked")){var kontrolle = document.querySelector("input[name='kontrolle_handeln']:checked").value;}
+        var ort = document.querySelector("select[name='ort_select']").value;
+        if(document.querySelector("input[name='kontakt_menschen']:checked")){var kontakt = document.querySelector("input[name='kontakt_menschen']:checked").value;}else{var kontakt = ""};
+
+        if(document.querySelector("input[name='verhältnis_person']:checked")){var verhältnis = document.querySelector("input[name='verhältnis_person']:checked").value;}
+        var lösung = document.querySelector("select[name='lösung_select']").value;
+        var notiz = document.querySelector("textarea[name='notizen']").value;
+
+        
+        // Datum und Uhrzeit des Eintrages
+        var date = new Date();
+
+        var tag = date.getDate();
+        var monat = date.getMonth();
+        var jahr = date.getFullYear();
+        var sekunde = date.getSeconds();
+        var minute = date.getMinutes();
+        var stunde = date.getHours();
+
+
+    
+        // Die URL wird erzeugt und mit Variablen befüllt
+        var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde;
+            url += "&farbe="+color+"&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln+"&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit;
+            url += "&schlaf="+schlaf+"&müde="+müde+"&wetter="+wetter+"&warm="+warm+"&event="+event+"&kontrolle="+kontrolle+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
+            url += "&lösung="+lösung+"&notiz="+notiz;
+    
+        // Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
+        // an den Server versendet zu werden
+        var res = Send_Request(url);
+        alert(res);
+
+        if(res == "Angaben wurden erfolgreich gespeichert"){
+            window.close();
+        };
+    }
+
+}//########################################################
+
+
+
+
+
+
+//#########################################################
+function Auswahl_Hinzufügen(frage){
+
+    switch (frage){
+
+        case "gedanken_hinzufügen":{var tabelle = "gedanken_auswahl"; var spalte = "Gedanken"; var select_id = "gedanken_select";};break;
+        case "essen_hinzufügen":{var tabelle = "essen_auswahl"; var spalte = "Essen"; var select_id = "essen_select";};break;
+        case "wetter_hinzufügen":{var tabelle = "wetter_auswahl"; var spalte = "Wetter"; var select_id = "wetter_select";};break;
+        case "event_hinzufügen":{var tabelle = "event_auswahl"; var spalte = "Event"; var select_id = "event_select";};break;
+        case "ort_hinzufügen":{var tabelle = "ort_auswahl"; var spalte = "Ort"; var select_id = "ort_select";};break;
+        case "lösung_hinzufügen":{var tabelle = "lösungen_auswahl"; var spalte = "Lösung"; var select_id = "lösung_select";};break;
+
+    }
+
+    var eingabe = prompt("Auswahlmöglichkeit hinzufügen");
+
+    if(eingabe != ""){
+        var url = "http://localhost/Abschlussprojekt/speichern.php?req=hinzufügen&tabelle="+tabelle+"&spalte="+spalte+"&eingabe="+eingabe;
+
+        var res = Send_Request(url);
+        alert(res);
+    
+        // Die select Auswahl um den neuen Eintrag erweitern, ohne die Seite neu zu laden oder bereits getätigte eingaben zu verlieren
+        if(res == "Antwortmöglichkeit hinzugefügt"){
+            var select = document.getElementById(select_id);
+            var opt = document.createElement('option'); 
+        
+            opt.value = eingabe;
+            opt.innerHTML = eingabe.substring(0,30);
+            opt.title = eingabe;
+        
+            select.appendChild(opt);
+        }
+    }
+    else{
+        alert("Bitte keine leeren Eingaben machen");
+    }
+
+}
+//#########################################################
+
+
+
+
+
+
+// Button um eine Auswahlmöglichkeit sowohl aus dem <select> Element
+// als auch aus der Datenbank zu entfernen
+//#########################################################
+function Auswahl_Löschen(frage){
+
+    // Anhand des Übergabeparameters wird das <select> Element und entsprechende Werte für die Datenbank bestimmt
+    switch (frage){
+        case "gedanken_löschen":{var tabelle = "gedanken_auswahl"; var spalte = "Gedanken"; var select_id = "gedanken_select";};break;
+        case "essen_löschen":{var tabelle = "essen_auswahl"; var spalte = "Essen"; var select_id = "essen_select";};break;
+        case "wetter_löschen":{var tabelle = "wetter_auswahl"; var spalte = "Wetter"; var select_id = "wetter_select";};break;
+        case "event_löschen":{var tabelle = "event_auswahl"; var spalte = "Event"; var select_id = "event_select";};break;
+        case "ort_löschen":{var tabelle = "ort_auswahl"; var spalte = "Ort"; var select_id = "ort_select";};break;
+        case "lösung_löschen":{var tabelle = "lösungen_auswahl"; var spalte = "Lösung"; var select_id = "lösung_select";};break;
+    }
+
+    // Das <select> Element als ganzes und der Ausgewählte Wert
+    var element = document.getElementById(select_id);
+    var selected = element.value;
+ 
+    // Für jede <option> innerhalb von <select>
+    for(var i=0;i<element.length;i++){
+        
+        // Die gewählte <option> 
+        if(element.options[i].value == selected){
+
+            // Standartfrage mit zu löschender <option>
+            var str = "Möchten Sie die Option '"+selected+"' unwideruflich löschen?";
+
+            // Sicherheitsfrage
+            if(confirm(str)){
+
+                // Einmal aus der Datenbank löschen ...
+                var url = "http://localhost/Abschlussprojekt/löschen.php?req=option&tabelle="+tabelle+"&spalte="+spalte+"&selected="+selected;
+                var res = Send_Request(url);
+                alert(res);
+
+                // ... und einmal aus dem <select> Element der aktuellen Sitzung
+                if(res == "Option gelöscht"){
+                    element.remove(i);
+                }
+
+            }
+        }
+
+    }
+    
+}
+//#########################################################
+
+
+
+
+var color;
+// Der Fragebogen wird dynamisch erzeugt 
+// Dazu wird ein seeeeehr langer String gebildet
 //#########################################################
 function Fragebogen_Erstellen(x){
 
@@ -61,9 +229,17 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<gedanken.length;i++){
         var id = gedanken[i];
-        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        if(id.length>=30){
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,29)+"."+"</option>";
+        }
+        else{
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        } 
     }
-    html_string+="</select>  <button type='button' name='gedanken_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button>  <br><br>";
+    html_string+="</select>";
+    html_string+="<button type='button' name='gedanken_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>";
+    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button>";
+    html_string+="<br><br>";
     //#######################
 
 
@@ -107,9 +283,15 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<essen.length;i++){
         var id = essen[i];
-        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        if(id.length>=30){
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,29)+"."+"</option>";
+        }
+        else{
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        } 
     }
-    html_string+="</select> <button type='button' name='essen_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
+    html_string+="</select> <button type='button' name='essen_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
     //#######################
 
 
@@ -147,9 +329,15 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<wetter.length;i++){
         var id = wetter[i];
-        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        if(id.length>=30){
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,29)+"."+"</option>";
+        }
+        else{
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        } 
     }
-    html_string+="</select> <button type='button' name='wetter_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
+    html_string+="</select> <button type='button' name='wetter_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>";
+    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
     //#######################
 
 
@@ -167,9 +355,15 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<event.length;i++){
         var id = event[i];
-        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        if(id.length>=30){
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,29)+"."+"</option>";
+        }
+        else{
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        } 
     }
-    html_string+="</select> <button type='button' name='event_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
+    html_string+="</select> <button type='button' name='event_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
     //#######################
 
 
@@ -187,9 +381,15 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<ort.length;i++){
         var id = ort[i];
-        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        if(id.length>=30){
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,29)+"."+"</option>";
+        }
+        else{
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        } 
     }
-    html_string+="</select> <button type='button' name='ort_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
+    html_string+="</select> <button type='button' name='ort_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
     //#######################
 
 
@@ -215,9 +415,15 @@ function Fragebogen_Erstellen(x){
     html_string += "<option selected value=''></option>";
     for(var i=0;i<lösung.length;i++){
         var id = lösung[i];
-        html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        if(id.length>=30){
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,29)+"."+"</option>";
+        }
+        else{
+            html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
+        } 
     }
-    html_string+="</select> <button type='button' name='lösung_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button> <br><br>";
+    html_string+="</select> <button type='button' name='lösung_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
     //#######################
 
 
@@ -241,108 +447,3 @@ function Fragebogen_Erstellen(x){
 
 
 
-//#########################################################
-function Angaben_Speichern(){
-
-    if(confirm("Möchten Sie ihren Eintrag speichern?")) {
-        
-
-        // Die einzelnen Fragen werden ausgewertet und die Ergebnisse in Variablen gespeichert
-        // 'Input' angaben BENÖTIGEN eine Auswahl, deshalb die if-Abfrage . 'Select' und 'Textarea' dürfen leer sein
-        var gedanken = document.querySelector("select[name='gedanken_select']").value;
-        if(document.querySelector("input[name='bekannte_situation']:checked")){var situation = document.querySelector("input[name='bekannte_situation']:checked").value;}else{var situation = ""};
-        if(document.querySelector("input[name='behinderung_produktivität']:checked")){var produk = document.querySelector("input[name='behinderung_produktivität']:checked").value;}   
-
-        if(document.querySelector("input[name='handeln_beeinflusst']:checked")){var handeln = document.querySelector("input[name='handeln_beeinflusst']:checked").value;}
-        if(document.querySelector("input[name='bewertung_gefühl']:checked")){var bewertung = document.querySelector("input[name='bewertung_gefühl']:checked").value;}
-        var essen = document.querySelector("select[name='essen_select']").value;
-
-        if(document.querySelector("input[name='verträglichkeit_essen']:checked")){var verträglichkeit = document.querySelector("input[name='verträglichkeit_essen']:checked").value;}
-        var schlaf = document.querySelector("select[name='schlaf_in_stunden']").value;
-        if(document.querySelector("input[name='müde/wach']:checked")){var müde = document.querySelector("input[name='müde/wach']:checked").value;}
-
-        var wetter = document.querySelector("select[name='wetter_select']").value;
-        if(document.querySelector("input[name='warm/kalt']:checked")){var warm = document.querySelector("input[name='warm/kalt']:checked").value;}
-        var event = document.querySelector("select[name='event_select']").value;
-
-        if(document.querySelector("input[name='kontrolle_handeln']:checked")){var kontrolle = document.querySelector("input[name='kontrolle_handeln']:checked").value;}
-        var ort = document.querySelector("select[name='ort_select']").value;
-        if(document.querySelector("input[name='kontakt_menschen']:checked")){var kontakt = document.querySelector("input[name='kontakt_menschen']:checked").value;}else{var kontakt = ""};
-
-        if(document.querySelector("input[name='verhältnis_person']:checked")){var verhältnis = document.querySelector("input[name='verhältnis_person']:checked").value;}
-        var lösung = document.querySelector("select[name='lösung_select']").value;
-        var notiz = document.querySelector("textarea[name='notizen']").value;
-
-        
-        // Datum und Uhrzeit des Eintrages
-        var date = new Date();
-
-        var tag = date.getDate();
-        var monat = date.getMonth();
-        var jahr = date.getFullYear();
-        var sekunde = date.getSeconds();
-        var minute = date.getMinutes();
-        var stunde = date.getHours();
-
-
-    
-        // Die URL wird erzeugt und mit Variablen befüllt
-        var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde;
-            url += "&farbe="+color+"&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln+"&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit;
-            url += "&schlaf="+schlaf+"&müde="+müde+"&wetter="+wetter+"&warm="+warm+"&event="+event+"&kontrolle="+kontrolle+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
-            url += "&lösung="+lösung+"&notiz="+notiz;
-    
-        // Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
-        // an den Server versendet zu werden
-        var res = Send_Request(url);
-        alert(res);
-    }
-
-}//########################################################
-
-
-
-
-
-
-//#########################################################
-function Auswahl_Hinzufügen(frage){
-
-    switch (frage){
-
-        case "gedanken_hinzufügen":{var tabelle = "gedanken_auswahl"; var spalte = "Gedanken"; var select_id = "gedanken_select";};break;
-        case "essen_hinzufügen":{var tabelle = "essen_auswahl"; var spalte = "Essen"; var select_id = "essen_select";};break;
-        case "wetter_hinzufügen":{var tabelle = "wetter_auswahl"; var spalte = "Wetter"; var select_id = "wetter_select";};break;
-        case "event_hinzufügen":{var tabelle = "event_auswahl"; var spalte = "Event"; var select_id = "event_select";};break;
-        case "ort_hinzufügen":{var tabelle = "ort_auswahl"; var spalte = "Ort"; var select_id = "ort_select";};break;
-        case "lösung_hinzufügen":{var tabelle = "lösungen_auswahl"; var spalte = "Lösung"; var select_id = "lösung_select";};break;
-
-    }
-
-
-    var eingabe = prompt("Auswahlmöglichkeit hinzufügen");
-
-    if(eingabe != ""){
-        var url = "http://localhost/Abschlussprojekt/speichern.php?req=hinzufügen&tabelle="+tabelle+"&spalte="+spalte+"&eingabe="+eingabe;
-
-        var res = Send_Request(url);
-        alert(res);
-    
-        // Die select Auswahl um den neuen Eintrag erweitern, ohne die Seite neu zu laden oder bereits getätigte eingaben zu verlieren
-        if(res == "Antwortmöglichkeit hinzugefügt"){
-            var select = document.getElementById(select_id);
-            var opt = document.createElement('option'); 
-        
-            opt.value = eingabe;
-            opt.innerHTML = eingabe.substring(0,30);
-            opt.title = eingabe;
-        
-            select.appendChild(opt);
-        }
-    }
-    else{
-        alert("Bitte keine leeren Eingaben machen");
-    }
-
-}
-//#########################################################

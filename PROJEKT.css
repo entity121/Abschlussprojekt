@@ -79,13 +79,11 @@ angegeben wird*/
   .main_object {
     box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
     background-color: #dcd579;
+    margin-top: 10px;
   }
   
   /*Für die Hauptseite*/
   /*###############################################*/
-  #seite_1 .main_object{
-    margin-top: 10px;
-  }
   #farbauswahl{
     border: 1px solid black;
     width: 100%;
@@ -200,10 +198,6 @@ angegeben wird*/
   
   /*Für den Kalender*/
   /*###############################################*/
-  #seite_4 .main_object{
-    margin-top: 15px;
-    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
-  }
   #kalender{
     border: 3px solid black;
     background-color: grey;
@@ -282,18 +276,26 @@ angegeben wird*/
   /*Für das Puzzle*/
   /*###############################################*/
   #puzzle_spielfeld{
-    border: 1px solid black;
-    width: 500px;
-    height: 500px; 
+    border:1px solid #4b1d2b;
+    width: 600px;
+    height: 600px; 
   }
 
   .kachel{
-    height: 99px;
-    width: 99px;
+    height: 20%;
+    width: 20%;
     float: left;
     text-align: center;
     font-size: 60px;
-    padding-top: 0px;
+    border: 1px solid #b03522;
+  }
+
+  #puzzle_statistik{
+    background-color: red;
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
   }
 
 

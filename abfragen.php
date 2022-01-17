@@ -11,6 +11,8 @@
 
     //Verbindungsaufbau
     $connection = new mysqli($server, $name, $passwort, $datenbank);
+    // UTF-8
+    $connection->set_charset("utf8mb4");
 
     //Wenn es bei der Verbindung ein Problem gab, soll das Skript beendet und ein 
     //Fehler zurück gegeben werden
@@ -18,7 +20,7 @@
         die("Verbindung fehlgeschlagen");
     }
 
-    //Das erfragte Datum in Variablen
+    //Das erfragte Datum in Variablen (Tag nur bei Tagesstatistik)
     if($_GET['req']=="tagesstatistik"){$tag = (int)$_GET['tag'];}
     $monat = (int)$_GET['monat'];
     $jahr = (int)$_GET['jahr'];
@@ -27,10 +29,9 @@
     //Dieses Array soll später zurück geschickt werden
     $allRows = array();
 
-
     //SQL Befehl alle Einträge finden
-    if($_GET['req']=="tagesstatistik"){$sql = "SELECT * FROM angaben WHERE Tag=$tag AND Monat=$monat AND Jahr=$jahr";} // Tag
-    if($_GET['req']=="monatsstatistik"){$sql = "SELECT * FROM angaben WHERE Monat=$monat AND Jahr=$jahr";} // Monat
+    if($_GET['req']=="tagesstatistik"){$sql = "SELECT * FROM einträge WHERE Tag=$tag AND Monat=$monat AND Jahr=$jahr";} // Tag
+    if($_GET['req']=="monatsstatistik"){$sql = "SELECT * FROM einträge WHERE Monat=$monat AND Jahr=$jahr";} // Monat
 
     //Alle Einträge als Array zurück bekommen
     $erg = $connection->query($sql);

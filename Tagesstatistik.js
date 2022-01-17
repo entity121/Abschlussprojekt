@@ -11,31 +11,31 @@ var daten;
 
 // Von der Funktion, die den Kalender erstellt, wird das aktuelle Datum hierher gespeichert
 function Datum_Überliefern_Tagesstatistik(x,y,z){
-save_tag = x; save_monat = y; save_jahr = z;
+  save_tag = x; save_monat = y; save_jahr = z;
 }
 
 
 //Diese Funktion wird über einen Klick auf einen Kalendertag ausgeführt
 //Sie ruft die Daten des entsprechenden Tages aus der Datenbank ab
 //###############################################
-function Tagesstatistik_Abrufen(tag,monat,jahr){
+  function Tagesstatistik_Abrufen(tag,monat,jahr){
+  // True für Tagesstatistik
+  tagesstatistik = true;
 
-// True für Tagesstatistik
-tagesstatistik = true;
+  // Damit das angezeigte Datum für spätere Nutzung erhalten bleibt
+  save_tag = tag;
+  save_monat = monat;
+  save_jahr = jahr;
 
-// Damit das angezeigte Datum für spätere Nutzung erhalten bleibt
-save_tag = tag;
-save_monat = monat;
-save_jahr = jahr;
+  document.getElementById("tagesstatistik_datum").innerHTML = tag+" "+Monat_Name[monat]+" "+jahr;
 
-document.getElementById("tagesstatistik_datum").innerHTML = tag+" "+Monat_Name[monat]+" "+jahr;
+  //Die URL wird erzeugt und mit Variablen befüllt
+  var url = "http://localhost/Abschlussprojekt/abfragen.php?req=tagesstatistik&tag="+tag+"&monat="+monat+"&jahr="+jahr;
+  //Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
+  //an den Server versendet zu werden
+  var res = Send_Request(url);
 
-//Die URL wird erzeugt und mit Variablen befüllt
-var url = "http://localhost/Abschlussprojekt/abfragen.php?req=tagesstatistik&tag="+tag+"&monat="+monat+"&jahr="+jahr;
-
-//Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
-//an den Server versendet zu werden
-Send_Request(url, Statistik_Darstellen);
+  Statistik_Darstellen(res);
 }
 //######
 
@@ -45,7 +45,8 @@ function Monatsstatistik_Abrufen(){
   tagesstatistik = false;
   document.getElementById("tagesstatistik_datum").innerHTML = Monat_Name[save_monat]+" "+save_jahr;
   var url = "http://localhost/Abschlussprojekt/abfragen.php?req=monatsstatistik&monat="+save_monat+"&jahr="+save_jahr;
-  Send_Request(url, Statistik_Darstellen);
+  var res = Send_Request(url);
+  Statistik_Darstellen(res);
 }
 //###############################################
 
@@ -84,6 +85,7 @@ function Statistik_Darstellen(json){
   //in einem Array speichert
   var farben_array = json_response.map(x=>x.Farbe);
 
+
  
   // Das Array, in dem nun alle Farben gefiltert gespeichert sind, wird nun durchlaufen 
   // und es wird jedes Vorkommnis einer Farbe gezählt und in einem entsprechenden Array (anteil_farben) gespeichert
@@ -97,6 +99,8 @@ function Statistik_Darstellen(json){
 
     }
   }    
+
+  
 
   // Die Farben sollen anhand der Häufigkeit sortiert werden
   // wichtig ist zu beachten, dass das Array, in dem die Namen der Farben stehen (farben)
