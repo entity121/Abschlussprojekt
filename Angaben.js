@@ -25,7 +25,7 @@ function Fragebogen_Erstellen(x){
             essen.push(auswahlmöglichkeiten[i].Essen);// DANN Wert des Elementes in entsprechendes Array speichern
         }
         else if(auswahlmöglichkeiten[i].Event){
-            event.push(auswahlmöglichkeiten[i].Events);
+            event.push(auswahlmöglichkeiten[i].Event);
         }
         else if(auswahlmöglichkeiten[i].Gedanken){
             gedanken.push(auswahlmöglichkeiten[i].Gedanken);
@@ -53,7 +53,7 @@ function Fragebogen_Erstellen(x){
     // Der Standartmäßige Anfang des html Forms
     // in einem String, der später weiter verlängert wird
     var html_string = "<form action=''>";
-    html_string += "<h1>Fragebogen</h1><br><br>";
+    html_string += "<h1><u>Fragebogen</u></h1><br><br>";
 
     
     // Wiederkehrende Gedanken
@@ -71,7 +71,7 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2>Bekannte Situation</h2>"
     +"<input type='radio' id='bekannte_situation_ja' name='bekannte_situation' value='JA'>" + "<label for='bekannte_situation_ja'>JA</label><br>"
     +"<input type='radio' id='bekannte_situation_nein' name='bekannte_situation' value='NEIN'>" + "<label for='bekannte_situation_nein'>NEIN</label><br>";
-    html_string+="</select><br><br>";
+    html_string+="<br><br>";
     //#######################
 
 
@@ -175,7 +175,7 @@ function Fragebogen_Erstellen(x){
 
     // Kontrolle
     html_string += "<h2>Kontrolle des eigenen Handelns</h2>";
-    for(var i=0;i<4;i++){
+    for(var i=-3;i<4;i++){
         html_string += "<label for='kontrolle_handeln_"+i+"'> "+i+" </label>"+"<input type='radio' id='kontrolle_handeln_"+i+"' name='kontrolle_handeln' value='"+i+"'>";
     }
     html_string+="<br><br>";
@@ -223,13 +223,13 @@ function Fragebogen_Erstellen(x){
 
     // Notizzettel
     html_string+="<h2>Zusätzliche Notizen</h2>"
-    html_string+="<textarea rows='4' cols='50' name='notizen'> </textarea>";
+    html_string+="<textarea rows='5' cols='33' name='notizen'> </textarea>";
     html_string+="<br><br>";
     //#######################
 
 
     //html_string += "<input type='submit' value='Submit'>"
-    html_string += "<button id='test' onclick='Angaben_Speichern()'>Speichern</button>",
+    html_string += "<button id='speichern_button' onclick='Angaben_Speichern()'>Speichern</button>",
 
     html_string += "</form>";
 

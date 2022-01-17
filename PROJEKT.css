@@ -751,8 +751,11 @@ angegeben wird*/
 }
 #legende h2{
   font-size: 28px;
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 #legende span{
+  border: 1px solid black;
   width: 60px;
 }
 #legende p{
