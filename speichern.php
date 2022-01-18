@@ -81,7 +81,7 @@
 
         $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe) VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe')";
     }
-    //############
+    //#############
     else if($_GET['req']=="hinzufügen"){
 
         $tabelle = $_GET['tabelle'];
@@ -89,7 +89,14 @@
         $eingabe = $_GET['eingabe'];
 
         $sql = "INSERT INTO ".$tabelle." (".$spalte.") VALUES ('".$eingabe."')";
+    }
+    //#############
+    else if($_GET['req']=="puzzle"){
 
+        $zeit = $_GET['zeit'];
+        $züge = $_GET['züge'];
+
+        $sql = "INSERT INTO puzzle (Zeit, Spielzüge) VALUES ($zeit, $züge)";
     }
 
 

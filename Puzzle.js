@@ -3,7 +3,103 @@ var k_array;
 var belegt;
 var sortiert;
 var mischen = true;
+var züge;
 
+
+
+
+
+//#########################################################
+function Puzzle_Statistik(){
+    // Datenbank
+    var url = "http://localhost/Abschlussprojekt/abfragen.php?req=puzzle";
+    var res = Send_Request(url);
+    var einträge = JSON.parse(res);
+    // Anzahl Einträge == Anzahl gespielter Spiele
+    var spiele_gesammt = einträge.length;
+
+    // Sofern mindestens ein Eintrag vorhanden ist, soll der Rekord an Zügen und die Rekordzeit gesucht werden
+    if(spiele_gesammt>0){
+        var züge_min = einträge[0].Spielzüge;
+        var zeit_min = einträge[0].Zeit;
+
+        for(var i=0;i<einträge.length;i++){
+            if(einträge[i].Spielzüge<züge_min){
+                züge_min=einträge[i].Spielzüge;
+            }
+        }
+
+        for(var i=0;i<einträge.length;i++){
+            if(einträge[i].Zeit<zeit_min){
+                zeit_min=einträge[i].Zeit;
+            }
+        }
+    }
+    else{// Ansonsten beide Rekorde = 0 um Funktionen nicht zu crashen
+        züge_min=0;
+        zeit_min=0;
+    }
+
+    // Den html String für die Anzeige bilden ...        
+    /*var html_string = "<h2 class='puzzle_statistik'>Spiele gesammt: </h2><h3>"+spiele_gesammt+"</h3><br>";
+    html_string += "<h2 class='puzzle_statistik'>Züge: </h2><h3 id='züge_aktuell'>0</h3><h2> Züge-Rekord: </h2><h3>"+züge_min+"</h3>";
+    html_string += "<h2 class='puzzle_statistik'>Zeit: </h2><h3 id='puzzle_zeit'></h3><h2> Zeit-Rekord: </h2><h3>"+Stopuhr_Umrechnen(zeit_min)+"</h3>";*/
+
+    var html_string =  "<div id='puzzle_statistik_box'><p class='puzzle_info' style='width:60%'>Spiele gesammt :</p><p style='width:40%'>"+spiele_gesammt+"</p>";
+        html_string += "<p class='puzzle_info' style='width:60%'>Züge :</p><p id='züge_aktuell' style='width:40%'>0</p>";
+        html_string += "<p style='width:60%'>Züge-Rekord :</p><p style='width:40%'>"+züge_min+"</p>";
+        html_string += "<p class='puzzle_info' style='width:60%'>Zeit :</p><p id='puzzle_zeit' style='width:40%'></p>";
+        html_string += "<p style='width:60%'>Zeit-Rekord :</p><p style='width:40%'>"+Stopuhr_Umrechnen(zeit_min)+"</p></div>"; 
+    
+    // ... und einsetzen
+    document.getElementById("puzzle_statistik").innerHTML = html_string;
+}
+//#########################################################
+
+
+
+
+
+var gemessene_zeit;
+//#########################################################
+function Stopuhr(){
+    //Funktion wird jede Sekunde ausgeführt und Zähler um 1 erhöht
+    gemessene_zeit++;
+    // Ins Feld schreiben
+    var str = Stopuhr_Umrechnen(gemessene_zeit);
+    document.getElementById("puzzle_zeit").innerHTML=str;
+    // Widerholung
+    setTimeout(() => {
+        Stopuhr();
+    }, 1000);
+}
+//#################
+function Stopuhr_Umrechnen(zeit){
+    // Minuten und sekunden werden bestimmt
+    var m = Math.floor(zeit/60);
+    var s = Math.round(zeit%60);
+    // Der String wird gebildet
+    var z = "";
+    z+=s;
+    // Entsprechendes styling der angezeigten Zeit
+    if(s<10){
+        z="0"+z;
+    }
+    if(m>0){
+        z=m+":"+z;
+    }
+    if(m>=59 && s>=59){
+        z="59:59";
+    }
+
+    return z;
+}
+//#########################################################
+
+
+
+
+//#########################################################
 function Puzzle_Felder_Erstellen(){
 
     // Die Länge des Array
@@ -33,13 +129,20 @@ function Puzzle_Felder_Erstellen(){
     }
 
     sortiert = belegt;
+    züge=0;
+    gemessene_zeit=0;
+    mischen=true;
     Mischen();
     Darstellen();
     Einfärben();
 }
+//#########################################################
 
 
 
+
+
+//#########################################################
 function Mischen(){
 
     for(var i=0 ; i<1000 ; i++){
@@ -93,13 +196,16 @@ function Mischen(){
         }
         while(prüf == false);
     }
-
     mischen = false;
+    Stopuhr();
 }
+//#########################################################
 
 
 
 
+
+//#########################################################
 function Darstellen(){
     var sp = document.getElementById("puzzle_spielfeld");
     sp.innerHTML = '';
@@ -149,8 +255,14 @@ function Darstellen(){
 
 
 }
+//#########################################################
+
+
+
+
 
 // Färbt alle Felder außer dem Leeren Blau ein
+//#########################################################
 function Einfärben(){
     for(var i=0;i<5;i++){
         for(var j=0;j<5;j++){
@@ -172,8 +284,13 @@ function Einfärben(){
         }
     }
 }
+//#########################################################
 
 
+
+
+
+//#########################################################
 function Bewegen(index){
 
     // Beim Klicken auf eine Kachel werden seine Koordinaten im 2d_Array ermittelt
@@ -195,7 +312,6 @@ function Bewegen(index){
     }
     
 
-
     // Für die angeklickte Kachel wird nun in alle vier Himmelsrichtungen geprüft,
     // ob sich dort das leere Feld befindet.
     // Ist dies der Fall soll die Kachel mit dem leeren Feld den Platz im Array tauschen
@@ -203,27 +319,32 @@ function Bewegen(index){
         if(k_array[wahlB-1][wahlA] == k_array[leerB][leerA]){
             k_array[leerA][leerB] = k_array[wahlA][wahlB];
             k_array[wahlA][wahlB] = -1;
+            if(mischen==false){züge++;};
         }
     }
     if(wahlB<4){
         if(k_array[wahlB+1][wahlA] == k_array[leerB][leerA]){    
             k_array[leerA][leerB] = k_array[wahlA][wahlB];
             k_array[wahlA][wahlB] = -1;
+            if(mischen==false){züge++;};
         }
     }
     if(wahlA>0){
         if(k_array[wahlB][wahlA-1] == k_array[leerB][leerA]){
             k_array[leerA][leerB] = k_array[wahlA][wahlB];
             k_array[wahlA][wahlB] = -1;
+            if(mischen==false){züge++;};
         }
     }
     if(wahlA<4){
         if(k_array[wahlB][wahlA+1] == k_array[leerB][leerA]){
             k_array[leerA][leerB] = k_array[wahlA][wahlB];
             k_array[wahlA][wahlB] = -1;
+            if(mischen==false){züge++;};
         }
     }
 
+    document.getElementById("züge_aktuell").innerHTML = züge;
 
     if(mischen == false){
         Darstellen();
@@ -231,10 +352,15 @@ function Bewegen(index){
         Reihenfolge_Überprüfen();
     }
 }
+//#########################################################
+
+
+
 
 
 // Hier wird das Kachel Array mit dem sortierten Array verglichen
 // Wenn eine Zahl an seiner richtigen Position ist, wird das Feld Grün gefärbt
+//#########################################################
 function Reihenfolge_Überprüfen(){
 
     var index;
@@ -253,6 +379,24 @@ function Reihenfolge_Überprüfen(){
     }
 
     if(zähler == 24){
-        alert("Gewonnen");
+        Puzzle_Beenden();
     }
 }
+//#########################################################
+
+
+
+
+//#########################################################
+function Puzzle_Beenden(){
+    alert("Gewonnen\nZüge: "+züge+"\nZeit: "+Stopuhr_Umrechnen(gemessene_zeit));
+
+    var url = "http://localhost/Abschlussprojekt/speichern.php?req=puzzle&züge="+züge+"&zeit="+gemessene_zeit;
+    var res = Send_Request(url);
+
+    if(res == "Angaben wurden erfolgreich gespeichert"){
+        Puzzle_Statistik();
+        Puzzle_Felder_Erstellen();
+    }
+}
+//#########################################################

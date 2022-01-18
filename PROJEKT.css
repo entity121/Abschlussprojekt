@@ -161,7 +161,7 @@ angegeben wird*/
     border: 3px solid white;
   }
   
-  #legende{
+  .legende{
     background-color: #b03522;
     color: #dcd579;
     text-align: center;
@@ -169,25 +169,25 @@ angegeben wird*/
     margin-top: 15px;
     /*float: right;*/
   }
-  #legende ul{
+  .legende ul{
     list-style: none;
     width: 100%;
     padding-left: 0px;
   }
-  #legende li{
+  .legende li{
     width: 100%;
   }
-  #legende h2{
+  .legende h2{
     width: 100%;
     text-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   }
-  #legende span{
+  .legende span{
     height: 100%;
     margin-left: 5%;
     border: 2px solid black;
     box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   }
-  #legende p{
+  .legende p{
     height: 100%;
     margin-top: 0%;
     text-align: left;
@@ -291,11 +291,28 @@ angegeben wird*/
   }
 
   #puzzle_statistik{
-    background-color: red;
-    height: 100px;
-    width: 100px;
+    background-color: #b03522;
+    height: 400px;
+    width: 400px;
     margin-top: 10px;
     margin-left: 10px;
+  }
+
+  #puzzle_statistik_box{
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+  }
+
+  #puzzle_statistik_box p{
+    height: 20%;
+    margin: 0px;
+    border-bottom: 1px solid black;
+    padding-top: 10%;
+  }
+
+  .puzzle_info{
+    margin-bottom: 100px;
   }
 
 
@@ -741,26 +758,26 @@ angegeben wird*/
 }
 
 
-#legende_box{
+.legende_box{
   width: 100%;
 }
-#legende {
+.legende {
   width: 90%;
 }
-#legende li{
+.legende li{
   height: 30px;
   margin-bottom: 8px;
 }
-#legende h2{
+.legende h2{
   font-size: 28px;
   margin-top: 15px;
   margin-bottom: 0px;
 }
-#legende span{
+.legende span{
   border: 1px solid black;
   width: 60px;
 }
-#legende p{
+.legende p{
   font-size: 25px;
 }
 

@@ -50,6 +50,7 @@ function Seiten_Wechseln(x,y){
 
 
   if(y==5){
+    Puzzle_Statistik();
     Puzzle_Felder_Erstellen();
   }
 
