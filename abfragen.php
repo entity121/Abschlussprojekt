@@ -21,11 +21,9 @@
     }
 
     //Das erfragte Datum in Variablen (Tag nur bei Tagesstatistik)
-    if($_GET['req']=="tagesstatistik"){$tag = (int)$_GET['tag'];}
-    if($_GET['req']!="puzzle"){
-        $monat = (int)$_GET['monat'];
-        $jahr = (int)$_GET['jahr'];
-    }
+    if($_GET['req']=="tagesstatistik"){$tag = (int)$_GET['tag'];$monat = (int)$_GET['monat'];$jahr = (int)$_GET['jahr'];}
+    if($_GET['req']=="monatsstatistik"){$monat = (int)$_GET['monat'];$jahr = (int)$_GET['jahr'];}
+    if($_GET['req']=="eintrag"){$id = (int)$_GET['id'];}
 
 
     //Es wird ein Array für alle Einträge, die der Anforderung entsprechen in ein Array gespeichert
@@ -36,6 +34,7 @@
     if($_GET['req']=="tagesstatistik"){$sql = "SELECT * FROM einträge WHERE Tag=$tag AND Monat=$monat AND Jahr=$jahr";} // Tag
     if($_GET['req']=="monatsstatistik"){$sql = "SELECT * FROM einträge WHERE Monat=$monat AND Jahr=$jahr";} // Monat
     if($_GET['req']=="puzzle"){$sql = "SELECT * FROM puzzle";} // Puzzle
+    if($_GET['req']=="eintrag"){$sql = "SELECT * FROM einträge WHERE ID=$id";} // Einzelnen Eintrag vollständig anzeigen
 
     //Alle Einträge als Array zurück bekommen
     $erg = $connection->query($sql);

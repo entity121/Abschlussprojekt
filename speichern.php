@@ -38,6 +38,7 @@
         $minute = (int)$_GET['minute'];
         $stunde = (int)$_GET['stunde'];
         $farbe = $_GET['farbe'];
+        $emotion = $_GET['emotion'];
         $gedanken = $_GET['gedanken'];
         $situation = $_GET['situation'];
         $produk = (int)$_GET['produk'];
@@ -62,9 +63,9 @@
 
         //Es wird ein SQL Befehl als String erzeugt
         // !!! WICHTIG !!! Die Variablen, die Strings beinhalten mussen in einfache Anführungsstriche gesetzt werden -> '$str' 
-        $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe, Gedanken, Situation, Produktivität, Handeln, Bewertung, Essen, Verträglichkeit, ";
+        $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe, Emotion, Gedanken, Situation, Produktivität, Handeln, Bewertung, Essen, Verträglichkeit, ";
         $sql .= "Schlaf, Müde, Wetter, Warm, Event, Kontrolle, Ort, Kontakt, Verhältnis, Lösung, Notiz)"; 
-        $sql .= "VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe', '$gedanken', '$situation', $produk, $handeln, $bewertung, '$essen', $verträglichkeit, $schlaf, ";
+        $sql .= "VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe', '$emotion', '$gedanken', '$situation', $produk, $handeln, $bewertung, '$essen', $verträglichkeit, $schlaf, ";
         $sql .= "$müde, '$wetter', $warm, '$event', $kontrolle, '$ort', '$kontakt', $verhältnis, '$lösung', '$notiz')";
 
     }

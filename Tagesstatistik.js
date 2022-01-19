@@ -233,13 +233,13 @@ function Einträge_Anschauen(){
   // kann einfach als "name" übergeben werden.
   // In der Ziel HTML kann es dann ganz normal verwendet werden
   var win = window.open("Einträge.html",daten,"menubar=no,toolbar=no,titlebar=no,status=no,resizeable=no,location=no,"
-+"height="+(window.innerHeight *0.8)+","
-+"width="+(window.innerWidth *0.3)+","
-+"left="+(window.screenX+(window.innerWidth *0.4))+","
++"height="+(window.innerHeight *0.82)+","
++"width="+(window.innerWidth *0.522)+","
++"left="+(window.screenX+(window.innerWidth *0.2))+","
 +"top="+(window.screenY+(window.innerHeight *0.15)));
   
 // Ein Intervall prüft alle 200ms ob die Seite geschlossen wurde
-// Wenn Ja wird das Tages oder Monatsdiagramm (boolen) neu erstellt un ebenfalls der Kalender
+// Wenn Ja wird das Tages oder Monatsdiagramm (boolen) neu erstellt und ebenfalls der Kalender
 var timer = setInterval(function() {   
   if(win.closed) {  
   clearInterval(timer);  

@@ -30,24 +30,10 @@ Datum_Überliefern_Tagesstatistik(tag_aktuell,monat,jahr);
 
 
 // Es werden die Einträge des Monats gesucht, um später eine Markierung im Kalender zu hinterlassen
-//+++++++++++++++++
-var xml = new XMLHttpRequest();
-var E = "";
 var url = "http://localhost/Abschlussprojekt/abfragen.php?req=monatsstatistik&monat="+monat+"&jahr="+jahr;
-
-xml.open("GET",url,false);
-xml.onreadystatechange = function(){
-    if(xml.readyState==4 && xml.status==200){
-        E = xml.responseText;
-        E = JSON.parse(E);
-        E = E.map(x=>x);
-    }
-    else{
-        alert("Es konnte keine Verbindung zum Server hergestellt werden\nState="+xml.readyState+" - Status="+xml.status);
-    }
-}
-xml.send();
-//+++++++++++++++++
+var E = Send_Request(url);
+E = JSON.parse(E);
+E = E.map(x=>x);
 
 
 //Ein Kalender wird in Form einer Tabelle erzeugt (die div wird geleert bim Aufruf der Funktion)

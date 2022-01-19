@@ -3,7 +3,6 @@
 function Angaben_Speichern(){
 
     if(confirm("Möchten Sie ihren Eintrag speichern?")) {
-        
 
         // Die einzelnen Fragen werden ausgewertet und die Ergebnisse in Variablen gespeichert
         // 'Input' angaben BENÖTIGEN eine Auswahl, deshalb die if-Abfrage . 'Select' und 'Textarea' dürfen leer sein
@@ -14,7 +13,7 @@ function Angaben_Speichern(){
         if(document.querySelector("input[name='handeln_beeinflusst']:checked")){var handeln = document.querySelector("input[name='handeln_beeinflusst']:checked").value;}
         if(document.querySelector("input[name='bewertung_gefühl']:checked")){var bewertung = document.querySelector("input[name='bewertung_gefühl']:checked").value;}
         var essen = document.querySelector("select[name='essen_select']").value;
-
+  
         if(document.querySelector("input[name='verträglichkeit_essen']:checked")){var verträglichkeit = document.querySelector("input[name='verträglichkeit_essen']:checked").value;}
         var schlaf = document.querySelector("select[name='schlaf_in_stunden']").value;
         if(document.querySelector("input[name='müde/wach']:checked")){var müde = document.querySelector("input[name='müde/wach']:checked").value;}
@@ -26,11 +25,11 @@ function Angaben_Speichern(){
         if(document.querySelector("input[name='kontrolle_handeln']:checked")){var kontrolle = document.querySelector("input[name='kontrolle_handeln']:checked").value;}
         var ort = document.querySelector("select[name='ort_select']").value;
         if(document.querySelector("input[name='kontakt_menschen']:checked")){var kontakt = document.querySelector("input[name='kontakt_menschen']:checked").value;}else{var kontakt = ""};
-
+   
         if(document.querySelector("input[name='verhältnis_person']:checked")){var verhältnis = document.querySelector("input[name='verhältnis_person']:checked").value;}
         var lösung = document.querySelector("select[name='lösung_select']").value;
         var notiz = document.querySelector("textarea[name='notizen']").value;
-
+ 
         
         // Datum und Uhrzeit des Eintrages
         var date = new Date();
@@ -42,11 +41,10 @@ function Angaben_Speichern(){
         var minute = date.getMinutes();
         var stunde = date.getHours();
 
-
     
         // Die URL wird erzeugt und mit Variablen befüllt
         var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde;
-            url += "&farbe="+color+"&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln+"&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit;
+            url += "&farbe="+color+"&emotion="+emotion+"&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln+"&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit;
             url += "&schlaf="+schlaf+"&müde="+müde+"&wetter="+wetter+"&warm="+warm+"&event="+event+"&kontrolle="+kontrolle+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
             url += "&lösung="+lösung+"&notiz="+notiz;
     
@@ -166,12 +164,17 @@ function Auswahl_Löschen(frage){
 
 
 var color;
+var emotion;
 // Der Fragebogen wird dynamisch erzeugt 
 // Dazu wird ein seeeeehr langer String gebildet
 //#########################################################
 function Fragebogen_Erstellen(x){
 
-    color = x;
+    // Der Überlieferte Name muss zerteilt werden, um Farbe von Emotion zu trennen
+    var pos = x.indexOf("#");
+    color = x.substring(0,pos);
+    emotion = x.substring(pos+1);
+
 
     // Es wird eine Anfrage an den Server geschickt und eine Antwort empfangen
     var json_response = Send_Request("http://localhost/Abschlussprojekt/auswahl.php?req=erstellen");
@@ -225,7 +228,7 @@ function Fragebogen_Erstellen(x){
 
     
     // Wiederkehrende Gedanken
-    html_string += "<h2>Wiederkehrende Gedanken</h2><select name='gedanken_select' id='gedanken_select'>";
+    html_string += "<h2 id='pfff'><u>Wiederkehrende Gedanken</u></h2><select name='gedanken_select' id='gedanken_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<gedanken.length;i++){
         var id = gedanken[i];
@@ -244,7 +247,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Bekannte Situation
-    html_string += "<h2>Bekannte Situation</h2>"
+    html_string += "<h2 class='nich_pfff'><u>Bekannte Situation</u></h2>"
     +"<input type='radio' id='bekannte_situation_ja' name='bekannte_situation' value='JA'>" + "<label for='bekannte_situation_ja'>JA</label><br>"
     +"<input type='radio' id='bekannte_situation_nein' name='bekannte_situation' value='NEIN'>" + "<label for='bekannte_situation_nein'>NEIN</label><br>";
     html_string+="<br><br>";
@@ -252,7 +255,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Behinderung der Produktivität
-    html_string += "<h2>Behinderung der Produktivität</h2>";
+    html_string += "<h2 class='nich_pfff'><u>Behinderung der Produktivität</u></h2>";
+    html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%;'>sehr stark</p>";
     for(var i=0;i<4;i++){
         html_string += "<label for='behinderung_produktivität_"+i+"'> "+i+" </label>"+"<input type='radio' id='behinderung_produktivität_"+i+"' name='behinderung_produktivität' value='"+i+"'>";
     }
@@ -261,7 +265,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Handeln beeinflusst
-    html_string += "<h2>Handeln beeinflusst</h2>";
+    html_string += "<h2 class='nich_pfff'><u>Handeln beeinflusst</u></h2>";
+    html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%; text-align:right;'>sehr stark</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='handeln_beeinflusst_"+i+"'> "+i+" </label>"+"<input type='radio' id='handeln_beeinflusst_"+i+"' name='handeln_beeinflusst' value='"+i+"'>";
     }
@@ -270,7 +275,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Bewertung des Gefühls
-    html_string += "<h2>Bewertung des Gefühls</h2>";
+    html_string += "<h2 class='nich_pfff'><u>Bewertung des Gefühls</u></h2>";
+    html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='bewertung_gefühl_"+i+"'> "+i+" </label>"+"<input type='radio' id='bewertung_gefühl_"+i+"' name='bewertung_gefühl' value='"+i+"'>";
     }
@@ -279,7 +285,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Essen
-    html_string += "<h2>Essen</h2><select name='essen_select' id='essen_select'>";
+    html_string += "<h2 class='nich_pfff'><u>Essen</u></h2><select name='essen_select' id='essen_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<essen.length;i++){
         var id = essen[i];
@@ -296,7 +302,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Verträglichkeit Essen
-    html_string += "<h2>Verträglichkeit des Essens</h2>";
+    html_string += "<h2 class='nich_pfff'><u>Verträglichkeit des Essens</u></h2>";
+    html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='verträglichkeit_essen_"+i+"'> "+i+" </label>"+"<input type='radio' id='verträglichkeit_essen_"+i+"' name='verträglichkeit_essen' value='"+i+"'>";
     }
@@ -305,7 +312,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Schlaf in Stunden
-    html_string += "<h2>Schlaf in Stunden</h2><select name='schlaf_in_stunden' id='schlaf_in_stunden'>";
+    html_string += "<h2 class='nich_pfff'><u>Schlaf in Stunden</u></h2><select name='schlaf_in_stunden' id='schlaf_in_stunden'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<24;i++){
         var id = i;
@@ -316,7 +323,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Müde/Wach
-    html_string += "<h2>Müde / Wach</h2>"
+    html_string += "<h2 class='nich_pfff'><u>Müde / Wach</u></h2>"
+    html_string += "<p style='float: left; width: 40%;'>sehr müde</p><p style='float: left; width: 58%; text-align:right;'>sehr wach O_=</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='müde/wach_"+i+"'> "+i+" </label>"+"<input type='radio' id='müde/wach_"+i+"' name='müde/wach' value='"+i+"'>";
     }
@@ -325,7 +333,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Wetter
-    html_string += "<h2>Wetter</h2><select name='wetter_select' id='wetter_select'>";
+    html_string += "<h2 class='nich_pfff'><u>Wetter</u></h2><select name='wetter_select' id='wetter_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<wetter.length;i++){
         var id = wetter[i];
@@ -342,7 +350,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Warm/Kalt
-    html_string += "<h2>Warm / Kalt</h2>"
+    html_string += "<h2 class='nich_pfff'><u>Warm / Kalt</u></h2>"
+    html_string += "<p style='float: left; width: 40%;'>zu heiß</p><p style='float: left; width: 58%; text-align:right;'>viel zu kalt</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='warm/kalt_"+i+"'> "+i+" </label>"+"<input type='radio' id='warm/kalt_"+i+"' name='warm/kalt' value='"+i+"'>";
     }
@@ -351,7 +360,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Event
-    html_string += "<h2>Events</h2><select name='event_select' id='event_select'>";
+    html_string += "<h2 class='nich_pfff'><u>Events</u></h2><select name='event_select' id='event_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<event.length;i++){
         var id = event[i];
@@ -368,7 +377,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Kontrolle
-    html_string += "<h2>Kontrolle des eigenen Handelns</h2>";
+    html_string += "<h2 class='nich_pfff'><u>Kontrolle des eigenen Handelns</u></h2>";
+    html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='kontrolle_handeln_"+i+"'> "+i+" </label>"+"<input type='radio' id='kontrolle_handeln_"+i+"' name='kontrolle_handeln' value='"+i+"'>";
     }
@@ -377,7 +387,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Aufenthalt
-    html_string += "<h2>Wo bin ich</h2><select name='ort_select' id='ort_select'>";
+    html_string += "<h2 class='nich_pfff'><u>Wo bin ich</u></h2><select name='ort_select' id='ort_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<ort.length;i++){
         var id = ort[i];
@@ -394,7 +404,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Kontakt zu Anderen
-    html_string += "<h2>Kontakt zu Menschen</h2>"
+    html_string += "<h2 class='nich_pfff'><u>Kontakt zu Menschen</u></h2>"
     +"<input type='radio' id='kontakt_menschen_ja' name='kontakt_menschen' value='JA'>" + "<label for='kontakt_menschen_ja'>JA</label><br>"
     +"<input type='radio' id='kontakt_menschen_nein' name='kontakt_menschen' value='NEIN'>" + "<label for='kontakt_menschen_nein'>NEIN</label><br>";
     html_string+="</select><br><br>";
@@ -402,7 +412,8 @@ function Fragebogen_Erstellen(x){
 
 
     // Verhältnis zur Person
-    html_string += "<h2>Verhältnis zu dieser Person</h2>";
+    html_string += "<h2 class='nich_pfff'><u>Verhältnis zu dieser Person</u></h2>";
+    html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='verhältnis_person_"+i+"'> "+i+" </label>"+"<input type='radio' id='verhältnis_person_"+i+"' name='verhältnis_person' value='"+i+"'>";
     }
@@ -411,7 +422,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Lösungsansätze
-    html_string += "<h2>Lösungsansätze</h2><select name='lösung_select' id='lösung_select'>";
+    html_string += "<h2 class='nich_pfff'><u>Lösungsansätze</u></h2><select name='lösung_select' id='lösung_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<lösung.length;i++){
         var id = lösung[i];
@@ -428,7 +439,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Notizzettel
-    html_string+="<h2>Zusätzliche Notizen</h2>"
+    html_string+="<h2 class='nich_pfff'><u>Zusätzliche Notizen</u></h2>"
     html_string+="<textarea rows='5' cols='33' name='notizen'> </textarea>";
     html_string+="<br><br>";
     //#######################

@@ -15,6 +15,7 @@ function Puzzle_Statistik(){
     var url = "http://localhost/Abschlussprojekt/abfragen.php?req=puzzle";
     var res = Send_Request(url);
     var einträge = JSON.parse(res);
+    
     // Anzahl Einträge == Anzahl gespielter Spiele
     var spiele_gesammt = einträge.length;
 
