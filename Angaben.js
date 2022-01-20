@@ -266,8 +266,8 @@ function Fragebogen_Erstellen(x){
 
     // Handeln beeinflusst
     html_string += "<h2 class='nich_pfff'><u>Handeln beeinflusst</u></h2>";
-    html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%; text-align:right;'>sehr stark</p>";
-    for(var i=-3;i<4;i++){
+    html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%;'>sehr stark</p>";
+    for(var i=0;i<4;i++){
         html_string += "<label for='handeln_beeinflusst_"+i+"'> "+i+" </label>"+"<input type='radio' id='handeln_beeinflusst_"+i+"' name='handeln_beeinflusst' value='"+i+"'>";
     }
     html_string+="<br><br>";
@@ -376,6 +376,7 @@ function Fragebogen_Erstellen(x){
     //#######################
 
 
+    /*
     // Kontrolle
     html_string += "<h2 class='nich_pfff'><u>Kontrolle des eigenen Handelns</u></h2>";
     html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
@@ -383,7 +384,7 @@ function Fragebogen_Erstellen(x){
         html_string += "<label for='kontrolle_handeln_"+i+"'> "+i+" </label>"+"<input type='radio' id='kontrolle_handeln_"+i+"' name='kontrolle_handeln' value='"+i+"'>";
     }
     html_string+="<br><br>";
-    //#######################
+    //#######################*/
 
 
     // Aufenthalt

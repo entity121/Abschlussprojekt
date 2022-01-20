@@ -63,17 +63,184 @@ function Vollständiger_Eintrag(id){
   var e = eintrag[0]; // Beinhaltet maximal einen Eintrag. Es handelt sich dennoch um ein Array weshalb die Index angabe 0
 
   var html_string = "<h1 style='background-color:"+e.Farbe+"'>"+e.Tag+" "+Monat_Name[e.Monat]+" "+e.Jahr+"<br>"; // Datum
-      html_string+= e.Stunde+":"+e.Minute+":"+e.Sekunde+" Uhr </h1>"; // Uhrzeit
+      html_string+= uhr_null_hinzufügen(e.Stunde)+":"+uhr_null_hinzufügen(e.Minute)+":"+uhr_null_hinzufügen(e.Sekunde)+" Uhr </h1>"; // Uhrzeit
+      html_string+="<p>";
 
 
+      // Bekannte Situation
+      if(e.Situation=="JA"){
+        html_string += "<b style='color:#b03522'>Diese Situation ist bereits bekannt</b><br><br><br>";
+      }
+      else if(e.Situation=="NEIN"){
+        html_string += "<b style='color:#b03522'>Diese Situation ist neu</b><br><br><br>";
+      }
 
 
+      // Wiederkehrende Gedanken
+      if(e.Gedanken!=""){ 
+        html_string += "Wiederkehrender Gedanke:<br><b style='color:#b03522'>'"+e.Gedanken+"'</b><br><br><br>"; 
+      }
 
+
+      // Behinderung der Produktivität
+      html_string += "Die Produktivität wird ";
+      switch (e.Produktivität) {
+        case "0": html_string+="<b style='color:#b03522'>GAR NICHT</b>";break;
+        case "1": html_string+="<b style='color:#b03522'>EIN WENIG</b>";break;
+        case "2": html_string+="<b style='color:#b03522'>STARK</b>";break;
+        case "3": html_string+="<b style='color:#b03522'>SEHR STARK</b>";
+      };
+      html_string += " beeinflusst<br><br><br>";
+
+
+      // Handeln beeinflusst
+      html_string += "Das Handeln wird ";
+      switch (e.Handeln) {
+        case "0": html_string+="<b style='color:#b03522'>GAR NICHT</b>";break;
+        case "1": html_string+="<b style='color:#b03522'>EIN WENIG</b>";break;
+        case "2": html_string+="<b style='color:#b03522'>STARK</b>";break;
+        case "3": html_string+="<b style='color:#b03522'>SEHR STARK</b>";
+      };
+      html_string += " beeinflusst<br><br><br>";
+
+
+      // Bewertung des Gefühls
+      html_string += "Das Gefühl wird als ";
+      switch (e.Bewertung) {
+        case "-3": html_string+="<b style='color:#b03522'>SEHR SCHLECHT</b>";break;
+        case "-2": html_string+="<b style='color:#b03522'>SCHLECHT</b>";break;
+        case "-1": html_string+="<b style='color:#b03522'>EHER SCHLECHT</b>";break;
+        case "0": html_string+="<b style='color:#b03522'>NEUTRAL</b>";break;
+        case "1": html_string+="<b style='color:#b03522'>EHER GUT</b>";break;
+        case "2": html_string+="<b style='color:#b03522'>GUT</b>";break;
+        case "3": html_string+="<b style='color:#b03522'>SEHR GUT</b>";
+      };
+      html_string += " empfunden<br><br><br>";
+
+
+      // Essen
+      if(e.Essen!=""){
+        html_string+="Zu essen gab es <b style='color:#b03522'>"+e.Essen+"</b><br><br>";
+      }
+      else{
+        html_string+="Es wurde noch <b style='color:#b03522'>NICHTS</b> gegessen<br><br><br>";
+      }
+
+
+      // Verträglichkeit des Essens
+      if(e.Essen!=""){
+      html_string += "Das Essen wurde ";
+      switch (e.Verträglichkeit) {
+        case "-3": html_string+="<b style='color:#b03522'>SEHR SCHLECHT</b>";break;
+        case "-2": html_string+="<b style='color:#b03522'>SCHLECHT</b>";break;
+        case "-1": html_string+="<b style='color:#b03522'>EHER SCHLECHT</b>";break;
+        case "0": html_string+="<b style='color:#b03522'>NEUTRAL</b>";break;
+        case "1": html_string+="<b style='color:#b03522'>EHER GUT</b>";break;
+        case "2": html_string+="<b style='color:#b03522'>GUT</b>";break;
+        case "3": html_string+="<b style='color:#b03522'>SEHR GUT</b>";
+      };
+      html_string += " vertragen<br><br><br>";
+      }
+
+
+      // Schlaf
+      if(e.Schlaf){
+        html_string += "Es wurden <b style='color:#b03522'>~"+e.Schlaf+" Stunden</b> geschlafen<br><br>";
+      }
+
+
+      // Müde/Wach
+      html_string += "Ich fühle mich ";
+      switch (e.Müde) {
+        case "-3": html_string+="<b style='color:#b03522'>SEHR MÜDE</b>";break;
+        case "-2": html_string+="<b style='color:#b03522'>MÜDE</b>";break;
+        case "-1": html_string+="<b style='color:#b03522'>EHER MÜDE</b>";break;
+        case "0": html_string+="<b style='color:#b03522'>NEUTRAL</b>";break;
+        case "1": html_string+="<b style='color:#b03522'>EHER WACH</b>";break;
+        case "2": html_string+="<b style='color:#b03522'>WACH</b>";break;
+        case "3": html_string+="<b style='color:#b03522'>SEHR WACH</b>";
+      };
+      html_string += "<br><br><br>";
+      
+
+      // Wetter
+      if(e.Wetter!=""){
+        html_string += "Das Wetter zu dem Zeitpunkt: <b style='color:#b03522'>"+e.Wetter+"</b><br><br><br>";
+      }
+      
+
+
+      //Warm/Kalt
+      html_string += "Mir ist ";
+      switch (e.Warm) {
+        case "-3": html_string+="<b style='color:#b03522'>ZU HEIß</b>";break;
+        case "-2": html_string+="<b style='color:#b03522'>HEIß</b>";break;
+        case "-1": html_string+="<b style='color:#b03522'>EHER WARM</b>";break;
+        case "0": html_string+="<b style='color:#b03522'>NEUTRAL</b>";break;
+        case "1": html_string+="<b style='color:#b03522'>EHER KALT</b>";break;
+        case "2": html_string+="<b style='color:#b03522'>KALT</b>";break;
+        case "3": html_string+="<b style='color:#b03522'>SEHR KALT</b>";
+      };
+      html_string += "<br><br><br>";
+
+
+      // Events
+      if(e.Event!=""){
+        html_string += "Besonderes Event:<br><b style='color:#b03522'>"+e.Event+"</b><br><br><br>";
+      }
+
+
+      // Ort
+      if(e.Ort!=""){
+        html_string += "Ich bin derzeit "
+        if(e.Ort=="Schule"){html_string+="in der <b style='color:#b03522'>Schule</b><br><br><br>";};
+        if(e.Ort=="Arbeit"){html_string+="an der <b style='color:#b03522'>Arbeit</b><br><br><br>";};
+        if(e.Ort=="Zuhause"){html_string+="<b style='color:#b03522'>Zuhause</b><br><br><br>";};
+      }
+
+
+      // Kontakt zu Menschen
+      if(e.Kontakt=="JA"){
+        html_string+="<b style='color:#b03522'>Ich habe Kontakt zu anderen Menschen</b><br><br><br>";
+      }
+      else if(e.Kontakt=="NEIN"){
+        html_string+="<b style='color:#b03522'>Ich bin alleine</b><br><br><br>";
+      }
+
+
+      //Verhältnis
+      if(e.Kontakt=="JA"){
+        html_string += "Mein Verhältnis zu dieser Person ist ";
+        switch (e.Verhältnis) {
+          case "-3": html_string+="<b style='color:#b03522'>SEHR SCHLECHT</b>";break;
+          case "-2": html_string+="<b style='color:#b03522'>SCHLECHT</b>";break;
+          case "-1": html_string+="<b style='color:#b03522'>EHER SCHLECHT</b>";break;
+          case "0": html_string+="<b style='color:#b03522'>NEUTRAL</b>";break;
+          case "1": html_string+="<b style='color:#b03522'>EHER GUT</b>";break;
+          case "2": html_string+="<b style='color:#b03522'>GUT</b>";break;
+          case "3": html_string+="<b style='color:#b03522'>SEHR GUT</b>";
+        };
+        html_string += "<br><br><br>";
+      }
+
+
+      // Lösungsansatz
+      if(e.Lösung){
+        html_string += "Mein Lösungsansatz:<br><b style='color:#b03522'>'"+e.Lösung+"'</b><br><br><br>";
+      }
+      
   document.getElementById("eintrag_vollständig").innerHTML = html_string
+  document.getElementById("eintrag_vollständig").style.display = "block";
 
 }
+//#################
+function uhr_null_hinzufügen(x){
+  if(x<10){
+    x='0'+x;
+  }
+  return x;
+}
 //#########################################################
-
 
 
 

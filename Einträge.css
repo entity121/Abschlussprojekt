@@ -16,7 +16,6 @@
         box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
         width: 45%;
         height: 750px;
-        border-right: 3px solid red;
         float: left;
         overflow-y: auto;
     }
@@ -59,13 +58,19 @@
         font-size: 20px;
     }
 
-
     #eintrag_vollständig{
         width: 45%;
+        height: 750px;
         background-color: #dcd579;
-        border: 1px solid black;
+        border: 5px solid black;
         float: left;
         margin-left: 3%;
+        overflow-y: auto;
+        display: none;
+    }
+
+    #eintrag_vollständig h1{
+        color: black;
     }
 
 }

@@ -44,7 +44,7 @@ function Seiten_Wechseln(x,y){
     Kalender_Ausführen();
     //und die Statistik des aktuellen Tages anzeigen
     var date = new Date();
-    Tagesstatistik_Abrufen(date.getDate(),date.getMonth(),date.getFullYear());
+    Monatsstatistik_Abrufen(date.getMonth(),date.getFullYear());
   };
 
 

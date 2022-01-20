@@ -234,7 +234,7 @@ do{
 }
 //Stoppen, wenn der monat vorbei ist
 while(
-    zähler<anzahl_tage
+    zähler<=anzahl_tage
 ) 
 }//##############################################
 
@@ -276,5 +276,6 @@ function Monat_Wechseln(x){
     jahr=jahr+jahr_darstellung;
     
     Kalender(monat,jahr);
+    Monatsstatistik_Abrufen(monat,jahr);
 }
 //###############################################
