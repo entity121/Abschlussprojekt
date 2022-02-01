@@ -10,6 +10,7 @@
     <script language="javascript" type="text/javascript" src="Tagesstatistik.js">   </script>
     <script language="javascript" type="text/javascript" src="AJAX.js">   </script>
     <script language="javascript" type="text/javascript" src="Puzzle.js">   </script>
+    <script language="javascript" type="text/javascript" src="Statistik.js">   </script>
 
     <title>Abschlussprojekt</title>
   </head>
@@ -107,8 +108,12 @@
       <div class="header">
         <h1>Statistik</h1>
       </div>
-      <!--Links zwischen den verschiedenen Unterseiten-->
-      <div class="links">
+
+
+
+
+      <div class="linker_rand">
+        <div class="links">
           <ul>
             <li id="link_seite_21" onclick="Seiten_Wechseln(2,1)">Hauptseite</li>
             <li id="link_seite_22" onclick="Seiten_Wechseln(2,2)">Statistik</li>
@@ -116,31 +121,63 @@
             <li id="link_seite_24" onclick="Seiten_Wechseln(2,4)">Kalender</li>
             <li id="link_seite_25" onclick="Seiten_Wechseln(2,5)">Puzzle</li>
           </ul>
+        </div>
+
+        <div class="legende_box">
+          <div class="legende">
+            <h2>Die Farben</h2>
+            <ul>
+              <li><span style="background-color: yellow;"></span><p>Freude</p></li>
+              <li><span style="background-color: orangered;"></span><p>Interesse</p></li>
+              <li><span style="background-color: yellowgreen;"></span><p>Überraschung</p></li>
+              <li><span style="background-color: blueviolet;"></span><p>Liebe</p></li>
+              <li><span style="background-color: green;"></span><p>Hoffnung</p></li>
+              <li><span style="background-color: cyan;"></span><p>Abneigung</p></li>
+              <li><span style="background-color: red;"></span><p>Wut</p></li>
+              <li><span style="background-color: royalblue;"></span><p>Trauer</p></li>
+              <li><span style="background-color: crimson;"></span><p>Verletzung</p></li>
+              <li><span style="background-color: grey;"></span><p>Angst</p></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
+
+
       <div class="main_object">
-        <h1>Anwendung</h1>
+        <h1 style="width: 100%;">Suchfunktion</h1>
+
+        <select name="frage" id="suchen_nach_frage" style="width: 100%;">
+          <option value="Farbe" onclick="Suche_nach_Parameter(this.value)">Farbe</option>
+
+          <option value="Gedanken" onclick="Suche_nach_Parameter(this.value)">Wiederkehrende Gedanken</option>
+          <option value="Produktivität" onclick="Suche_nach_Parameter(this.value)">Behinderung der Produktivität</option>
+          <option value="Handeln" onclick="Suche_nach_Parameter(this.value)">Handeln beeinflusst</option>
+          <option value="Bewertung" onclick="Suche_nach_Parameter(this.value)">Bewertung des Gefühls</option>
+          <option value="Essen" onclick="Suche_nach_Parameter(this.value)">Essen</option>
+
+          <option value="Verträglichkeit" onclick="Suche_nach_Parameter(this.value)">Verträglichkeit des Essens</option>
+          <option value="Schlaf" onclick="Suche_nach_Parameter(this.value)">Schlaf in Stunden</option>
+          <option value="Müde" onclick="Suche_nach_Parameter(this.value)">Müde / Wache</option>
+          <option value="Wetter" onclick="Suche_nach_Parameter(this.value)">Wetter</option>
+          <option value="Warm" onclick="Suche_nach_Parameter(this.value)">Warm / Kalt</option>
+
+          <option value="Event" onclick="Suche_nach_Parameter(this.value)">Events</option>
+          <option value="Ort" onclick="Suche_nach_Parameter(this.value)">Wo bin ich</option>
+          <option value="Kontakt" onclick="Suche_nach_Parameter(this.value)">Kontakt zu Menschen</option>
+          <option value="Verhältnis" onclick="Suche_nach_Parameter(this.value)">Verhältnis zu dieser Person</option>
+          <option value="Lösung" onclick="Suche_nach_Parameter(this.value)">Lösungsansätze</option>
+        </select>
+
+        <div id="suche_kategorie"></div>
+
       </div>
-      <!--Eine Legende, in der angezeigt wird, welche Farbe für welche Emotion steht-->
-      <div class="legende">
-          <h2>Legende</h2>
-          <p>Farbe</p>
-          <p>Farbe</p>
-          <p>Farbe</p>
-      </div>
-      <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
-      <div class="angaben">
-          <ul>
-            <li>Was ist los?</li>
-            <li><input type="text"></li>
-          </ul>
-          <ul>
-            <li>Was ist die Ursache?</li>
-            <li><input type="text"></li>
-          </ul>
-          <button type="button" name="button">Absenden</button>
-      </div>
+
+
+
     </div><!--###### Ende Statistik ######-->
+
+
+
 
 
     <!--

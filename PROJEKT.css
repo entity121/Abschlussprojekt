@@ -783,6 +783,20 @@ angegeben wird*/
 
 
 
+/*Für die Statistik
+#################################################*/
+#seite_2 .main_object{
+  width:350px;
+}
+
+#suche_kategorie{
+  width: 100%;
+  height: 650px;
+  overflow-y: auto;
+}
+
+
+
 /*Für den Kalender*/
 /*###############################################*/
 #kalender tr{
