@@ -1,8 +1,8 @@
 <?php
     header("Access-Control-Allow-Origin: *");
 
-    //$server = "localhost"; // Privatrechner
-    $server = "127.0.0.1:3305"; // Arbeitsrechner
+    $server = "localhost"; // Privatrechner
+    //$server = "127.0.0.1:3305"; // Arbeitsrechner
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";

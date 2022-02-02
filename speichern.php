@@ -4,8 +4,8 @@
 
     // Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
     // In der Servervariablen muss was anderes stehen, je nachdem welchen PC ich nutze
-    //$server = "localhost"; // Privatrechner
-    $server = "127.0.0.1:3305"; // Arbeitsrechner
+    $server = "localhost"; // Privatrechner
+    //$server = "127.0.0.1:3305"; // Arbeitsrechner
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";
