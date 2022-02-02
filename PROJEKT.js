@@ -41,7 +41,7 @@ function Seiten_Wechseln(x,y){
 
   // Statistik
   if(y==2){
-    //Suche_Vollständig();
+    Suche_Vollständig();
   }
 
   //den Kalender generieren, falls die Kalender Seite gewählt wurde
