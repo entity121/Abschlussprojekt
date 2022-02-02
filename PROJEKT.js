@@ -39,6 +39,11 @@ function Seiten_Wechseln(x,y){
     document.getElementById("was_ist_los").value = "";
   };
 
+  // Statistik
+  if(y==2){
+    //Suche_Vollständig();
+  }
+
   //den Kalender generieren, falls die Kalender Seite gewählt wurde
   if(y==4){
     Kalender_Ausführen();
