@@ -35,8 +35,6 @@ function Seiten_Wechseln(x,y){
     box.innerHTML = "<p id='auswahl_anzeige_text'>NEUTRAL</p>"
     +"<button id='farbe_zurücksetzen' onclick='Farbe_Zurücksetzen()'>Farbe zurücksetzen</button>";
     // Auswahl felder leeren (WIRD ENTFERT SPÄTER!!!!)
-    document.getElementById("was_ist_die_ursache").value = "";
-    document.getElementById("was_ist_los").value = "";
   };
 
   // Statistik

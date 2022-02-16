@@ -2,7 +2,8 @@
     header("Access-Control-Allow-Origin: *");
 
     //$server = "localhost";
-    $server = "127.0.0.1:3305";
+    //$server = "127.0.0.1:3305";
+    $server = fgets(fopen("config.txt","r"));
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";

@@ -22,7 +22,7 @@ function Angaben_Speichern(){
         if(document.querySelector("input[name='warm/kalt']:checked")){var warm = document.querySelector("input[name='warm/kalt']:checked").value;}
         var event = document.querySelector("select[name='event_select']").value;
 
-        if(document.querySelector("input[name='kontrolle_handeln']:checked")){var kontrolle = document.querySelector("input[name='kontrolle_handeln']:checked").value;}
+        //if(document.querySelector("input[name='kontrolle_handeln']:checked")){var kontrolle = document.querySelector("input[name='kontrolle_handeln']:checked").value;}
         var ort = document.querySelector("select[name='ort_select']").value;
         if(document.querySelector("input[name='kontakt_menschen']:checked")){var kontakt = document.querySelector("input[name='kontakt_menschen']:checked").value;}else{var kontakt = ""};
    
@@ -45,7 +45,7 @@ function Angaben_Speichern(){
         // Die URL wird erzeugt und mit Variablen befüllt
         var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde;
             url += "&farbe="+color+"&emotion="+emotion+"&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln+"&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit;
-            url += "&schlaf="+schlaf+"&müde="+müde+"&wetter="+wetter+"&warm="+warm+"&event="+event+"&kontrolle="+kontrolle+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
+            url += "&schlaf="+schlaf+"&müde="+müde+"&wetter="+wetter+"&warm="+warm+"&event="+event+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
             url += "&lösung="+lösung+"&notiz="+notiz;
     
         // Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
@@ -169,11 +169,12 @@ var emotion;
 // Dazu wird ein seeeeehr langer String gebildet
 //#########################################################
 function Fragebogen_Erstellen(x){
-
+    alert(0);
     // Der Überlieferte Name muss zerteilt werden, um Farbe von Emotion zu trennen
     var pos = x.indexOf("#");
     color = x.substring(0,pos);
     emotion = x.substring(pos+1);
+
 
 
     // Es wird eine Anfrage an den Server geschickt und eine Antwort empfangen

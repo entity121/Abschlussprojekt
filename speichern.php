@@ -5,7 +5,8 @@
     // Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
     // In der Servervariablen muss was anderes stehen, je nachdem welchen PC ich nutze
     //$server = "localhost"; // Privatrechner
-    $server = "127.0.0.1:3305"; // Arbeitsrechner
+    //$server = "127.0.0.1:3305"; // Arbeitsrechner
+    $server = fgets(fopen("config.txt","r"));
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";
@@ -51,7 +52,6 @@
         $wetter = $_GET['wetter'];
         $warm = (int)$_GET['warm'];
         $event = $_GET['event'];   
-        $kontrolle = (int)$_GET['kontrolle'];
         $ort = $_GET['ort'];
         $kontakt = $_GET['kontakt'];
         $verhältnis = (int)$_GET['verhältnis'];
@@ -64,9 +64,9 @@
         //Es wird ein SQL Befehl als String erzeugt
         // !!! WICHTIG !!! Die Variablen, die Strings beinhalten mussen in einfache Anführungsstriche gesetzt werden -> '$str' 
         $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe, Emotion, Gedanken, Situation, Produktivität, Handeln, Bewertung, Essen, Verträglichkeit, ";
-        $sql .= "Schlaf, Müde, Wetter, Warm, Event, Kontrolle, Ort, Kontakt, Verhältnis, Lösung, Notiz)"; 
+        $sql .= "Schlaf, Müde, Wetter, Warm, Event, Ort, Kontakt, Verhältnis, Lösung, Notiz)"; 
         $sql .= "VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe', '$emotion', '$gedanken', '$situation', $produk, $handeln, $bewertung, '$essen', $verträglichkeit, $schlaf, ";
-        $sql .= "$müde, '$wetter', $warm, '$event', $kontrolle, '$ort', '$kontakt', $verhältnis, '$lösung', '$notiz')";
+        $sql .= "$müde, '$wetter', $warm, '$event', '$ort', '$kontakt', $verhältnis, '$lösung', '$notiz')";
 
     }
     //#############
