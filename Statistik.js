@@ -18,7 +18,6 @@ function Suche_Vollständig(){
     var auswahlmöglichkeiten = JSON.parse(json_response);
 
 
-
     for(var i=0;i<auswahlmöglichkeiten.length;i++){
 
         if(auswahlmöglichkeiten[i].Essen){// WENN es zu 'auswahlmöglichkeiten[i]' ein Element 'Essen' gibt
@@ -48,11 +47,11 @@ function Suche_Vollständig(){
  
  
     //var html_string = "<form action=''>";
-    var html_string = "<h1><u>komplexe Suche</u></h1><br><br>";
+    var html_string = "<h1><u>Komplexe Suche</u></h1><br><br>";
 
 
     // Emotionen
-    html_string += "<h2 id='pfff' style='width:100%'><u>Emotionen</u></h2><select name='emotionen_select' id='emotion_select' style='background-color: white'>";
+    html_string += "<h2 id='pfff' style='width:100%'><u>Emotionen</u></h2><select name='emotionen_select' id='emotion_select' style='background-color: #dcd579'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<emotionen.length;i++){
         var id = emotionen[i];
@@ -226,8 +225,8 @@ function Suche_Vollständig(){
     // Kontakt zu Anderen
     html_string += "<h2 class='nich_pfff' style='width:100%'><u>Kontakt zu Menschen</u></h2>"
 
-        +"<input type='radio' id='kontakt_menschen_ja' name='kontakt_menschen' value='1'>" + "<label class='suche_radio' for='kontakt_menschen_ja'>JA</label><br>"
-        +"<input type='radio' id='kontakt_menschen_nein' name='kontakt_menschen' value='0'>" + "<label class='suche_radio' for='kontakt_menschen_nein'>NEIN</label><br>";
+    +"<input type='radio' id='kontakt_menschen_ja' name='kontakt_menschen' value='1'>" + "<label class='suche_radio' for='kontakt_menschen_ja'>JA</label><br>"
+    +"<input type='radio' id='kontakt_menschen_nein' name='kontakt_menschen' value='0'>" + "<label class='suche_radio' for='kontakt_menschen_nein'>NEIN</label><br>";
 
     html_string+="</select><br><br>";
     //#######################
@@ -262,7 +261,7 @@ function Suche_Vollständig(){
     
     
     //html_string += "<input type='submit' value='Submit'>"
-    html_string += "<button id='statistik_suchen_button' style='width:100%;height:40px;margin-top:30px' onclick='Suche_Starten()'>SUCHEN</button>",
+    html_string += "<button id='statistik_suchen_button' onclick='Suche_Starten()'>SUCHEN</button><br><br>";
     
     //html_string += "</form>";
     

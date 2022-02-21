@@ -169,7 +169,7 @@ var emotion;
 // Dazu wird ein seeeeehr langer String gebildet
 //#########################################################
 function Fragebogen_Erstellen(x){
-    alert(0);
+
     // Der Überlieferte Name muss zerteilt werden, um Farbe von Emotion zu trennen
     var pos = x.indexOf("#");
     color = x.substring(0,pos);

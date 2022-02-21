@@ -57,7 +57,7 @@
         if($verträglichkeit=="-" ){if($erstes==false){$sql.=" AND ";};$sql.="Verträglichkeit<0"; $erstes=false;};
         if($verträglichkeit=="+" ){if($erstes==false){$sql.=" AND ";};$sql.="Verträglichkeit>0"; $erstes=false;};
         // Schlaf
-        if($schlaf!=""){if($erstes==false){$sql.=" AND ";};$sql.="Schlaf<=$schlaf"; $erstes=false;};
+        if($schlaf!=""){if($erstes==false){$sql.=" AND ";};$sql.="Schlaf>=$schlaf-1 AND Schlaf<=$schlaf+1"; $erstes=false;};
         // Müde
         if($müde=="-" ){if($erstes==false){$sql.=" AND ";};$sql.="Müde<0"; $erstes=false;};
         if($müde=="+" ){if($erstes==false){$sql.=" AND ";};$sql.="Müde>0"; $erstes=false;};

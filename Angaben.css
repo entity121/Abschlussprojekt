@@ -95,12 +95,12 @@
     }
     input[type=radio]:checked::before {
         position: absolute;
-        font-size: 14px;
-        left: 6px;
-        top: 0px;
+        font-size: 30px;
+        left: 0px;
+        top: -8px;
         font-weight: 800;
-        content: '\02143';
-        transform: rotate(40deg);
+        content: '\002A';
+        /*transform: rotate(40deg);*/
         color: #b03522;
     }
 
