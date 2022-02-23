@@ -85,7 +85,7 @@ function Suche_Vollständig(){
     // Behinderung der Produktivität
     html_string += "<h2 class='nich_pfff' style='width:100%'><u>Behinderung der Produktivität</u></h2>"
 
-        +"<input type='radio' id='behinderung_produktivität_ja' name='behinderung_produktivität' value='1'>" + "<label class='suche_radio' for='behinderung_produktivität_ja'>JA</label><br>"
+        +"<input type='radio' id='behinderung_produktivität_ja' name='behinderung_produktivität' value='1' onclick='Radio_Uncheck()'>" + "<label class='suche_radio' for='behinderung_produktivität_ja'>JA</label><br>"
         +"<input type='radio' id='behinderung_produktivität_nein' name='behinderung_produktivität' value='0'>" + "<label class='suche_radio' for='behinderung_produktivität_nein'>NEIN</label><br>";
 
     html_string+="<br><br>";
@@ -255,22 +255,12 @@ function Suche_Vollständig(){
             html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
         } 
     }
-    html_string+="</select><br>";
+    html_string+="</select><br><br><p style='width:100%;color:green'>.</p>";
     //#######################
     
-    
-    
-    //html_string += "<input type='submit' value='Submit'>"
-    html_string += "<button id='statistik_suchen_button' onclick='Suche_Starten()'>SUCHEN</button><br><br>";
-    
-    //html_string += "</form>";
-    
-    //Der fertige String wird ins Dokument eingefügt 
     document.getElementById("suche_kategorie").innerHTML = html_string;
 }
 //#########################################################
-
-
 
 
 
@@ -301,9 +291,6 @@ function Suche_Starten(){
     if(document.querySelector("input[name='verhältnis_person']:checked")){var verhältnis = document.querySelector("input[name='verhältnis_person']:checked").value;}else{var verhältnis = ""};
 
     var lösung = document.querySelector("select[name='lösung_select']").value;
-
-
-
 
 
     var url = "http://localhost/Abschlussprojekt/statistik.php?req=suchen";
