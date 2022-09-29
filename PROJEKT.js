@@ -22,7 +22,7 @@ function Seiten_Wechseln(x,y){
   //die gewählte Seite darstellen und den Link ergrauen lassen
   document.getElementById("seite_"+y).style.display="block";
   if(y!=1){
-    document.getElementById("link_seite_"+y+""+y).style.backgroundColor="grey";
+    document.getElementById("link_seite_"+y+""+y).style.backgroundColor="#88e5c4";
   }
 
   // Bei der Wahl der Hauptseite sollen die Felder und Farben wieder zurück auf Standard gesetzt werden
@@ -32,8 +32,8 @@ function Seiten_Wechseln(x,y){
     var box = document.getElementById("auswahl_anzeige");
     box.style.backgroundColor = "white";
     // und es wird der Reset-Button eingefügt
-    box.innerHTML = "<p id='auswahl_anzeige_text'>NEUTRAL</p>"
-    +"<button id='farbe_zurücksetzen' onclick='Farbe_Zurücksetzen()'>Farbe zurücksetzen</button>";
+    box.innerHTML = "<p id='auswahl_anzeige_text'></p>"
+    +"<button id='farbe_zurücksetzen' onclick='Farbe_Zurücksetzen()'><img src='Assets/Arrow_Circle.png' alt=''></button>";
     // Auswahl felder leeren (WIRD ENTFERT SPÄTER!!!!)
   };
 

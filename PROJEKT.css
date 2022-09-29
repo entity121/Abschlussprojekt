@@ -242,17 +242,21 @@ angegeben wird*/
   /*Für die Statistik*/
   /*###############################################*/
   #suchfunktion_h1{
-    background-color: #4b1d2b;
-    color: #dcd579;
+    /*background-color: #4b1d2b;*/
+    border: 5px solid #a6a6a6;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
+    color: black;
     width: 100%;
     height: 80px;
     margin: 0px;
     padding: 20px;
     font-size: 40px;
+    text-align: center;
   }
   #suche_kategorie{
-  background-color: #268856;
-  border: 5px solid #4b1d2b;
+  background-color: #5b5b5b;
+  border: 5px solid #a6a6a6;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   margin: 0px;
   padding: 10px;
   }
@@ -264,14 +268,14 @@ angegeben wird*/
   }
 
   option{
-    color: #4b1d2b;
+    color: #000;
     font-size: 20px;
   }
   select{
-    background-color: #dcd579;
-    border: 2px solid #4b1d2b;
+    background-color: #a6a6a6;
+    border: 2px solid #5b5b5b;
     font-size: 16px;
-    color: #4b1d2b;
+    color: black;
     box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
     height: 30px;
     margin-right: 5px;
@@ -280,7 +284,7 @@ angegeben wird*/
     appearance: none;
     display: inline-block;
     position: relative;
-    background-color: #dcd579;
+    background-color: #a6a6a6;
     color: #000;
     top: 9px;
     height: 20px;
@@ -293,7 +297,7 @@ angegeben wird*/
     margin-bottom: 5px;
     outline: none;
     border-radius: 60px;
-    border: 2px solid #4b1d2b;
+    border: 2px solid #5b5b5b;
     box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
   }
   input[type=radio]:checked::before {
@@ -304,7 +308,7 @@ angegeben wird*/
     font-weight: 800;
     content: '\002A';
     /*transform: rotate(40deg);*/
-    color: #b03522;
+    color: #000;
   }
   .suche_radio{
     font-size: 15px;
@@ -938,11 +942,13 @@ angegeben wird*/
 #################################################*/
 #seite_2 .main_object{
   width:350px;
+  height: 550px;
+  margin-left: 5%;
 }
 
 #suche_kategorie{
   width: 100%;
-  height: 650px;
+  height: 100%;
   overflow-y: auto;
 }
 

@@ -51,7 +51,7 @@ function Suche_Vollständig(){
 
 
     // Emotionen
-    html_string += "<h2 id='pfff' style='width:100%'><u>Emotionen</u></h2><select name='emotionen_select' id='emotion_select' style='background-color: #dcd579'>";
+    html_string += "<h2 id='pfff' style='width:100%'><u>Emotionen</u></h2><select name='emotionen_select' id='emotion_select' style='background-color: #a6a6a6'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<emotionen.length;i++){
         var id = emotionen[i];
