@@ -45,8 +45,8 @@
 
           <div id="farbauswahl">
             <div id="auswahl_anzeige" style="background-color: white;">
-              <p id="auswahl_anzeige_text">NEUTRAL</p>
-              <button id="farbe_zurücksetzen" onclick="Farbe_Zurücksetzen()">Farbe zurücksetzen</button>
+              <!--<p id="auswahl_anzeige_text">NEUTRAL</p>-->
+              <button id="farbe_zurücksetzen" onclick="Farbe_Zurücksetzen()"><img src="Assets/Arrow_Circle.png" alt=""></button>
             </div>
               <div id="buttons">
                 <button id="FREUDE" onclick="Farbe_Auswählen(this)" style="background-color: yellow;"><p>Freude</p></button>
@@ -64,12 +64,9 @@
           <div id="uhrzeit"></div>
           <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
           <div id="angaben">
-              <ul>
-                <button type="button" name="fragebogen_ausfüllen" onclick="window.open('Angaben.html',document.getElementById('auswahl_anzeige').style.backgroundColor+'#'+document.getElementById('auswahl_anzeige_text').innerHTML,'width=395,height=620,left='+(window.screenX+(window.innerWidth *0.79))+',top=250')">Angaben</button>
-              </ul>
-              <!--<ul>
-                <button type="button" name="angabe_speichern" onclick="Speichern()">Speichern</button>
-              </ul>-->          
+              
+            <button type="button" name="fragebogen_ausfüllen" onclick="window.open('Angaben.html',document.getElementById('auswahl_anzeige').style.backgroundColor+'#'+document.getElementById('auswahl_anzeige_text').innerHTML,'width=395,height=620,left='+(window.screenX+(window.innerWidth *0.79))+',top=250')">Angaben</button>
+                     
           </div>
         </div>
 
