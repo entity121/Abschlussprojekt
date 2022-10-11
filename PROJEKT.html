@@ -45,7 +45,7 @@
 
           <div id="farbauswahl">
             <div id="auswahl_anzeige" style="background-color: white;">
-              <!--<p id="auswahl_anzeige_text">NEUTRAL</p>-->
+              <p id="auswahl_anzeige_text" style="display: none;">NEUTRAL</p>
               <button id="farbe_zurücksetzen" onclick="Farbe_Zurücksetzen()"><img src="Assets/Arrow_Circle.png" alt=""></button>
             </div>
               <div id="buttons">
@@ -65,7 +65,7 @@
           <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
           <div id="angaben">
               
-            <button type="button" name="fragebogen_ausfüllen" onclick="window.open('Angaben.html',document.getElementById('auswahl_anzeige').style.backgroundColor+'#'+document.getElementById('auswahl_anzeige_text').innerHTML,'width=395,height=620,left='+(window.screenX+(window.innerWidth *0.79))+',top=250')">Angaben</button>
+            <button type="button" name="fragebogen_ausfüllen" onclick="window.open('Angaben.html',document.getElementById('auswahl_anzeige').style.backgroundColor+'#'+document.getElementById('auswahl_anzeige_text').innerHTML,'width=395,height=760,left='+(window.screenX+(window.innerWidth *0.78))+',top=130')">Angaben</button>
                      
           </div>
         </div>
@@ -217,7 +217,7 @@
           </ul>
         </div>
 
-        <div class="legende_box">
+        <!--<div class="legende_box">
           <div class="legende">
             <h2>Die Farben</h2>
             <ul>
@@ -233,14 +233,14 @@
               <li><span style="background-color: grey;"></span><p>Angst</p></li>
             </ul>
           </div>
-        </div>
+        </div>-->
 
 
       <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
       <div class="main_object">
-        <button class="kalender_button" onclick="Monat_Wechseln(-1)">Vorheriger Monat</button>
-        <table id="kalender"></table>     
+        <button class="kalender_button" onclick="Monat_Wechseln(-1)">Vorheriger Monat</button> 
         <button class="kalender_button" onclick="Monat_Wechseln(1)">Nächster Monat</button>
+        <table id="kalender"></table>    
 
         <div id="alle_einträge" style="display: none;"></div>
       </div>

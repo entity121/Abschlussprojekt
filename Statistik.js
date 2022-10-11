@@ -306,7 +306,7 @@ function Suche_Starten(){
             +"height="+(window.innerHeight *0.82)+","
             +"width="+(window.innerWidth *0.522)+","
             +"left="+(window.screenX+(window.innerWidth *0.42))+","
-            +"top="+(window.screenY+(window.innerHeight *0.18)));
+            +"top="+(window.screenY+(window.innerHeight *0.145)));
         }
         else{
             alert("Die Suche ergab keinen Treffer!");

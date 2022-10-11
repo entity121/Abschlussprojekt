@@ -235,7 +235,7 @@ function Einträge_Anschauen(){
   var win = window.open("Einträge.html",daten,"menubar=no,toolbar=no,titlebar=no,status=no,resizeable=no,location=no,"
 +"height="+(window.innerHeight *0.82)+","
 +"width="+(window.innerWidth *0.522)+","
-+"left="+(window.screenX+(window.innerWidth *0.2))+","
++"left="+(window.screenX+(window.innerWidth *0.03))+","
 +"top="+(window.screenY+(window.innerHeight *0.15)));
   
 // Ein Intervall prüft alle 200ms ob die Seite geschlossen wurde

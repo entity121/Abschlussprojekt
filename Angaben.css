@@ -5,11 +5,17 @@
   Dunkel: 4b1d2b
 */
 
+/*
+Heller: c1c1c1
+Hell: a6a6a6
+Dunkel: 5b5b5b
+*/
+
 @media screen and (min-width: 0px){
 
     body{
-        background-color: #268856;
-        border: 5px solid #4b1d2b;
+        background-color: #5b5b5b;
+        border: 5px solid #c1c1c1;
         margin: 0px;
         padding: 10px;
     }
@@ -24,23 +30,23 @@
     }
 
     button{
-        border: 2px solid #4b1d2b;
-        background-color: #dcd579;
-        color: #b03522;
+        border: 2px solid #a6a6a6;
+        background-color: #c1c1c1;
+        color: #000;
         font-weight: 900;
         font-size: 16px;
         box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
     }
     button:hover{
         /*background-color: #0099cc;*/
-        border: 3px solid white;
+        border: 3px solid #9bbc0f;
     }
 
 
     #speichern_button{
-        border: 3px solid #4b1d2b;
-        background-color: #dcd579;
-        color: #b03522;
+        border: 3px solid #a6a6a6;
+        background-color: #c1c1c1;
+        color: #000;
         font-weight: 900;
         font-size: 18px;
         padding: 8px;
@@ -48,7 +54,7 @@
         box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
     }
     #speichern_button:hover{
-        border: 3px solid white;
+        border: 3px solid #9bbc0f;
     }
 
 
@@ -60,14 +66,14 @@
 
 
     option{
-        color: #4b1d2b;
+        color: #000;
         font-size: 20px;
     }
     select{
-        background-color: #dcd579;
-        border: 2px solid #4b1d2b;
+        background-color: #5b5b5b;
+        border: 2px solid #c1c1c1;
         font-size: 16px;
-        color: #4b1d2b;
+        color: #000;
         box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
         height: 30px;
         margin-right: 5px;
@@ -78,7 +84,7 @@
         appearance: none;
         display: inline-block;
         position: relative;
-        background-color: #dcd579;
+        background-color: #5b5b5b;
         color: #000;
         top: 9px;
         height: 20px;
@@ -90,7 +96,7 @@
         margin-bottom: 5px;
         outline: none;
         border-radius: 60px;
-        border: 2px solid #4b1d2b;
+        border: 2px solid #c1c1c1;
         box-shadow: 0 3px 5px rgba(0,0,0,0.2), 0 3px 5px rgba(0,0,0,0.4);
     }
     input[type=radio]:checked::before {
@@ -101,14 +107,14 @@
         font-weight: 800;
         content: '\002A';
         /*transform: rotate(40deg);*/
-        color: #b03522;
+        color: #000;
     }
 
 
     textarea{
-        border: 2px solid #4b1d2b;
-        background-color: #dcd579;
-        color: #4b1d2b;
+        border: 2px solid #c1c1c1;
+        background-color: #a6a6a6;
+        color: #000;
         font-size: 16px;
     }
 

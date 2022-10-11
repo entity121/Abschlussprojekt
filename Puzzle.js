@@ -235,7 +235,7 @@ function Darstellen(){
                 }
 
                 if((leerA*5)+leerB != this.id){
-                    this.style.backgroundColor = "#8be6ff";
+                    this.style.backgroundColor = "#88e5c4";
                 }
 
             }
@@ -273,13 +273,13 @@ function Einfärben(){
             // Wenn der Inhalt des Array ungleich -1 ist, 
             // wird der index gebildet und das Feld, mit der ID gleich dem Index, gefärbt
             if(k_array[i][j] == -1){
-                document.getElementById(index).style.backgroundColor = "#dcd579";
+                document.getElementById(index).style.backgroundColor = "#5b5b5b";
             }
             else if(k_array[i][j] == sortiert[index]){
-                document.getElementById(index).style.backgroundColor = "#268856";
+                document.getElementById(index).style.backgroundColor = "#9bbc0f";
             }
             else{
-                document.getElementById(index).style.backgroundColor = "#dcd579";
+                document.getElementById(index).style.backgroundColor = "#a6a6a6";
             }
 
         }
