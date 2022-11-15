@@ -184,9 +184,9 @@ function Vollständiger_Eintrag(id){
       html_string += "<br><br><br>";
 
 
-      // Events
-      if(e.Event!=""){
-        html_string += "Besonderes Event:<br><b style='color:#b03522'>"+e.Event+"</b><br><br><br>";
+      // Ereignis
+      if(e.Ereignis!=""){
+        html_string += "Besonderes Event:<br><b style='color:#b03522'>"+e.Ereignis+"</b><br><br><br>";
       }
 
 

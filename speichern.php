@@ -31,7 +31,15 @@
     //#####################################################
     if($_GET['req']=="speichern"){
 
-        // Die einzelnen übergebenen Daten werden aus der URL in Varablen geschrieben
+        //Es wird ein SQL Befehl als String erzeugt
+
+        $sql = $connection->prepare("INSERT INTO einträge (Tag,Monat,Jahr,Sekunde,Minute,Stunde,Farbe,Emotion,Gedanken,Situation,Produktivität,Handeln,
+        Bewertung,Essen,Verträglichkeit,Schlaf,Müde,Wetter,Warm,Ereignis,Ort,Kontakt,Verhältnis,Lösung,Notiz) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+
+        $sql->bind_param('iiiiiissssiiisiiisisssiss',$tag,$monat,$jahr,$sekunde,$minute,$stunde,$farbe,$emotion,$gedanken,$situation,$produk,$handeln,$bewertung,$essen,$verträglichkeit,
+        $schlaf,$müde,$wetter,$warm,$ereignis,$ort,$kontakt,$verhältnis,$lösung,$notiz);
+
         $tag = (int)$_GET['tag'];
         $monat = (int)$_GET['monat'];
         $jahr = (int)$_GET['jahr'];
@@ -51,24 +59,71 @@
         $müde = (int)$_GET['müde'];
         $wetter = $_GET['wetter'];
         $warm = (int)$_GET['warm'];
-        $event = $_GET['event'];   
+        $ereignis = $_GET['event'];   
         $ort = $_GET['ort'];
         $kontakt = $_GET['kontakt'];
         $verhältnis = (int)$_GET['verhältnis'];
         $lösung = $_GET['lösung'];
         $notiz = $_GET['notiz'];
-        //$ = $_GET[''];
+
+        $sql->execute();
+
+        $sql->close();
+
+        $connection->close();
 
 
-
-        //Es wird ein SQL Befehl als String erzeugt
-        // !!! WICHTIG !!! Die Variablen, die Strings beinhalten mussen in einfache Anführungsstriche gesetzt werden -> '$str' 
-        $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe, Emotion, Gedanken, Situation, Produktivität, Handeln, Bewertung, Essen, Verträglichkeit, ";
-        $sql .= "Schlaf, Müde, Wetter, Warm, Event, Ort, Kontakt, Verhältnis, Lösung, Notiz)"; 
-        $sql .= "VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe', '$emotion', '$gedanken', '$situation', $produk, $handeln, $bewertung, '$essen', $verträglichkeit, $schlaf, ";
-        $sql .= "$müde, '$wetter', $warm, '$event', '$ort', '$kontakt', $verhältnis, '$lösung', '$notiz')";
-
+        echo "Angaben wurden erfolgreich gespeichert";
     }
+    //#############
+    else if($_GET['req']=="hinzufügen"){
+
+        $tabelle = $_GET['tabelle'];
+
+        switch($tabelle){
+            case 'gedanken_auswahl':
+                $sql = $connection->prepare("INSERT INTO gedanken_auswahl (Gedanken) VALUES (?)");
+                break;
+            case 'essen_auswahl':
+                $sql = $connection->prepare("INSERT INTO essen_auswahl (Essen) VALUES (?)");
+                break;
+            case 'wetter_auswahl':
+                $sql = $connection->prepare("INSERT INTO wetter_auswahl (Wetter) VALUES (?)");
+                break;
+            case 'event_auswahl':
+                $sql = $connection->prepare("INSERT INTO event_auswahl (Ereignis) VALUES (?)");
+                break;
+            case 'ort_auswahl':
+                $sql = $connection->prepare("INSERT INTO ort_auswahl (Ort) VALUES (?)");
+                break;
+            case 'lösungen_auswahl':
+                $sql = $connection->prepare("INSERT INTO lösungen_auswahl (Lösung) VALUES (?)");
+                break;
+        }
+
+        $sql->bind_param('s',$eingabe);
+
+        $eingabe = $_GET['eingabe'];
+
+        $sql->execute();
+        $sql->close();
+        $connection->close();
+    }
+    //#############
+    else if($_GET['req']=="puzzle"){
+
+        $sql = $connection->prepare("INSERT INTO puzzle (Zeit,Spielzüge)VALUES(?,?)");
+        $sql->bind_param('ii',$zeit,$züge);
+
+        $zeit = $_GET['zeit'];
+        $züge = $_GET['züge'];
+
+        $sql->execute();
+        $sql->close();
+        $connection->close();
+    }
+
+    /*
     //#############
     else if($_GET['req']=="speichern_light"){
 
@@ -82,27 +137,6 @@
 
         $sql = "INSERT INTO einträge (Tag, Monat, Jahr, Sekunde, Minute, Stunde, Farbe) VALUES ($tag, $monat, $jahr, $sekunde, $minute, $stunde, '$farbe')";
     }
-    //#############
-    else if($_GET['req']=="hinzufügen"){
-
-        $tabelle = $_GET['tabelle'];
-        $spalte = $_GET['spalte'];
-        $eingabe = $_GET['eingabe'];
-
-        $sql = "INSERT INTO ".$tabelle." (".$spalte.") VALUES ('".$eingabe."')";
-    }
-    //#############
-    else if($_GET['req']=="puzzle"){
-
-        $zeit = $_GET['zeit'];
-        $züge = $_GET['züge'];
-
-        $sql = "INSERT INTO puzzle (Zeit, Spielzüge) VALUES ($zeit, $züge)";
-    }
-
-
-
-    
     //Der SQL Befehl wird ausgeführt
     $execute = $connection->query($sql);
 
@@ -119,5 +153,5 @@
     else{
         echo "Angaben wurden erfolgreich gespeichert";
     }
-    
+    */
 ?>

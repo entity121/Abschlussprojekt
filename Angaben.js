@@ -70,19 +70,19 @@ function Auswahl_Hinzufügen(frage){
 
     switch (frage){
 
-        case "gedanken_hinzufügen":{var tabelle = "gedanken_auswahl"; var spalte = "Gedanken"; var select_id = "gedanken_select";};break;
-        case "essen_hinzufügen":{var tabelle = "essen_auswahl"; var spalte = "Essen"; var select_id = "essen_select";};break;
-        case "wetter_hinzufügen":{var tabelle = "wetter_auswahl"; var spalte = "Wetter"; var select_id = "wetter_select";};break;
-        case "event_hinzufügen":{var tabelle = "event_auswahl"; var spalte = "Event"; var select_id = "event_select";};break;
-        case "ort_hinzufügen":{var tabelle = "ort_auswahl"; var spalte = "Ort"; var select_id = "ort_select";};break;
-        case "lösung_hinzufügen":{var tabelle = "lösungen_auswahl"; var spalte = "Lösung"; var select_id = "lösung_select";};break;
+        case "gedanken_hinzufügen":{var tabelle = "gedanken_auswahl"; var select_id = "gedanken_select";};break;
+        case "essen_hinzufügen":{var tabelle = "essen_auswahl"; var select_id = "essen_select";};break;
+        case "wetter_hinzufügen":{var tabelle = "wetter_auswahl"; var select_id = "wetter_select";};break;
+        case "event_hinzufügen":{var tabelle = "event_auswahl"; var select_id = "event_select";};break;
+        case "ort_hinzufügen":{var tabelle = "ort_auswahl"; var select_id = "ort_select";};break;
+        case "lösung_hinzufügen":{var tabelle = "lösungen_auswahl"; var select_id = "lösung_select";};break;
 
     }
 
     var eingabe = prompt("Auswahlmöglichkeit hinzufügen");
 
     if(eingabe != ""){
-        var url = "http://localhost/Abschlussprojekt/speichern.php?req=hinzufügen&tabelle="+tabelle+"&spalte="+spalte+"&eingabe="+eingabe;
+        var url = "http://localhost/Abschlussprojekt/speichern.php?req=hinzufügen&tabelle="+tabelle+"&eingabe="+eingabe;
 
         var res = Send_Request(url);
         alert(res);
@@ -196,8 +196,8 @@ function Fragebogen_Erstellen(x){
         if(auswahlmöglichkeiten[i].Essen){// WENN es zu 'auswahlmöglichkeiten[i]' ein Element 'Essen' gibt
             essen.push(auswahlmöglichkeiten[i].Essen);// DANN Wert des Elementes in entsprechendes Array speichern
         }
-        else if(auswahlmöglichkeiten[i].Event){
-            event.push(auswahlmöglichkeiten[i].Event);
+        else if(auswahlmöglichkeiten[i].Ereignis){
+            event.push(auswahlmöglichkeiten[i].Ereignis);
         }
         else if(auswahlmöglichkeiten[i].Gedanken){
             gedanken.push(auswahlmöglichkeiten[i].Gedanken);
@@ -361,7 +361,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Event
-    html_string += "<h2 class='nich_pfff'><u>Events</u></h2><select name='event_select' id='event_select'>";
+    html_string += "<h2 class='nich_pfff'><u>Ereignis</u></h2><select name='event_select' id='event_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<event.length;i++){
         var id = event[i];
