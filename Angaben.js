@@ -229,7 +229,7 @@ function Fragebogen_Erstellen(x){
 
     
     // Wiederkehrende Gedanken
-    html_string += "<h2 id='pfff'><u>Wiederkehrende Gedanken</u></h2><select name='gedanken_select' id='gedanken_select'>";
+    html_string += "<h2 id='pfff'>Gibt es einen wiederkehrenden Gedanken? Wenn ja, welchen?</h2><select name='gedanken_select' id='gedanken_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<gedanken.length;i++){
         var id = gedanken[i];
@@ -248,7 +248,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Bekannte Situation
-    html_string += "<h2 class='nich_pfff'><u>Bekannte Situation</u></h2>"
+    html_string += "<h2 class='nich_pfff'>Ist dir die Situation, in der du dich im Moment befindest, bereits bekannt?</h2>"
     +"<input type='radio' id='bekannte_situation_ja' name='bekannte_situation' value='JA'>" + "<label for='bekannte_situation_ja'>JA</label><br>"
     +"<input type='radio' id='bekannte_situation_nein' name='bekannte_situation' value='NEIN'>" + "<label for='bekannte_situation_nein'>NEIN</label><br>";
     html_string+="<br><br>";
@@ -256,7 +256,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Behinderung der Produktivität
-    html_string += "<h2 class='nich_pfff'><u>Behinderung der Produktivität</u></h2>";
+    html_string += "<h2 class='nich_pfff'>Wie stark wird deine Produktivität im Moment behindert?</h2>";
     html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%;'>sehr stark</p>";
     for(var i=0;i<4;i++){
         html_string += "<label for='behinderung_produktivität_"+i+"'> "+i+" </label>"+"<input type='radio' id='behinderung_produktivität_"+i+"' name='behinderung_produktivität' value='"+i+"'>";
@@ -266,7 +266,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Handeln beeinflusst
-    html_string += "<h2 class='nich_pfff'><u>Handeln beeinflusst</u></h2>";
+    html_string += "<h2 class='nich_pfff'>Wie stark wird dein Handeln/dein Verhalten im Moment beeinflusst?</h2>";
     html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%;'>sehr stark</p>";
     for(var i=0;i<4;i++){
         html_string += "<label for='handeln_beeinflusst_"+i+"'> "+i+" </label>"+"<input type='radio' id='handeln_beeinflusst_"+i+"' name='handeln_beeinflusst' value='"+i+"'>";
@@ -276,7 +276,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Bewertung des Gefühls
-    html_string += "<h2 class='nich_pfff'><u>Bewertung des Gefühls</u></h2>";
+    html_string += "<h2 class='nich_pfff'>Wie würdest du deine momentane Gefühlslage allgemein bewerten?</h2>";
     html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='bewertung_gefühl_"+i+"'> "+i+" </label>"+"<input type='radio' id='bewertung_gefühl_"+i+"' name='bewertung_gefühl' value='"+i+"'>";
@@ -286,7 +286,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Essen
-    html_string += "<h2 class='nich_pfff'><u>Essen</u></h2><select name='essen_select' id='essen_select'>";
+    html_string += "<h2 class='nich_pfff'>Falls du heute schon etwas gegessen hast, welches Gericht war es?</h2><select name='essen_select' id='essen_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<essen.length;i++){
         var id = essen[i];
@@ -303,7 +303,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Verträglichkeit Essen
-    html_string += "<h2 class='nich_pfff'><u>Verträglichkeit des Essens</u></h2>";
+    html_string += "<h2 class='nich_pfff'>Falss du heute schon etwas gegessen hast, wie hast du es vertragen?</h2>";
     html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='verträglichkeit_essen_"+i+"'> "+i+" </label>"+"<input type='radio' id='verträglichkeit_essen_"+i+"' name='verträglichkeit_essen' value='"+i+"'>";
@@ -313,7 +313,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Schlaf in Stunden
-    html_string += "<h2 class='nich_pfff'><u>Schlaf in Stunden</u></h2><select name='schlaf_in_stunden' id='schlaf_in_stunden'>";
+    html_string += "<h2 class='nich_pfff'>Wie viele Stunden hast du heute Nacht schätzungsweise geschlafen?</h2><select name='schlaf_in_stunden' id='schlaf_in_stunden'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<24;i++){
         var id = i;
@@ -324,7 +324,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Müde/Wach
-    html_string += "<h2 class='nich_pfff'><u>Müde / Wach</u></h2>"
+    html_string += "<h2 class='nich_pfff'>Wie müde oder wach fühlst du dich im Moment?</h2>"
     html_string += "<p style='float: left; width: 40%;'>sehr müde</p><p style='float: left; width: 58%; text-align:right;'>sehr wach O_=</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='müde/wach_"+i+"'> "+i+" </label>"+"<input type='radio' id='müde/wach_"+i+"' name='müde/wach' value='"+i+"'>";
@@ -334,7 +334,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Wetter
-    html_string += "<h2 class='nich_pfff'><u>Wetter</u></h2><select name='wetter_select' id='wetter_select'>";
+    html_string += "<h2 class='nich_pfff'>Was für ein Wetter ist im Moment?</h2><select name='wetter_select' id='wetter_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<wetter.length;i++){
         var id = wetter[i];
@@ -351,7 +351,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Warm/Kalt
-    html_string += "<h2 class='nich_pfff'><u>Warm / Kalt</u></h2>"
+    html_string += "<h2 class='nich_pfff'>Wie empfindest du die momentane Temperatur?</h2>"
     html_string += "<p style='float: left; width: 40%;'>zu heiß</p><p style='float: left; width: 58%; text-align:right;'>viel zu kalt</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='warm/kalt_"+i+"'> "+i+" </label>"+"<input type='radio' id='warm/kalt_"+i+"' name='warm/kalt' value='"+i+"'>";
@@ -361,7 +361,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Event
-    html_string += "<h2 class='nich_pfff'><u>Ereignis</u></h2><select name='event_select' id='event_select'>";
+    html_string += "<h2 class='nich_pfff'>Findet im moment oder fand kürzlich ein besonderes/außergewöhnliches Ereignis statt? Wenn ja, welches?</h2><select name='event_select' id='event_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<event.length;i++){
         var id = event[i];
@@ -389,7 +389,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Aufenthalt
-    html_string += "<h2 class='nich_pfff'><u>Wo bin ich</u></h2><select name='ort_select' id='ort_select'>";
+    html_string += "<h2 class='nich_pfff'>An welchem Ort befindest du dich im Moment?</h2><select name='ort_select' id='ort_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<ort.length;i++){
         var id = ort[i];
@@ -406,7 +406,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Kontakt zu Anderen
-    html_string += "<h2 class='nich_pfff'><u>Kontakt zu Menschen</u></h2>"
+    html_string += "<h2 class='nich_pfff'>Hast oder hattest du kürzlich Kontakt zu anderen Personen? Wenn ja, wen?</h2>"
     +"<input type='radio' id='kontakt_menschen_ja' name='kontakt_menschen' value='JA'>" + "<label for='kontakt_menschen_ja'>JA</label><br>"
     +"<input type='radio' id='kontakt_menschen_nein' name='kontakt_menschen' value='NEIN'>" + "<label for='kontakt_menschen_nein'>NEIN</label><br>";
     html_string+="</select><br><br>";
@@ -414,7 +414,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Verhältnis zur Person
-    html_string += "<h2 class='nich_pfff'><u>Verhältnis zu dieser Person</u></h2>";
+    html_string += "<h2 class='nich_pfff'>Wie würdest du dein Verhältnis zu dieser Person einschätzen?</h2>";
     html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
         html_string += "<label for='verhältnis_person_"+i+"'> "+i+" </label>"+"<input type='radio' id='verhältnis_person_"+i+"' name='verhältnis_person' value='"+i+"'>";
@@ -424,7 +424,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Lösungsansätze
-    html_string += "<h2 class='nich_pfff'><u>Lösungsansätze</u></h2><select name='lösung_select' id='lösung_select'>";
+    html_string += "<h2 class='nich_pfff'>Mit welchem Ansatz hast du versucht etwas an deiner momentanen Situation zu verändern?</h2><select name='lösung_select' id='lösung_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<lösung.length;i++){
         var id = lösung[i];
@@ -441,7 +441,7 @@ function Fragebogen_Erstellen(x){
 
 
     // Notizzettel
-    html_string+="<h2 class='nich_pfff'><u>Zusätzliche Notizen</u></h2>"
+    html_string+="<h2 class='nich_pfff'>Platz für zusätzliche Notizen</h2>"
     html_string+="<textarea rows='5' cols='33' name='notizen'> </textarea>";
     html_string+="<br><br>";
     //#######################
