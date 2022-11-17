@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" href="PROJEKT.css">
+    <link rel="stylesheet" href="Angaben.css">
     <script language="javascript" type="text/javascript" src="PROJEKT.js">   </script>
     <script language="javascript" type="text/javascript" src="Hauptseite.js">   </script>
     <script language="javascript" type="text/javascript" src="Kalender.js">   </script>
@@ -11,6 +12,7 @@
     <script language="javascript" type="text/javascript" src="AJAX.js">   </script>
     <script language="javascript" type="text/javascript" src="Puzzle.js">   </script>
     <script language="javascript" type="text/javascript" src="Statistik.js">   </script>
+    <script language="javascript" type="text/javascript" src="Angaben.js">   </script>
 
     <title>Abschlussprojekt</title>
   </head>
@@ -21,12 +23,12 @@
 
       <div class="seite" id="seite_1">
 
-
         <div class="header">
           <h1>Hauptseite</h1>
         </div>
 
 
+      
         <div class="links">
           <ul>
             <!--<li id="link_seite_11" onclick="Seiten_Wechseln(1,1)">Hauptseite</li>-->
@@ -35,12 +37,12 @@
             <li id="link_seite_15" onclick="Seiten_Wechseln(1,5)">Puzzle</li>
           </ul>
         </div>
-      <!--Links zwischen den verschiedenen Unterseiten-->
-
-
-
-
-      <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
+        <!--Links zwischen den verschiedenen Unterseiten-->
+  
+  
+  
+  
+        <!--Das eigentliche Hauptobjekt der jeweiligen Seite-->
         <div class="main_object">
 
           <div id="farbauswahl">
@@ -61,42 +63,16 @@
                 <button id="ANGST" onclick="Farbe_Auswählen(this)" style="background-color: grey;"><p>Angst</p></button>
               </div>
           </div>
-          <div id="uhrzeit"></div>
-          <!--Eine Tabelle mit Textboxen, für die Angabe von Informationen zur aktuellen Gefühlslage-->
-          <div id="angaben">
-              
-            <button type="button" name="fragebogen_ausfüllen" onclick="window.open('Angaben.html',document.getElementById('auswahl_anzeige').style.backgroundColor+'#'+document.getElementById('auswahl_anzeige_text').innerHTML,'width=395,height=760,left='+(window.screenX+(window.innerWidth *0.78))+',top=130')">Angaben</button>
-                     
-          </div>
+          <div id="uhrzeit"></div>   
+                          
         </div>
+  
+        <button type="button" id="fragebogen_ausfüllen_button" onclick="">Angaben</button>
+        
 
-
-        <!--<div class="legende">
-          <div class="legende_box">
-            <div class="legende">
-              <h2>Die Farben</h2>
-              <ul>
-                <li><span style="background-color: yellow;"><p>Freude</p></span></li>
-                <li><span style="background-color: orangered;"></span><p>Interesse</p></li>
-                <li><span style="background-color: yellowgreen;"></span><p>Überraschung</p></li>
-                <li><span style="background-color: blueviolet;"></span><p>Liebe</p></li>
-                <li><span style="background-color: green;"></span><p>Hoffnung</p></li>
-                <li><span style="background-color: cyan;"></span><p>Abneigung</p></li>
-                <li><span style="background-color: red;"></span><p>Wut</p></li>
-                <li><span style="background-color: royalblue;"></span><p>Trauer</p></li>
-                <li><span style="background-color: crimson;"></span><p>Verletzung</p></li>
-                <li><span style="background-color: grey;"></span><p>Angst</p></li>
-              </ul>
-            </div>
-          </div>
-        </div>-->
-
-        <!--Eine Legende, in der angezeigt wird, welche Farbe für welche Emotion steht-->
-
-        <!--Footer, meistens genutzt für das Impressum-->
 
       </div><!--###### Ende hauptseite ######-->
-
+      <div id="fragebogen"></div>
 
 
 

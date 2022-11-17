@@ -108,6 +108,8 @@
         $sql->execute();
         $sql->close();
         $connection->close();
+
+        echo "Antwortmöglichkeit hinzugefügt";
     }
     //#############
     else if($_GET['req']=="puzzle"){

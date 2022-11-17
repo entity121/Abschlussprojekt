@@ -6,6 +6,8 @@ function Angaben_Speichern(){
 
         // Die einzelnen Fragen werden ausgewertet und die Ergebnisse in Variablen gespeichert
         // 'Input' angaben BENÖTIGEN eine Auswahl, deshalb die if-Abfrage . 'Select' und 'Textarea' dürfen leer sein
+        var color = document.getElementById("auswahl_anzeige").style.backgroundColor;
+        var emotion = document.getElementById("auswahl_anzeige_text").innerHTML;
         var gedanken = document.querySelector("select[name='gedanken_select']").value;
         if(document.querySelector("input[name='bekannte_situation']:checked")){var situation = document.querySelector("input[name='bekannte_situation']:checked").value;}else{var situation = ""};
         if(document.querySelector("input[name='behinderung_produktivität']:checked")){var produk = document.querySelector("input[name='behinderung_produktivität']:checked").value;}   
@@ -54,7 +56,7 @@ function Angaben_Speichern(){
         alert(res);
 
         if(res == "Angaben wurden erfolgreich gespeichert"){
-            window.close();
+            //Felder leeren
         };
     }
 
@@ -121,7 +123,7 @@ function Auswahl_Löschen(frage){
         case "gedanken_löschen":{var tabelle = "gedanken_auswahl"; var spalte = "Gedanken"; var select_id = "gedanken_select";};break;
         case "essen_löschen":{var tabelle = "essen_auswahl"; var spalte = "Essen"; var select_id = "essen_select";};break;
         case "wetter_löschen":{var tabelle = "wetter_auswahl"; var spalte = "Wetter"; var select_id = "wetter_select";};break;
-        case "event_löschen":{var tabelle = "event_auswahl"; var spalte = "Event"; var select_id = "event_select";};break;
+        case "event_löschen":{var tabelle = "event_auswahl"; var spalte = "Ereignis"; var select_id = "event_select";};break;
         case "ort_löschen":{var tabelle = "ort_auswahl"; var spalte = "Ort"; var select_id = "ort_select";};break;
         case "lösung_löschen":{var tabelle = "lösungen_auswahl"; var spalte = "Lösung"; var select_id = "lösung_select";};break;
     }
@@ -156,6 +158,15 @@ function Auswahl_Löschen(frage){
         }
 
     }
+
+    var select = document.getElementById(select_id);
+    var opt = document.createElement('option'); 
+
+    opt.value = eingabe;
+    opt.innerHTML = eingabe.substring(0,30);
+    opt.title = eingabe;
+
+    select.appendChild(opt);
     
 }
 //#########################################################
@@ -168,14 +179,12 @@ var emotion;
 // Der Fragebogen wird dynamisch erzeugt 
 // Dazu wird ein seeeeehr langer String gebildet
 //#########################################################
-function Fragebogen_Erstellen(x){
+function Fragebogen_Erstellen(){
 
     // Der Überlieferte Name muss zerteilt werden, um Farbe von Emotion zu trennen
-    var pos = x.indexOf("#");
+    /*var pos = x.indexOf("#");
     color = x.substring(0,pos);
-    emotion = x.substring(pos+1);
-
-
+    emotion = x.substring(pos+1);*/
 
     // Es wird eine Anfrage an den Server geschickt und eine Antwort empfangen
     var json_response = Send_Request("http://localhost/Abschlussprojekt/auswahl.php?req=erstellen");
@@ -226,6 +235,7 @@ function Fragebogen_Erstellen(x){
     // in einem String, der später weiter verlängert wird
     var html_string = "<form action=''>";
     html_string += "<h1><u>Fragebogen</u></h1><br><br>";
+    html_string+="<div class='trennung'></div>";
 
     
     // Wiederkehrende Gedanken
@@ -241,17 +251,19 @@ function Fragebogen_Erstellen(x){
         } 
     }
     html_string+="</select>";
-    html_string+="<button type='button' name='gedanken_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>";
+    html_string+="<button type='button' class='option_hinzufügen' name='gedanken_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>";
     html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button>";
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
     // Bekannte Situation
     html_string += "<h2 class='nich_pfff'>Ist dir die Situation, in der du dich im Moment befindest, bereits bekannt?</h2>"
-    +"<input type='radio' id='bekannte_situation_ja' name='bekannte_situation' value='JA'>" + "<label for='bekannte_situation_ja'>JA</label><br>"
-    +"<input type='radio' id='bekannte_situation_nein' name='bekannte_situation' value='NEIN'>" + "<label for='bekannte_situation_nein'>NEIN</label><br>";
+    +"<div class='one_radio'><label for='bekannte_situation_ja'>JA</label>"+"<input type='radio' id='bekannte_situation_ja' name='bekannte_situation' value='JA'></div><br>"
+    +"<div class='one_radio'><label for='bekannte_situation_nein'>NEIN</label>"+"<input type='radio' id='bekannte_situation_nein' name='bekannte_situation' value='NEIN'></div><br>";
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -259,9 +271,12 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2 class='nich_pfff'>Wie stark wird deine Produktivität im Moment behindert?</h2>";
     html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%;'>sehr stark</p>";
     for(var i=0;i<4;i++){
+        html_string += "<div class='one_radio'>"
         html_string += "<label for='behinderung_produktivität_"+i+"'> "+i+" </label>"+"<input type='radio' id='behinderung_produktivität_"+i+"' name='behinderung_produktivität' value='"+i+"'>";
+        html_string += "</div>"
     }
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -269,9 +284,12 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2 class='nich_pfff'>Wie stark wird dein Handeln/dein Verhalten im Moment beeinflusst?</h2>";
     html_string += "<p style='float: left; width: 40%;'>gar nicht</p><p style='float: left; width: 58%;'>sehr stark</p>";
     for(var i=0;i<4;i++){
+        html_string += "<div class='one_radio'>"
         html_string += "<label for='handeln_beeinflusst_"+i+"'> "+i+" </label>"+"<input type='radio' id='handeln_beeinflusst_"+i+"' name='handeln_beeinflusst' value='"+i+"'>";
+        html_string += "</div>"
     }
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -279,9 +297,12 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2 class='nich_pfff'>Wie würdest du deine momentane Gefühlslage allgemein bewerten?</h2>";
     html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
+        html_string += "<div class='one_radio'>"
         html_string += "<label for='bewertung_gefühl_"+i+"'> "+i+" </label>"+"<input type='radio' id='bewertung_gefühl_"+i+"' name='bewertung_gefühl' value='"+i+"'>";
+        html_string += "</div>"
     }
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -297,8 +318,9 @@ function Fragebogen_Erstellen(x){
             html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
         } 
     }
-    html_string+="</select> <button type='button' name='essen_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
-    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="</select> <button type='button' class='option_hinzufügen' name='essen_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='essen_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -306,9 +328,12 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2 class='nich_pfff'>Falss du heute schon etwas gegessen hast, wie hast du es vertragen?</h2>";
     html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
+        html_string += "<div class='one_radio'>"
         html_string += "<label for='verträglichkeit_essen_"+i+"'> "+i+" </label>"+"<input type='radio' id='verträglichkeit_essen_"+i+"' name='verträglichkeit_essen' value='"+i+"'>";
+        html_string += "</div>"
     }
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -320,6 +345,7 @@ function Fragebogen_Erstellen(x){
         html_string+="<option value='"+id+"'>"+i+"</option>";
     }
     html_string+="</select><br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -327,9 +353,12 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2 class='nich_pfff'>Wie müde oder wach fühlst du dich im Moment?</h2>"
     html_string += "<p style='float: left; width: 40%;'>sehr müde</p><p style='float: left; width: 58%; text-align:right;'>sehr wach O_=</p>";
     for(var i=-3;i<4;i++){
+        html_string += "<div class='one_radio'>"
         html_string += "<label for='müde/wach_"+i+"'> "+i+" </label>"+"<input type='radio' id='müde/wach_"+i+"' name='müde/wach' value='"+i+"'>";
+        html_string += "</div>"
     }
     html_string+="</select><br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -345,8 +374,9 @@ function Fragebogen_Erstellen(x){
             html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
         } 
     }
-    html_string+="</select> <button type='button' name='wetter_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>";
-    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="</select> <button type='button' class='option_hinzufügen' name='wetter_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>";
+    html_string+="<button type='button' class='lösch_button' name='wetter_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -354,14 +384,17 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2 class='nich_pfff'>Wie empfindest du die momentane Temperatur?</h2>"
     html_string += "<p style='float: left; width: 40%;'>zu heiß</p><p style='float: left; width: 58%; text-align:right;'>viel zu kalt</p>";
     for(var i=-3;i<4;i++){
+        html_string += "<div class='one_radio'>"
         html_string += "<label for='warm/kalt_"+i+"'> "+i+" </label>"+"<input type='radio' id='warm/kalt_"+i+"' name='warm/kalt' value='"+i+"'>";
+        html_string += "</div>"
     }
     html_string+="</select><br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
     // Event
-    html_string += "<h2 class='nich_pfff'>Findet im moment oder fand kürzlich ein besonderes/außergewöhnliches Ereignis statt? Wenn ja, welches?</h2><select name='event_select' id='event_select'>";
+    html_string += "<h2 class='nich_pfff'>Findet im moment oder fand kürzlich ein besonderes oder außergewöhnliches Ereignis statt? Wenn ja, welches?</h2><select name='event_select' id='event_select'>";
     html_string += "<option selected value=''></option>";
     for(var i=0;i<event.length;i++){
         var id = event[i];
@@ -372,8 +405,9 @@ function Fragebogen_Erstellen(x){
             html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
         } 
     }
-    html_string+="</select> <button type='button' name='event_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
-    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="</select> <button type='button' class='option_hinzufügen' name='event_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='event_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -400,16 +434,18 @@ function Fragebogen_Erstellen(x){
             html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
         } 
     }
-    html_string+="</select> <button type='button' name='ort_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
-    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="</select> <button type='button' class='option_hinzufügen' name='ort_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='ort_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
     // Kontakt zu Anderen
-    html_string += "<h2 class='nich_pfff'>Hast oder hattest du kürzlich Kontakt zu anderen Personen? Wenn ja, wen?</h2>"
-    +"<input type='radio' id='kontakt_menschen_ja' name='kontakt_menschen' value='JA'>" + "<label for='kontakt_menschen_ja'>JA</label><br>"
-    +"<input type='radio' id='kontakt_menschen_nein' name='kontakt_menschen' value='NEIN'>" + "<label for='kontakt_menschen_nein'>NEIN</label><br>";
+    html_string += "<h2 class='nich_pfff'>Hast oder hattest du kürzlich Kontakt zu anderen Personen?</h2>"
+    +"<label for='kontakt_menschen_ja'>JA</label><div class='one_radio'>"+"<input type='radio' id='kontakt_menschen_ja' name='kontakt_menschen' value='JA'></div><br>"
+    +"<label for='kontakt_menschen_nein'>NEIN</label><div class='one_radio'>"+"<input type='radio' id='kontakt_menschen_nein' name='kontakt_menschen' value='NEIN'></div><br>";
     html_string+="</select><br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -417,9 +453,12 @@ function Fragebogen_Erstellen(x){
     html_string += "<h2 class='nich_pfff'>Wie würdest du dein Verhältnis zu dieser Person einschätzen?</h2>";
     html_string += "<p style='float: left; width: 40%;'>sehr schlecht</p><p style='float: left; width: 58%; text-align:right;'>sehr gut</p>";
     for(var i=-3;i<4;i++){
+        html_string += "<div class='one_radio'>"
         html_string += "<label for='verhältnis_person_"+i+"'> "+i+" </label>"+"<input type='radio' id='verhältnis_person_"+i+"' name='verhältnis_person' value='"+i+"'>";
+        html_string += "</div>"
     }
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -435,8 +474,9 @@ function Fragebogen_Erstellen(x){
             html_string+="<option value='"+id+"' title='"+id+"'>"+id.substring(0,30)+"</option>";
         } 
     }
-    html_string+="</select> <button type='button' name='lösung_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
-    html_string+="<button type='button' class='lösch_button' name='gedanken_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="</select> <button type='button' class='option_hinzufügen' name='lösung_hinzufügen' onclick='Auswahl_Hinzufügen(this.name)'><b>+</b></button><br>"; 
+    html_string+="<button type='button' class='lösch_button' name='lösung_löschen' onclick='Auswahl_Löschen(this.name)'><b>Auswahl entfernen</b></button> <br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
@@ -453,7 +493,7 @@ function Fragebogen_Erstellen(x){
     html_string += "</form>";
 
     //Der fertige String wird ins Dokument eingefügt 
-    document.getElementById("body").innerHTML = html_string;
+    document.getElementById("fragebogen").innerHTML = html_string;
 
 }//#########################################################
 
