@@ -56,7 +56,7 @@ function Angaben_Speichern(){
         alert(res);
 
         if(res == "Angaben wurden erfolgreich gespeichert"){
-            //Felder leeren
+            window.location.reload();
         };
     }
 
@@ -484,11 +484,12 @@ function Fragebogen_Erstellen(){
     html_string+="<h2 class='nich_pfff'>Platz für zusätzliche Notizen</h2>"
     html_string+="<textarea rows='5' cols='33' name='notizen'> </textarea>";
     html_string+="<br><br>";
+    html_string+="<div class='trennung'></div>";
     //#######################
 
 
     //html_string += "<input type='submit' value='Submit'>"
-    html_string += "<button id='speichern_button' onclick='Angaben_Speichern()'>Speichern</button>",
+    //html_string += "<button id='speichern_button' onclick='Angaben_Speichern()'>Speichern</button>",
 
     html_string += "</form>";
 
