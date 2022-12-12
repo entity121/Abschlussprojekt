@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 
     //$server = "localhost";    // Privatrechner
     //$server = "127.0.0.1:3305"; // Arbeitsrechner
-    $server = fgets(fopen("config.txt","r"));
+    $server = "localhost";//fgets(fopen("config.txt","r"));
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";
@@ -15,7 +15,6 @@ header("Access-Control-Allow-Origin: *");
     if($connection->connect_error){
         die("Verbindung fehlgeschlagen");
     }
-
 
     if($_GET['req']=="erstellen"){
 
@@ -39,10 +38,8 @@ header("Access-Control-Allow-Origin: *");
             while($row = $erg->fetch_assoc()){
                 $allRows[] = $row;
             }
-
         }
 
         echo json_encode($allRows);
-    } 
-    
+    }   
 ?>

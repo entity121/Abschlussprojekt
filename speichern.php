@@ -6,7 +6,7 @@
     // In der Servervariablen muss was anderes stehen, je nachdem welchen PC ich nutze
     //$server = "localhost"; // Privatrechner
     //$server = "127.0.0.1:3305"; // Arbeitsrechner
-    $server = fgets(fopen("config.txt","r"));
+    $server = "localhost";//fgets(fopen("config.txt","r"));
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";
@@ -66,12 +66,12 @@
         $lösung = $_GET['lösung'];
         $notiz = $_GET['notiz'];
 
+        
         $sql->execute();
 
         $sql->close();
 
         $connection->close();
-
 
         echo "Angaben wurden erfolgreich gespeichert";
     }
@@ -111,6 +111,9 @@
 
         echo "Antwortmöglichkeit hinzugefügt";
     }
+
+
+    
     //#############
     else if($_GET['req']=="puzzle"){
 

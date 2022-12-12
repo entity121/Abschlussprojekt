@@ -3,7 +3,7 @@
 
     //$server = "localhost"; // Privatrechner
     //$server = "127.0.0.1:3305"; // Arbeitsrechner
-    $server = fgets(fopen("config.txt","r"));
+    $server = "localhost";//fgets(fopen("config.txt","r"));
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";

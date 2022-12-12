@@ -20,9 +20,6 @@ function uhr_null_hinzufügen(x){
 
 
 
-
-
-
 // Jeder Button steht für eine Emotion und besitz eine einzigartige Farbe.
 // Je nachdem welchen Button man betätigt, wird die Farbe des Buttons in das 
 // Anzeigefenster eingefügt, welches sich überhalb befindet und by-default weiß ist,
@@ -38,6 +35,7 @@ function Farbe_Auswählen(X){
 }//##############################################
 
 
+
 // Das Farbfeld lässt sich per Knopfdruck auf Neutral zurücksetzen
 //###############################################
 function Farbe_Zurücksetzen(){
@@ -49,7 +47,7 @@ function Farbe_Zurücksetzen(){
 
 
 
-
+/*
 // Diese Funktion wird ausgeführt, sobald der Nutzer den Absenden button gedrückt hat
 // Dem Anwendungsfenster werden die entsprechenden Angaben, welche versendet werden sollen, entnommen un in Variablen gespeichert
 // Außerdem wird das aktuelle Datum und die Uhrzeit generiert und ebenfalls in Variablen gespeichert
@@ -82,5 +80,5 @@ function Speichern(){
     alert(res);
   }
   
-}
+}*/
 //#####

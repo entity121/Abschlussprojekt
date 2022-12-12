@@ -43,15 +43,17 @@ function Angaben_Speichern(){
         var minute = date.getMinutes();
         var stunde = date.getHours();
 
-    
+        
         // Die URL wird erzeugt und mit Variablen befüllt
-        var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr+"&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde;
-            url += "&farbe="+color+"&emotion="+emotion+"&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln+"&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit;
-            url += "&schlaf="+schlaf+"&müde="+müde+"&wetter="+wetter+"&warm="+warm+"&event="+event+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
+        var url = "http://localhost/Abschlussprojekt/speichern.php?req=speichern&tag="+tag+"&monat="+monat+"&jahr="+jahr;
+            url += "&sekunde="+sekunde+"&minute="+minute+"&stunde="+stunde+"&farbe="+color+"&emotion="+emotion;
+            url += "&gedanken="+gedanken+"&situation="+situation+"&produk="+produk+"&handeln="+handeln;
+            url += "&bewertung="+bewertung+"&essen="+essen+"&verträglichkeit="+verträglichkeit+"&schlaf="+schlaf+"&müde="+müde;
+            url += "&wetter="+wetter+"&warm="+warm+"&event="+event+"&ort="+ort+"&kontakt="+kontakt+"&verhältnis="+verhältnis;
             url += "&lösung="+lösung+"&notiz="+notiz;
     
-        // Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion im AJAX.js Skript geschickt um von dort
-        // an den Server versendet zu werden
+        // Die URL und die Zielfunktion für den Rückgabewert werden an die dafür vorgesehene Funktion 
+        // im AJAX.js Skript geschickt um von dort an den Server versendet zu werden
         var res = Send_Request(url);
         alert(res);
 
