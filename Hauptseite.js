@@ -1,4 +1,5 @@
-// Diese zwei nachfolgenden Funktionen sind dafür zuständig, die Uhrzeit anzuzeigen und gegebenfalls
+// Diese zwei nachfolgenden Funktionen sind dafür zuständig, 
+// die Uhrzeit anzuzeigen und gegebenfalls
 // eine Null vor Zahlen im einstelligen Bereich anzuhängen
 //###############################################
 function Uhr(){
@@ -25,7 +26,9 @@ function uhr_null_hinzufügen(x){
 
 // Jeder Button steht für eine Emotion und besitz eine einzigartige Farbe.
 // Je nachdem welchen Button man betätigt, wird die Farbe des Buttons in das 
-// Anzeigefenster eingefügt, welches sich überhalb befindet und by-default weiß ist,
+// Anzeigefenster eingefügt, welches sich überhalb befindet und by-default weiß ist
+// Der betätigte Button übergibt sich selbst der Funktion (X)
+// und ihm wird die Farbe entnommen und eingefügt
 //###############################################
 function Farbe_Auswählen(X){
   var feld = document.getElementById("auswahl_anzeige");
@@ -50,11 +53,17 @@ function Farbe_Zurücksetzen(){
 
 
 
-// Diese Funktion wird ausgeführt, sobald der Nutzer den Absenden button gedrückt hat
-// Dem Anwendungsfenster werden die entsprechenden Angaben, welche versendet werden sollen, entnommen un in Variablen gespeichert
-// Außerdem wird das aktuelle Datum und die Uhrzeit generiert und ebenfalls in Variablen gespeichert
-// Die einzelnen Variablen werden zusammengeführt und für das Senden an den Server vorbereitet
-// Das Senden der Angaben findet in einer externen Funktion statt, an die die vorbereiteten Pakete geschickt werden 
+// Diese Funktion wird ausgeführt, 
+// sobald der Nutzer den Absenden button gedrückt hat
+// Dem Anwendungsfenster werden die entsprechenden Angaben, 
+// welche versendet werden sollen, 
+// entnommen un in Variablen gespeichert
+// Außerdem wird das aktuelle Datum und die Uhrzeit abgefragt 
+// und ebenfalls in Variablen gespeichert
+// Die einzelnen Variablen werden zu einer URL zusammengeführt 
+// und für das Senden an den Server vorbereitet
+// Das Senden der Angaben findet in einer externen Funktion statt, 
+// an die die vorbereiteten Anfragen geschickt werden 
 //###############################################
 function Speichern(){
 

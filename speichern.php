@@ -2,10 +2,12 @@
     //diese Zeile erlaubt die Kommunikation zwischen verschiedenen Domänen dh. Browser und Privater Server
     header("Access-Control-Allow-Origin: *");
 
-    // Die nötigen Werte um sich mit dem Richtigen Server und Datenbank zu verbinden
-    // In der Servervariablen muss was anderes stehen, je nachdem welchen PC ich nutze
-    //$server = "localhost"; // Privatrechner
-    //$server = "127.0.0.1:3305"; // Arbeitsrechner
+    // Die nötigen Werte um sich mit dem Richtigen Server 
+    // und Datenbank zu verbinden
+    // In den Servervariablen muss was anderes stehen, 
+    // je nachdem welchen PC ich nutze
+    // $server = "localhost"; // Privatrechner
+    // $server = "127.0.0.1:3305"; // Arbeitsrechner
     $server = fgets(fopen("config.txt","r"));
     $name = "root";
     $passwort = "";
@@ -25,20 +27,29 @@
 
 
     
-    //Dies ist die Speicherfunktion auf dem Server
-    //Die Daten werden per url hierher gesendet, zerteilt und in entspechenden Variablen gespeichert
-    //Anschließend werden sie per SQL Anweisung in der Datenbank abgespeichert
+    // Dies ist die Speicherfunktion auf dem Server
+    // Die Daten werden per URL hierher gesendet, 
+    // zerteilt und in entspechenden Variablen gespeichert
+    // Anschließend wird ein SQL Statement gebildet, 
+    // mit welchem die Daten in die Datenbank gespeichert werden
     //#####################################################
     if($_GET['req']=="speichern"){
 
-        //Es wird ein SQL Befehl als String erzeugt
+        // Es wird ein SQL prapared Statement als String erzeugt
+        // Die Fragezeichen stehen stellvertretend 
+        // für die Werte der Variablen 
+        $sql = $connection->prepare("INSERT INTO einträge 
+        (Tag,Monat,Jahr,Sekunde,Minute,Stunde,Farbe,Emotion,
+        Gedanken,Situation,Produktivität,Handeln,
+        Bewertung,Essen,Verträglichkeit,Schlaf,Müde,
+        Wetter,Warm,Ereignis,Ort,Kontakt,Verhältnis,Lösung,Notiz) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-        $sql = $connection->prepare("INSERT INTO einträge (Tag,Monat,Jahr,Sekunde,Minute,Stunde,Farbe,Emotion,Gedanken,Situation,Produktivität,Handeln,
-        Bewertung,Essen,Verträglichkeit,Schlaf,Müde,Wetter,Warm,Ereignis,Ort,Kontakt,Verhältnis,Lösung,Notiz) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
-
-        $sql->bind_param('iiiiiissssiiisiiisisssiss',$tag,$monat,$jahr,$sekunde,$minute,$stunde,$farbe,$emotion,$gedanken,$situation,$produk,$handeln,$bewertung,$essen,$verträglichkeit,
-        $schlaf,$müde,$wetter,$warm,$ereignis,$ort,$kontakt,$verhältnis,$lösung,$notiz);
+        $sql->bind_param('iiiiiissssiiisiiisisssiss',
+        $tag,$monat,$jahr,$sekunde,$minute,$stunde,$farbe,
+        $emotion,$gedanken,$situation,$produk,$handeln,$bewertung,
+        $essen,$verträglichkeit,$schlaf,$müde,$wetter,$warm,
+        $ereignis,$ort,$kontakt,$verhältnis,$lösung,$notiz);
 
         $tag = (int)$_GET['tag'];
         $monat = (int)$_GET['monat'];
@@ -76,6 +87,7 @@
         echo "Angaben wurden erfolgreich gespeichert";
     }
     //#############
+    //
     else if($_GET['req']=="hinzufügen"){
 
         $tabelle = $_GET['tabelle'];
