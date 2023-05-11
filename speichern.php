@@ -2,6 +2,7 @@
     //diese Zeile erlaubt die Kommunikation zwischen verschiedenen Domänen dh. Browser und Privater Server
     header("Access-Control-Allow-Origin: *");
 
+
     // Die nötigen Werte um sich mit dem Richtigen Server 
     // und Datenbank zu verbinden
     // In den Servervariablen muss was anderes stehen, 
@@ -9,6 +10,7 @@
     // $server = "localhost"; // Privatrechner
     // $server = "127.0.0.1:3305"; // Arbeitsrechner
     $server = fgets(fopen("config.txt","r"));
+
     $name = "root";
     $passwort = "";
     $datenbank = "stimmungen";
@@ -77,12 +79,12 @@
         $lösung = $_GET['lösung'];
         $notiz = $_GET['notiz'];
 
+        
         $sql->execute();
 
         $sql->close();
 
         $connection->close();
-
 
         echo "Angaben wurden erfolgreich gespeichert";
     }
@@ -120,7 +122,12 @@
         $sql->execute();
         $sql->close();
         $connection->close();
+
+        echo "Antwortmöglichkeit hinzugefügt";
     }
+
+
+    
     //#############
     else if($_GET['req']=="puzzle"){
 

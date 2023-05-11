@@ -21,9 +21,6 @@ function uhr_null_hinzufügen(x){
 
 
 
-
-
-
 // Jeder Button steht für eine Emotion und besitz eine einzigartige Farbe.
 // Je nachdem welchen Button man betätigt, wird die Farbe des Buttons in das 
 // Anzeigefenster eingefügt, welches sich überhalb befindet und by-default weiß ist
@@ -39,6 +36,7 @@ function Farbe_Auswählen(X){
   feld.style.backgroundColor = farbe;
   document.getElementById("auswahl_anzeige_text").innerHTML = emotion;
 }//##############################################
+
 
 
 // Das Farbfeld lässt sich per Knopfdruck auf Neutral zurücksetzen
